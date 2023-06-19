@@ -2,9 +2,7 @@
 
 Github Instructions:
 
-Github Instructions:
-
-******\*\*******Read the instructions carefully******\*******
+**\*\***\*\***\*\***Read the instructions carefully**\*\***\***\*\***
 
 1. In order to get the dev branch cloned into your local machine. Command: git clone -b dev https://github.com/Zaberahmed/Squash-Booking-App.git
 
@@ -26,7 +24,7 @@ Github Instructions:
 
 10. Now go back to your branch by typing 'git checkout <your_branch>' and start coding again.
 
-**\*\***More instructions****\*****
+**\*\***More instructions\***\*\*\*\***
 
 1. Do not push anything to main.
 2. Always pull work from remote before starting your work. Command: git checkout dev && git pull origin dev
