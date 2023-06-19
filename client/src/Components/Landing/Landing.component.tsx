@@ -1,6 +1,6 @@
-// import landingImage from './../../assets/landingImage.jpg';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import download from '../../assets/download.jpeg';
+import LandingImage from './../../assets/LandingImage.jpg';
 
 function Landing() {
 	return (
@@ -10,8 +10,8 @@ function Landing() {
 			<p>Challenge your friend and play together a game of squash</p>
 			<br />
 			<img
-				src={download}
-				alt=""
+				src={LandingImage}
+				alt="Squash playing logo"
 			/>
 			<br />
 			<br />
