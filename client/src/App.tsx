@@ -1,5 +1,4 @@
-import Calender from './Components/Calender/Calender.component';
-import TimePicker from './Components/TimePicker/TimePicker.component';
+
 import { BrowserRouter as Router } from 'react-router-dom';
 import auth from './utils/auth';
 import Dashboard from './Components/Dashboard';
@@ -13,8 +12,7 @@ function App() {
 	const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(initialState);
 	return (
 		<div className='App'>
-			<Calender />
-			<TimePicker />
+
 			<Router>
 				<Navbar isAuthenticated={isAuthenticated} />
 				<Dashboard setIsAuthenticated={setIsAuthenticated} />
