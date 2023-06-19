@@ -4,6 +4,7 @@
 // import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './Pages/Landing.page';
+import Calender from './Components/Calender/Calender.component'
 
 import './App.css';
 import Register from './Components/Register';
@@ -20,7 +21,12 @@ function App() {
 				<Routes>
 					<Route
 						path="/"
-						element={<LandingPage />}></Route>
+						element={<>
+							<LandingPage />
+							<Calender></Calender>
+						  </>}
+						
+						></Route>
 					<Route
 						path="/register"
 						element={<Register setIsAuthenticated={setIsAuthenticated} />}></Route>
