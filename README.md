@@ -10,7 +10,7 @@ Github Instructions:
 
 3. You can check which branch you are in by typing 'git branch' and the active branch will have a * beside them (example: *dev). Now create your own branch. Command: 'git checkout -b <your_branch>'
 
-4. Now you are inside your branch, start coding.
+4. Now you are inside your branch, start coding...
 
 5. After that type git add . and git commit -m "message" to commit your changes locally to your branch.
 
