@@ -1,16 +1,16 @@
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
   /* background: linear-gradient(to bottom, #36454f, #000000); */
   /* background-color: #ffffff; */
-  background-color: #FEF3C7;
+  background-color: #fef3c7;
 }
 
 .container {
   padding: 16px;
-  background-color: #FEF3C7;
+  background-color: #fef3c7;
   /* border: 0.5px solid gray; */
 }
 
@@ -20,82 +20,86 @@ input[type='name'],
 input[type='membershipId'],
 input[type='email'],
 input[type='phone'] {
-	width: 100%;
-	padding: 15px;
-	margin: 5px 0 22px 0;
-	display: inline-block;
-	border: none;
-	background: #f1f1f1;
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
 }
 
 .input[type='text']:focus,
 input[type='password']:focus {
-	background-color: #ddd;
-	outline: none;
+  background-color: #ddd;
+  outline: none;
 }
 
 hr {
-	border: 1px solid #f1f1f1;
-	margin-bottom: 25px;
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
 }
 
 .registerbtn {
-	background-color: #1cac78;
-	color: white;
-	padding: 16px 20px;
-	margin: 8px 0;
-	border: none;
-	cursor: pointer;
-	width: 100%;
-	opacity: 0.9;
-	font-weight: 900;
+  background-color: #1cac78;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  font-weight: 900;
 }
 .loginbtn {
-	background-color: #1cac78;
-	color: white;
-	padding: 16px 20px;
-	margin: 8px 0;
-	border: none;
-	cursor: pointer;
-	width: 100%;
-	opacity: 0.9;
-	font-weight: 900;
+  background-color: orange;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  font-weight: 900;
 }
 
 .registerbtn:hover {
-	opacity: 1;
+  opacity: 1;
 }
 
 a {
-	color: dodgerblue;
+  color: dodgerblue;
 }
 
 .signin {
-	background-color: #f1f1f1;
-	text-align: center;
+  background-color: #f1f1f1;
+  text-align: center;
 }
 
 /* Responsive Styles */
 
 /* Mobile */
 @media (max-width: 600px) {
-	.container {
-		padding: 10px;
-	}
+  .container {
+    padding: 10px;
+  }
 }
 
 /* Tablet */
 @media (min-width: 601px) and (max-width: 1024px) {
-	.container {
-		padding: 20px;
-	}
+  .container {
+    padding: 20px;
+  }
 }
 
 /* PC */
 @media (min-width: 1025px) {
-	.container {
-		padding: 30px;
-		max-width: 600px;
-		margin: 0 auto;
-	}
+  .container {
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.login-heading {
+  text-align: center;
 }
