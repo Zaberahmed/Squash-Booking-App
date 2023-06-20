@@ -40,9 +40,8 @@ const Login = (props: Props) => {
 		// 	auth.login(() => navigate('/user'));
 		// }
 
-			props.setIsAuthenticated(true);
-			auth.login(() => navigate('/user'));
-
+		props.setIsAuthenticated(true);
+		auth.login(() => navigate('/user'));
 	};
 
 	const validateForm = () => {
@@ -50,50 +49,47 @@ const Login = (props: Props) => {
 	};
 
 	return (
-		<section>
-			<h2>Login</h2>
-			<body>
-				<form onSubmit={handleSubmit}>
-					<div className="container">
-						<h1>Login</h1>
+		<div className="w-screen h-screen flex flex-col items-center bg-amber-50">
+			<h2 className="text-2xl font-bold mb-4 mt-5">Login</h2>
+			<form
+				onSubmit={handleSubmit}
+				className="w-full max-w-md p-4 flex flex-col">
+				<label
+					htmlFor="email"
+					className="mb-2">
+					<b>Email</b>
+				</label>
+				<input
+					type="email"
+					placeholder="example@example.com"
+					name="email"
+					value={state.email}
+					onChange={handleChange}
+					className="w-full border rounded py-2 px-3 mb-2"
+				/>
 
-						<hr />
+				<label
+					htmlFor="password"
+					className="mb-2">
+					<b>Password</b>
+				</label>
+				<input
+					type="password"
+					placeholder="XXXXXXXX"
+					name="password"
+					value={state.password}
+					onChange={handleChange}
+					className="w-full border rounded py-2 px-3 mb-2"
+				/>
 
-						<label htmlFor="email">
-							<b>Email</b>
-						</label>
-						<input
-							type="email"
-							placeholder="Enter Email"
-							name="email"
-							value={state.email}
-							onChange={handleChange}
-						/>
-
-						<label htmlFor="password">
-							<b>Password</b>
-						</label>
-						<input
-							type="password"
-							placeholder="Enter Password"
-							name="password"
-							value={state.password}
-							onChange={handleChange}
-						/>
-
-						<hr />
-
-						<button
-							type="submit"
-							className="loginbtn bg-black
-							text-white"
-							disabled={validateForm()}>
-							Login
-						</button>
-					</div>
-				</form>
-			</body>
-		</section>
+				<button
+					type="submit"
+					className="bg-orange-400 hover:bg-orange-600 text-white text-m px-4 py-2 border rounded-full mt-3"
+					disabled={validateForm()}>
+					Login
+				</button>
+			</form>
+		</div>
 	);
 };
 

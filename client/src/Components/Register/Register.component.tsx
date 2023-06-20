@@ -56,90 +56,88 @@ const Register = (props: Props) => {
 	};
 
 	return (
-		<div className="w-screen h-screen flex flex-col items-center  min-h-screen bg-amber-100 ">
+		<div className="w-screen h-screen flex flex-col items-center bg-amber-100">
+			<h2 className="text-2xl font-bold mt-5 mb-4">Register</h2>
+			<p className="mb-4">Please fill in this form to create an account.</p>
 			<form
 				onSubmit={handleSubmit}
-				className="w-full max-w-md p-4">
-				<div className="container">
-					<p className="mb-4">Please fill in this form to create an account.</p>
+				className="w-full max-w-md p-4 flex flex-col">
+				<label
+					htmlFor="name"
+					className="mb-2">
+					<b>Name</b>
+				</label>
+				<input
+					type="text"
+					placeholder="John Doe"
+					name="name"
+					value={state.name}
+					onChange={handleChange}
+					className="w-full border rounded py-2 px-3 mb-2"
+				/>
 
-					<label
-						htmlFor="name"
-						className="mb-2">
-						<b>Name</b>
-					</label>
-					<input
-						type="text"
-						placeholder="John Doe"
-						name="name"
-						value={state.name}
-						onChange={handleChange}
-						className="w-full border rounded py-2 px-3 mb-2"
-					/>
+				<label
+					htmlFor="membershipId"
+					className="mb-2">
+					<b>Membership ID</b>
+				</label>
+				<input
+					type="text"
+					placeholder="PA-XX"
+					name="membershipId"
+					value={state.membershipId}
+					onChange={handleChange}
+					className="w-full border rounded py-2 px-3 mb-2"
+				/>
 
-					<label
-						htmlFor="membershipId"
-						className="mb-2">
-						<b>Membership ID</b>
-					</label>
-					<input
-						type="text"
-						placeholder="PA-XX"
-						name="membershipId"
-						value={state.membershipId}
-						onChange={handleChange}
-						className="w-full border rounded py-2 px-3 mb-2"
-					/>
+				<label
+					htmlFor="phone"
+					className="mb-2">
+					<b>Mobile Number</b>
+				</label>
+				<input
+					type="text"
+					placeholder="01XXXXXXXXX"
+					name="phone"
+					value={state.phone}
+					onChange={handleChange}
+					className="w-full border rounded py-2 px-3 mb-2"
+				/>
 
-					<label
-						htmlFor="phone"
-						className="mb-2">
-						<b>Mobile Number</b>
-					</label>
-					<input
-						type="text"
-						placeholder="01XXXXXXXXX"
-						name="phone"
-						value={state.phone}
-						onChange={handleChange}
-						className="w-full border rounded py-2 px-3 mb-2"
-					/>
+				<label
+					htmlFor="email"
+					className="mb-2">
+					<b>Email</b>
+				</label>
+				<input
+					type="email"
+					placeholder="example@example.com"
+					name="email"
+					value={state.email}
+					onChange={handleChange}
+					className="w-full border rounded py-2 px-3 mb-2"
+				/>
 
-					<label
-						htmlFor="email"
-						className="mb-2">
-						<b>Email</b>
-					</label>
-					<input
-						type="email"
-						placeholder="example@example.com"
-						name="email"
-						value={state.email}
-						onChange={handleChange}
-						className="w-full border rounded py-2 px-3 mb-2"
-					/>
+				<label
+					htmlFor="password"
+					className="mb-2">
+					<b>Password</b>
+				</label>
+				<input
+					type="password"
+					placeholder="XXXXXXXX"
+					name="password"
+					value={state.password}
+					onChange={handleChange}
+					className="w-full border rounded py-2 px-3 mb-2"
+				/>
 
-					<label
-						htmlFor="password"
-						className="mb-2">
-						<b>Password</b>
-					</label>
-					<input
-						type="password"
-						placeholder="XXXXXXXX"
-						name="password"
-						value={state.password}
-						onChange={handleChange}
-						className="w-full border rounded py-2 px-3 mb-2"
-					/>
-
-					<button
-						type="submit"
-						className="registerbtn bg-orange-400 hover:bg-orange-600 text-white text-m px-4 py-2  border rounded-full mt-1"
-						disabled={validateForm()}>
-						Register
-					</button>
-				</div>
+				<button
+					type="submit"
+					className=" bg-orange-400 hover:bg-orange-600 text-white text-m px-4 py-2 border rounded-full mt-3"
+					disabled={validateForm()}>
+					Register
+				</button>
 			</form>
 		</div>
 	);
