@@ -2,10 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './Pages/Landing.page';
 
 import './App.css';
-import Register from './Components/Register';
+import Register from './Components/Register/Register.component';
 import React from 'react';
 import auth from './utils/auth';
 import Login from './Components/Login/Login.component';
+import User from './Pages/User.page'
+import TimeSlots from './Components/TimeSlots/TimeSlots';
 
 
 function App() {
@@ -15,14 +17,9 @@ function App() {
 		<div>
 			<Router>
 				<Routes>
-					<Route
-						path="/"
-						element={<>
-							<LandingPage />
-							{/* <Calender></Calender> */}
-						  </>}
-						
-						></Route>
+					<Route path="/" element={<LandingPage />}></Route>
+					<Route path="/user" element={<User></User>}></Route>
+
 					<Route
 						path="/register"
 						element={

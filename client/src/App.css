@@ -5,12 +5,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   /* background: linear-gradient(to bottom, #36454f, #000000); */
   /* background-color: #ffffff; */
-  background-color: whitesmoke;
+  background-color: #FEF3C7;
 }
 
 .container {
   padding: 16px;
-  background-color: white;
+  background-color: #FEF3C7;
   /* border: 0.5px solid gray; */
 }
 
