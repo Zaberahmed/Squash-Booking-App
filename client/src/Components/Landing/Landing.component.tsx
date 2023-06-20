@@ -18,7 +18,7 @@ function Landing() {
 			<p className="mt-3  text-slate-800">Already a member?</p>
 
 			<Link to="/login">
-				<button className="bg-orange-400 hover:bg-orange-600 text-white text-m px-4 py-2  border rounded-full mt-1">Login</button>
+				<button className=" bg-orange-400 hover:bg-orange-600 text-white text-m px-4 py-2  border rounded-full mt-1">Login</button>
 			</Link>
 		</div>
 	);
