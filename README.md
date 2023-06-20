@@ -22,7 +22,9 @@ Github Instructions:
 
 9. Now push your changes by typing 'git push origin dev'. This will also push the changes into remote repo.
 
-10. Now go back to your branch by typing 'git checkout <your_branch>' and start coding again.
+10. Now go back to your branch by typing 'git checkout <your_branch>' and start coding.
+
+11. If you see the branch you are working on is not updated then update your branch with the latest updates from the remote repo. Type 'git fetch origin && git merge origin/dev' and your branch will be updated as well.
 
 **\*\***More instructions\***\*\*\*\***
 
