@@ -23,7 +23,7 @@ function App() {
 						path="/"
 						element={<>
 							<LandingPage />
-							<Calender></Calender>
+							{/* <Calender></Calender> */}
 						  </>}
 						
 						></Route>

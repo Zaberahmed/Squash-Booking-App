@@ -35,9 +35,10 @@ const handleDropdownChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event.target.value);
   };
 
-  const handleRoleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  const handleRoleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedRole(event.target.value);
   };
+  
 
 //   const navigate = useNavigate();
 
