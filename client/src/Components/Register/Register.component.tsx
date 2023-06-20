@@ -13,6 +13,7 @@ const initialState: User = {
 	email: '',
 	password: '',
 };
+
 interface Props {
 	setIsAuthenticated: (isAuthenticated: boolean) => void;
 	isAuthenticated: boolean;
@@ -45,8 +46,6 @@ const Register = (props: Props) => {
 			props.setIsAuthenticated(true);
 			auth.login(() => navigate('/profile'));
 		}
-		// props.setIsAuthenticated(true);
-		// auth.login(() => navigate('/profile'));
 	};
 
 	const validateForm = (): boolean => {
@@ -54,85 +53,91 @@ const Register = (props: Props) => {
 	};
 
 	return (
-		<div>
-			<h2>Register</h2>
-			<body>
-				<form onSubmit={handleSubmit}>
-					<div className="container">
-						<h1>Register</h1>
-						<p>Please fill in this form to create an account.</p>
-						<hr />
+		<div className="w-screen h-screen flex flex-col items-center  min-h-screen bg-amber-100 ">
+			<form
+				onSubmit={handleSubmit}
+				className="w-full max-w-md p-4">
+				<div className="container">
+					<p className="mb-4">Please fill in this form to create an account.</p>
 
-						<label htmlFor="name">
-							<b>Name</b>
-						</label>
-						<input
-							type="text"
-							placeholder="Enter Your Name"
-							name="name"
-							value={state.name}
-							onChange={handleChange}
-						/>
-						<label htmlFor="membershipId">
-							<b>Membership ID</b>
-						</label>
-						<input
-							type="membershipId"
-							placeholder="Membership ID"
-							name="membershipId"
-							value={state.membershipId}
-							onChange={handleChange}
-						/>
-						<label htmlFor="phone">
-							<b>Mobile Number</b>
-						</label>
-						<input
-							type="phone"
-							placeholder="Enter your Mobile Number"
-							name="phone"
-							value={state.phone}
-							onChange={handleChange}
-						/>
+					<label
+						htmlFor="name"
+						className="mb-2">
+						<b>Name</b>
+					</label>
+					<input
+						type="text"
+						placeholder="John Doe"
+						name="name"
+						value={state.name}
+						onChange={handleChange}
+						className="w-full border rounded py-2 px-3 mb-2"
+					/>
 
-						<label htmlFor="email">
-							<b>Email</b>
-						</label>
-						<input
-							type="email"
-							placeholder="Enter Email"
-							name="email"
-							value={state.email}
-							onChange={handleChange}
-						/>
+					<label
+						htmlFor="membershipId"
+						className="mb-2">
+						<b>Membership ID</b>
+					</label>
+					<input
+						type="text"
+						placeholder="PA-XX"
+						name="membershipId"
+						value={state.membershipId}
+						onChange={handleChange}
+						className="w-full border rounded py-2 px-3 mb-2"
+					/>
 
-						<label htmlFor="password">
-							<b>Password</b>
-						</label>
-						<input
-							type="password"
-							placeholder="Enter Password"
-							name="password"
-							value={state.password}
-							onChange={handleChange}
-						/>
+					<label
+						htmlFor="phone"
+						className="mb-2">
+						<b>Mobile Number</b>
+					</label>
+					<input
+						type="text"
+						placeholder="01XXXXXXXXX"
+						name="phone"
+						value={state.phone}
+						onChange={handleChange}
+						className="w-full border rounded py-2 px-3 mb-2"
+					/>
 
-						<hr />
+					<label
+						htmlFor="email"
+						className="mb-2">
+						<b>Email</b>
+					</label>
+					<input
+						type="email"
+						placeholder="example@example.com"
+						name="email"
+						value={state.email}
+						onChange={handleChange}
+						className="w-full border rounded py-2 px-3 mb-2"
+					/>
 
-						<button
-							type="submit"
-							className="registerbtn bg-black text-white"
-							disabled={validateForm()}>
-							Register
-						</button>
-					</div>
+					<label
+						htmlFor="password"
+						className="mb-2">
+						<b>Password</b>
+					</label>
+					<input
+						type="password"
+						placeholder="XXXXXXXX"
+						name="password"
+						value={state.password}
+						onChange={handleChange}
+						className="w-full border rounded py-2 px-3 mb-2"
+					/>
 
-					{/* <div className='container signin'>
-          <p>
-            Already have an account? <a href='#'>Sign in</a>.
-          </p>
-        </div> */}
-				</form>
-			</body>
+					<button
+						type="submit"
+						className="registerbtn bg-orange-400 hover:bg-orange-600 text-white text-m px-4 py-2  border rounded-full mt-1"
+						disabled={validateForm()}>
+						Register
+					</button>
+				</div>
+			</form>
 		</div>
 	);
 };
