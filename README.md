@@ -31,4 +31,4 @@ Github Instructions:
 1. Do not push anything to main.
 2. Always pull work from remote before starting your work. Command: git checkout dev && git pull origin dev
 3. Always pull from the remote repo before pushing your work. Command: git pull origin dev && git push origin dev
-4. Do not delete any branch or if you have to, at least consult with someone else.
+4. Do not delete any branch or if you have to, at least consult with someone else..
