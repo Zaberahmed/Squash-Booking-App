@@ -51,7 +51,7 @@ hr {
   font-weight: 900;
 }
 .loginbtn {
-  background-color: #1cac78;
+  background-color: orange;
   color: white;
   padding: 16px 20px;
   margin: 8px 0;
@@ -98,4 +98,8 @@ a {
     max-width: 600px;
     margin: 0 auto;
   }
+}
+
+.login-heading {
+  text-align: center;
 }

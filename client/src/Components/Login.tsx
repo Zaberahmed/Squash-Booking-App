@@ -48,31 +48,32 @@ const Login = (props: Props) => {
 
   return (
     <section>
-      <h2>Login</h2>
       <body>
         <form onSubmit={handleSubmit}>
           <div className='container'>
-            <h1>Login</h1>
+            <h1 className='text-4xl text-center font-sans font-bold tracking-wide'>
+              Login
+            </h1>
             {/* <p>Please fill in this form to create an account.</p> */}
             <hr />
 
             <label htmlFor='email'>
-              <b>Email</b>
+              <b className='font-mono'>Email</b>
             </label>
             <input
               type='email'
-              placeholder='Enter Email'
+              placeholder='example@example.com'
               name='email'
               value={state.email}
               onChange={handleChange}
             />
 
             <label htmlFor='password'>
-              <b>Password</b>
+              <b className='font-mono'>Password</b>
             </label>
             <input
               type='password'
-              placeholder='Enter Password'
+              placeholder='XXXXX'
               name='password'
               value={state.password}
               onChange={handleChange}
@@ -84,6 +85,7 @@ const Login = (props: Props) => {
               type='submit'
               className='loginbtn'
               disabled={validateForm()}
+              className='text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 cursor-pointer'
             >
               Login
             </button>
