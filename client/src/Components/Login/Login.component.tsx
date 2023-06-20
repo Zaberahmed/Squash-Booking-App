@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import auth from '../../utils/auth';
 // import authJWT from '../Services/authJWT.service';
 import { useNavigate } from 'react-router-dom';
-import authJWT from '../../Services/authJWT.service';
+// import authJWT from '../../Services/authJWT.service';
 
 interface Props {
 	setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -33,15 +33,16 @@ const Login = (props: Props) => {
 		const formData: FormData = new FormData(form);
 		const user = Object.fromEntries(formData);
 		console.log(user);
-		const loginData = await authJWT.login(user);
-		if (loginData) {
-			localStorage.setItem('accessToken', loginData.accessToken);
+		// const loginData = await authJWT.login(user);
+		// if (loginData) {
+		// 	localStorage.setItem('accessToken', loginData.accessToken);
+		// 	props.setIsAuthenticated(true);
+		// 	auth.login(() => navigate('/user'));
+		// }
 
 			props.setIsAuthenticated(true);
-			auth.login(() => navigate('/profile'));
-		}
-		// props.setIsAuthenticated(true);
-		// auth.login(() => navigate('/profile'));
+			auth.login(() => navigate('/user'));
+
 	};
 
 	const validateForm = () => {
@@ -55,7 +56,7 @@ const Login = (props: Props) => {
 				<form onSubmit={handleSubmit}>
 					<div className="container">
 						<h1>Login</h1>
-						{/* <p>Please fill in this form to create an account.</p> */}
+
 						<hr />
 
 						<label htmlFor="email">

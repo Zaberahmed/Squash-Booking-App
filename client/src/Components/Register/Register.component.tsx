@@ -4,7 +4,7 @@ import auth from '../../utils/auth';
 // import authJWT from '../Services/authJWT.service';
 import { useNavigate } from 'react-router-dom';
 import User from '../../Interfaces/User.interface';
-import authJWT from '../../Services/authJWT.service';
+// import authJWT from '../../Services/authJWT.service';
 
 const initialState: User = {
 	name: '',
@@ -39,13 +39,16 @@ const Register = (props: Props) => {
 
 		const user = Object.fromEntries(formData);
 		console.log(user);
-		const registerData = await authJWT.register(user);
-		const loginData = await authJWT.login(user);
-		if (registerData && loginData) {
-			localStorage.setItem('accessToken', loginData.accessToken);
-			props.setIsAuthenticated(true);
-			auth.login(() => navigate('/profile'));
-		}
+		// const registerData = await authJWT.register(user);
+		// const loginData = await authJWT.login(user);
+		// if (registerData && loginData) {
+		// 	localStorage.setItem('accessToken', loginData.accessToken);
+		// 	props.setIsAuthenticated(true);
+		// 	auth.login(() => navigate('/user'));
+		// }
+
+		props.setIsAuthenticated(true);
+		auth.login(() => navigate('/user'));
 	};
 
 	const validateForm = (): boolean => {

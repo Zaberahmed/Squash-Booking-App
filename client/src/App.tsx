@@ -2,9 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './Pages/Landing.page';
 import React from 'react';
 import auth from './utils/auth';
-import Login from './Components/Login/Login.component';
 import SignUpPage from './Pages/SignUp.page';
 import './App.css';
+import SignInPage from './Pages/SignIn.page';
+import UserPage from './Pages/User.page';
 
 function App() {
 	const initialState = auth.isAuthenticated();
@@ -30,11 +31,15 @@ function App() {
 				<Route
 					path="/login"
 					element={
-						<Login
+						<SignInPage
 							setIsAuthenticated={setIsAuthenticated}
 							isAuthenticated={isAuthenticated}
 						/>
 					}></Route>
+
+				<Route
+					path="/user"
+					element={<UserPage />}></Route>
 			</Routes>
 
 			{/* <Navbar isAuthenticated={isAuthenticated} />
