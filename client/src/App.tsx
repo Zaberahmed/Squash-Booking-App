@@ -1,15 +1,10 @@
-// import auth from './utils/auth';
-// import Dashboard from './Components/Dashboard';
-// import Navbar from './Components/Navbar';
-// import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './Pages/Landing.page';
-
-import './App.css';
-import Register from './Components/Register';
+import Register from './Components/Register/Register.component';
 import React from 'react';
 import auth from './utils/auth';
-import Login from './Components/Login';
+import Login from './Components/Login/Login.component';
+import './App.css';
 
 function App() {
 	const initialState = auth.isAuthenticated();
@@ -23,10 +18,20 @@ function App() {
 						element={<LandingPage />}></Route>
 					<Route
 						path="/register"
-						element={<Register setIsAuthenticated={setIsAuthenticated} />}></Route>
+						element={
+							<Register
+								setIsAuthenticated={setIsAuthenticated}
+								isAuthenticated={isAuthenticated}
+							/>
+						}></Route>
 					<Route
 						path="/login"
-						element={<Login setIsAuthenticated={setIsAuthenticated} />}></Route>
+						element={
+							<Login
+								setIsAuthenticated={setIsAuthenticated}
+								isAuthenticated={isAuthenticated}
+							/>
+						}></Route>
 				</Routes>
 
 				{/* <Navbar isAuthenticated={isAuthenticated} />

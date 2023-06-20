@@ -1,46 +1,28 @@
-const mongoose = require('mongoose');
+const mongoose = require('./../database');
+const { slotSchema } = require('./slot.schema');
+const { peerSchema } = require('./peer.schema');
 
 const bookingSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
   date: {
     type: Date,
     required: true,
   },
   slot: {
-    slotName: {
-      type: String,
-      required: true,
-    },
-    time: {
-      type: String,
-      required: true,
-    },
+    slotSchema,
   },
-  peer: {
-    isGuest: {
-      type: Boolean,
-      required: true,
-    },
-    opponent: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-    },
-    guestName: {
-      type: String,
-    },
-  },
+  peer: [peerSchema],
 });
 
 const Booking = mongoose.model('Booking', bookingSchema);
 
-module.exports = { getAll };
-
-// need more function getAll, getById, getByUserId,
-
-async function getAll() {
+const getAllBookings = async () => {
   return await Booking.find({});
-}
+};
+
+const getAllBookingSlotsByDate = async (date) => {
+  return await Booking.find({ date: new Date(date) }).then(
+    (booking) => booking.slot
+  );
+};
+
+module.exports = { getAllBookings, getAllBookingSlotsByDate };

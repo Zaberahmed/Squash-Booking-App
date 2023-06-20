@@ -1,11 +1,10 @@
-import React from 'react';
 import { useState, ChangeEvent, FormEvent } from 'react';
 
-import auth from '../utils/auth';
+import auth from '../../utils/auth';
 // import authJWT from '../Services/authJWT.service';
 import { useNavigate } from 'react-router-dom';
-import User from '../Interfaces/User.interface';
-import '../App.css';
+import User from '../../Interfaces/User.interface';
+import authJWT from '../../Services/authJWT.service';
 
 const initialState: User = {
 	name: '',
@@ -16,6 +15,7 @@ const initialState: User = {
 };
 interface Props {
 	setIsAuthenticated: (isAuthenticated: boolean) => void;
+	isAuthenticated: boolean;
 }
 
 const Register = (props: Props) => {
@@ -38,15 +38,15 @@ const Register = (props: Props) => {
 
 		const user = Object.fromEntries(formData);
 		console.log(user);
-		// const registerData = await authJWT.register(user);
-		// const loginData = await authJWT.login(user);
-		// if (registerData && loginData) {
-		// 	localStorage.setItem('accessToken', loginData.accessToken);
-		// 	props.setIsAuthenticated(true);
-		// 	auth.login(() => navigate('/profile'));
-		// }
-		props.setIsAuthenticated(true);
-		auth.login(() => navigate('/profile'));
+		const registerData = await authJWT.register(user);
+		const loginData = await authJWT.login(user);
+		if (registerData && loginData) {
+			localStorage.setItem('accessToken', loginData.accessToken);
+			props.setIsAuthenticated(true);
+			auth.login(() => navigate('/profile'));
+		}
+		// props.setIsAuthenticated(true);
+		// auth.login(() => navigate('/profile'));
 	};
 
 	const validateForm = (): boolean => {
@@ -120,7 +120,7 @@ const Register = (props: Props) => {
 
 						<button
 							type="submit"
-							className="registerbtn"
+							className="registerbtn bg-black text-white"
 							disabled={validateForm()}>
 							Register
 						</button>
