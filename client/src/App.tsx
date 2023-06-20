@@ -1,10 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './Pages/Landing.page';
-import Register from './Components/Register/Register.component';
+
+import './App.css';
+import Register from './Components/Register';
 import React from 'react';
 import auth from './utils/auth';
 import Login from './Components/Login/Login.component';
-import './App.css';
+
 
 function App() {
 	const initialState = auth.isAuthenticated();
@@ -15,7 +17,12 @@ function App() {
 				<Routes>
 					<Route
 						path="/"
-						element={<LandingPage />}></Route>
+						element={<>
+							<LandingPage />
+							{/* <Calender></Calender> */}
+						  </>}
+						
+						></Route>
 					<Route
 						path="/register"
 						element={
