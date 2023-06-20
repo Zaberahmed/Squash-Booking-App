@@ -40,8 +40,10 @@ const Login = (props: Props) => {
 		// 	auth.login(() => navigate('/user'));
 		// }
 
-		props.setIsAuthenticated(true);
-		auth.login(() => navigate('/user'));
+		setTimeout(() => {
+			props.setIsAuthenticated(true);
+			auth.login(() => navigate('/user'));
+		}, 500);
 	};
 
 	const validateForm = () => {
@@ -65,7 +67,7 @@ const Login = (props: Props) => {
 					name="email"
 					value={state.email}
 					onChange={handleChange}
-					className="w-full border rounded py-2 px-3 mb-2"
+					className="w-full border rounded py-2 px-3 mb-2 "
 				/>
 
 				<label
@@ -79,12 +81,12 @@ const Login = (props: Props) => {
 					name="password"
 					value={state.password}
 					onChange={handleChange}
-					className="w-full border rounded py-2 px-3 mb-2"
+					className="w-full border-2 rounded py-2 px-3 mb-2 "
 				/>
 
 				<button
 					type="submit"
-					className="bg-orange-400 hover:bg-orange-600 text-white text-m px-4 py-2 border rounded-full mt-3"
+					className="bg-orange-400 hover:bg-orange-600 active:bg-slate-700 focus:outline-none focus:ring focus:ring-slate-300 text-white text-l font-semibold text-m px-4 py-2 border rounded-full mt-3"
 					disabled={validateForm()}>
 					Login
 				</button>

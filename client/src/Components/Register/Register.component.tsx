@@ -46,9 +46,10 @@ const Register = (props: Props) => {
 		// 	props.setIsAuthenticated(true);
 		// 	auth.login(() => navigate('/user'));
 		// }
-
-		props.setIsAuthenticated(true);
-		auth.login(() => navigate('/user'));
+		setTimeout(() => {
+			props.setIsAuthenticated(true);
+			auth.login(() => navigate('/user'));
+		}, 500);
 	};
 
 	const validateForm = (): boolean => {
@@ -56,7 +57,7 @@ const Register = (props: Props) => {
 	};
 
 	return (
-		<div className="w-screen h-screen flex flex-col items-center bg-amber-100">
+		<div className="w-screen h-screen sm:h-10 flex flex-col items-center bg-amber-50">
 			<h2 className="text-2xl font-bold mt-5 mb-4">Register</h2>
 			<p className="mb-4">Please fill in this form to create an account.</p>
 			<form
@@ -134,7 +135,7 @@ const Register = (props: Props) => {
 
 				<button
 					type="submit"
-					className=" bg-orange-400 hover:bg-orange-600 text-white text-m px-4 py-2 border rounded-full mt-3"
+					className=" bg-orange-400 hover:bg-orange-600  active:bg-slate-700 focus:outline-none focus:ring focus:ring-slate-300 text-white text-l font-semibold px-4 py-2 border rounded-full mt-3"
 					disabled={validateForm()}>
 					Register
 				</button>
