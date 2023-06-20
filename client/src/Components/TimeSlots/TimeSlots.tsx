@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './TimeSlots.css'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -10,12 +11,14 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
+    width: 300,
+    height:200,
+    bgcolor: '#E1F5FE',
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.8)',
+    borderRadius: '5px',
     p: 4,
   };
+  
 
 interface ListTimeProps {
   time: string;
@@ -37,21 +40,18 @@ const handleDropdownChange = (event: ChangeEvent<HTMLSelectElement>) => {
 
   const handleRoleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedRole(event.target.value);
+    setSelectedOption('')
   };
   
 
-//   const navigate = useNavigate();
+
 
   const handleButtonClick = () => {
-    // Handle button click logic here
+   
     console.log(`Button clicked for time slot: ${time}`);
   };
 
-//   const handleNextButtonClick = () => {
-//     navigate('/next-route');
-//     // Handle next button click logic here
-//     console.log(`Next button clicked for time slot: ${time}`);
-//   };
+
 
   const handleMouseEnter = () => {
     setShowButtons(false);
@@ -65,21 +65,25 @@ const handleDropdownChange = (event: ChangeEvent<HTMLSelectElement>) => {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className='list-time-container'
+    className='mx-16'
     >
       {showButtons && (
-        <p className='bg-green-400 rounded-md p-5 m-5'>{time}</p>
+        <p className='bg-orange-400 rounded-md p-5 m-5 text-center text-white'>{time}</p>
       )}
       {!showButtons && (
-        <div className='flex flex-col sm:flex-row'>
+        <div className='flex justify-center gap-2'>
           <button
             onClick={handleButtonClick}
-            className='bg-gray-500 rounded-md p-2 m-2'
+            className=' flex flex-col sm:flex-row border-2
+             border-orange-400 bg-amber-100 rounded-md
+              px-10 py-4 mb-2 '
           >
             {time}
           </button>
-          <div>
-      <Button onClick={handleOpen}>Next</Button>
+          <div className='bg-orange-400 mb-2 rounded-md  '>
+      <Button 
+       sx={{  color: 'white' }}
+          onClick={handleOpen}>Next</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -91,13 +95,14 @@ const handleDropdownChange = (event: ChangeEvent<HTMLSelectElement>) => {
            You want to Play With
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          <div>
+          <div className='flex gap-4 mb-3'>
               <label>
                 <input
                   type='radio'
                   value='instructor'
                   checked={selectedRole === 'instructor'}
                   onChange={handleRoleChange}
+                
                 />
                 Instructor
               </label>
@@ -112,22 +117,30 @@ const handleDropdownChange = (event: ChangeEvent<HTMLSelectElement>) => {
               </label>
             </div>
           </Typography>
-          {selectedRole === 'instructor' && (
-              <select value={selectedOption} onChange={handleDropdownChange}>
-                <option value=''>-- Select an instructor option --</option>
-                <option value='Instructor Option 1'>Instructor Option 1</option>
+         <div className="options">
+
+         {selectedRole === 'instructor' && (
+              <select value={selectedOption} onChange={handleDropdownChange} 
+              >
+                <option value=''>Choose instructor </option>
+                
+                <option  value='Instructor Option 1'>Instructor Option 1</option>
                 <option value='Instructor Option 2'>Instructor Option 2</option>
                 <option value='Instructor Option 3'>Instructor Option 3</option>
+               
+
               </select>
             )}
             {selectedRole === 'member' && (
               <select value={selectedOption} onChange={handleDropdownChange}>
-                <option value=''>-- Select a member option --</option>
-                <option value='Member Option 1'>Member Option 1</option>
+                <option value=''>Choose a member </option>
+                <option value='Member Option 1' >Member Option 1</option>
                 <option value='Member Option 2'>Member Option 2</option>
                 <option value='Member Option 3'>Member Option 3</option>
               </select>
             )}
+         </div>
+
         </Box>
       </Modal>
     </div>
