@@ -29,6 +29,13 @@ Github Instructions:
 **\*\***More instructions\***\*\*\*\***
 
 1. Do not push anything to main.
+
 2. Always pull work from remote before starting your work. Command: git checkout dev && git pull origin dev
+
 3. Always pull from the remote repo before pushing your work. Command: git pull origin dev && git push origin dev
-4. Do not delete any branch or if you have to, at least consult with someone else..
+
+4. Do not delete any branch or if you have to, at least consult with someone else.
+
+5. If you are having problems with running (npm run dev) the app after pulling other's changes, it is possible that package-lock.json and package.json is out of sync. We can resolve it two ways:
+   One: Go to your client folder and paste it in the terminal 'rm -rf node_modules package-lock.json && npm i' (This might take long to finish)
+   Two: use 'npm ci' instead of 'npm i' before running 'npm run dev'
