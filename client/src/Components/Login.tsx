@@ -31,13 +31,13 @@ const Login = (props: Props) => {
     const formData: FormData = new FormData(form);
     const user = Object.fromEntries(formData);
     console.log(user);
-    // const loginData = await apiServiceJWT.login(user);
-    // if (loginData) {
-    // 	// localStorage.setItem('accessToken', loginData.accessToken);
+    const loginData = await apiServiceJWT.login(user);
+    if (loginData) {
+      localStorage.setItem('accessToken', loginData.accessToken);
 
-    // 	props.setIsAuthenticated(true);
-    // 	auth.login(() => navigate('/profile'));
-    // }
+      props.setIsAuthenticated(true);
+      auth.login(() => navigate('/profile'));
+    }
     props.setIsAuthenticated(true);
     auth.login(() => navigate('/profile'));
   };
