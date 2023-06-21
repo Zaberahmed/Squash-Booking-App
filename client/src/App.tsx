@@ -9,6 +9,7 @@ import UserPage from './Pages/User.page';
 import Profile from './Components/Profile/Profile';
 import History from './Components/History/History';
 import Upcoming from './Components/Upcoming/Upcoming';
+import SelectPerson from './Components/SelectPerson/SelectPerson';
 
 function App() {
 	const initialState = auth.isAuthenticated();
@@ -52,6 +53,9 @@ function App() {
 				<Route
 					path="/upcoming"
 					element={<Upcoming/>}></Route>
+				<Route
+					path="/selectperson"
+					element={<SelectPerson/>}></Route>
 			</Routes>
 
 			{/* <Navbar isAuthenticated={isAuthenticated} />
