@@ -6,19 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 300,
-    height:200,
-    bgcolor: '#E1F5FE',
-    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.8)',
-    borderRadius: '5px',
-    p: 4,
-  };
-  
+
 
 interface ListTimeProps {
   time: string;
