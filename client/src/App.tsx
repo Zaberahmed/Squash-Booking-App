@@ -10,6 +10,10 @@ import UserPage from './Pages/User.page';
 import LottiePlayer from './Components/Lottie/LottiePlayer.component';
 import Profile from './Components/Profile/Profile';
 import Upcoming from './Components/Upcoming/Upcoming';
+import AdminPage from './Pages/Admin.page';
+import SimpleCalender from './Components/Calender/Calender.component';
+import BookingLists from './Components/AdminBookingLists/BookingLists';
+import MemberLists from './Components/MemberLists/MemberLists';
 
 function App() {
   const initialState = auth.isAuthenticated();
@@ -49,6 +53,15 @@ function App() {
         <Route path='/profile' element={<Profile />}></Route>
         <Route path='/history' element={<History />}></Route>
         <Route path='/upcoming' element={<Upcoming />}></Route>
+      </Routes>
+        <Route path='/user' element={<UserPage />}></Route>
+        <Route path='/profile' element={<Profile />}></Route>
+        <Route path='/history' element={<History />}></Route>
+        <Route path='/upcoming' element={<Upcoming />}></Route>
+        <Route path='/admin' element={<AdminPage />}></Route>
+        <Route path='/event' element={<SimpleCalender />}></Route>
+        <Route path='/lists' element={<MemberLists />}></Route>
+        <Route path='/bookings' element={<BookingLists />}></Route>
       </Routes>
 
       {/* <Navbar isAuthenticated={isAuthenticated} />
