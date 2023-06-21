@@ -6,6 +6,9 @@ import SignUpPage from './Pages/SignUp.page';
 import './App.css';
 import SignInPage from './Pages/SignIn.page';
 import UserPage from './Pages/User.page';
+import Profile from './Components/Profile/Profile';
+import History from './Components/History/History';
+import Upcoming from './Components/Upcoming/Upcoming';
 
 function App() {
 	const initialState = auth.isAuthenticated();
@@ -40,6 +43,15 @@ function App() {
 				<Route
 					path="/user"
 					element={<UserPage />}></Route>
+				<Route
+					path="/profile"
+					element={<Profile/>}></Route>
+				<Route
+					path="/history"
+					element={<History/>}></Route>
+				<Route
+					path="/upcoming"
+					element={<Upcoming/>}></Route>
 			</Routes>
 
 			{/* <Navbar isAuthenticated={isAuthenticated} />

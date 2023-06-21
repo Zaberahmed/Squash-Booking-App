@@ -68,21 +68,21 @@ const handleDropdownChange = (event: ChangeEvent<HTMLSelectElement>) => {
     className='mx-16'
     >
       {showButtons && (
-        <p className='bg-orange-400 rounded-md p-5 m-5 text-center text-white'>{time}</p>
+        <p className='accent rounded-md p-5 m-5 text-center text-black'>{time}</p>
       )}
       {!showButtons && (
         <div className='flex justify-center gap-2'>
           <button
             onClick={handleButtonClick}
             className=' flex flex-col sm:flex-row border-2
-             border-orange-400 bg-amber-100 rounded-md
+             border-yellow-400 bg-yellow-50 rounded-md
               px-10 py-4 mb-2 '
           >
             {time}
           </button>
-          <div className='bg-orange-400 mb-2 rounded-md  '>
+          <div className='accent mb-2 rounded-md  '>
       <Button 
-       sx={{  color: 'white' }}
+       sx={{  color: 'black' }}
           onClick={handleOpen}>Next</Button>
       <Modal
         open={open}

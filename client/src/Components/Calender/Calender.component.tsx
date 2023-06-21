@@ -15,23 +15,35 @@ const SimpleCalender: React.FC = () => {
   ];
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-
+  const [calendarStyle, setCalendarStyle] = useState({ 
+	marginTop: '' ,
+  transition: ''});
+  const [headingStyle, setHeadingStyle] = useState({ 
+	fontSize: '', 
+	marginTop: '',
+	transition: '',});
+  
   const handleDateSelect = (date: Date | null) => {
     setSelectedDate(date);
+	setCalendarStyle({ marginTop: '2rem',transition: 'margin-top 2s ease'});
+    setHeadingStyle({ fontSize: '1rem', marginTop: '1rem' ,transition: 'font-size 2s ease'});
   };
 
   return (
-    <div >
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <div >
-          <div>
+    <div className="">
+<h1 className='text-center mt-10 mb-4 font-bold text-2xl' style={headingStyle}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis debitis </h1>
+<div className='flex justify-center items-center '>
+		
+      <LocalizationProvider dateAdapter={AdapterDayjs} >
+        <div style={calendarStyle}  >
+          <div className=''>
             <DateCalendar 
 			value={selectedDate} 
 			onChange={handleDateSelect} />
           </div>
           <div>
             {selectedDate && (
-              <div className='overflow-y-auto h-64'>
+              <div className='overflow-y-auto h-44'>
                 {timeSlots.map((time) => (
                   <TimeSlots
                     key={time.slotId}
@@ -45,6 +57,7 @@ const SimpleCalender: React.FC = () => {
         </div>
       </LocalizationProvider>
     </div>
+	</div>
   );
 };
 

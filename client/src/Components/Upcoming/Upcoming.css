@@ -1,0 +1,21 @@
+.upcoming-card {
+    background-color: rgb(239, 228, 228);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    z-index: 1; /* Add a higher z-index to ensure the card is displayed above other elements */
+  }
+  
+  .upcoming-card .card-content {
+    margin-bottom: 0.5rem;
+  }
+  
+  .upcoming-card h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .upcoming-card p {
+    margin-bottom: 0.5rem;
+  }
+  

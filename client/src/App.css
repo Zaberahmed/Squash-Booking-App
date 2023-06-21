@@ -5,7 +5,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   /* background: linear-gradient(to bottom, #36454f, #000000); */
   /* background-color: #ffffff; */
-  background-color: #fef3c7;
+  background-color: #FFFFF0;
+
+}
+.primary{
+background-color: #FFFFF0;
+}
+.accent{
+background-color: #FDFD96;
+}
+.text{
+color: black;
 }
 
 .container {
