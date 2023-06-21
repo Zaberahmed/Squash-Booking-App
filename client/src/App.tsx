@@ -6,6 +6,7 @@ import SignUpPage from './Pages/SignUp.page';
 import './App.css';
 import SignInPage from './Pages/SignIn.page';
 import UserPage from './Pages/User.page';
+import LottiePlayer from './Components/Lottie/LottiePlayer.component';
 
 function App() {
 	const initialState = auth.isAuthenticated();
@@ -17,9 +18,12 @@ function App() {
 					path="/"
 					element={
 						<>
-							<LandingPage />
+							<LottiePlayer />
 						</>
 					}></Route>
+				<Route
+					path="/landing"
+					element={<LandingPage />}></Route>
 				<Route
 					path="/register"
 					element={

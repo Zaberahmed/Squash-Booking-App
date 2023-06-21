@@ -57,12 +57,12 @@ const Register = (props: Props) => {
 	};
 
 	return (
-		<div className="w-screen h-screen sm:h-10 flex flex-col items-center bg-amber-50">
+		<div className="w-screen h-screen flex flex-col items-center bg-amber-100">
 			<h2 className="text-2xl font-bold mt-5 mb-4">Register</h2>
 			<p className="mb-4">Please fill in this form to create an account.</p>
 			<form
 				onSubmit={handleSubmit}
-				className="w-full max-w-md p-4 flex flex-col">
+				className="w-full max-w-md p-4 flex flex-col ">
 				<label
 					htmlFor="name"
 					className="mb-2">

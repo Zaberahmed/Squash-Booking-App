@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^2.7.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@mui/x-date-pickers": "^6.8.0",
     "dayjs": "^1.11.8",
     "framer-motion": "^10.12.16",
