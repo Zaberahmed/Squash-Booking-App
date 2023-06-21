@@ -54,10 +54,10 @@ function App() {
 					element={<Upcoming/>}></Route>
 			</Routes>
 
-      {/* <Navbar isAuthenticated={isAuthenticated} />
+			{/* <Navbar isAuthenticated={isAuthenticated} />
 				<Dashboard setIsAuthenticated={setIsAuthenticated} /> Don't delete this two. I need them for authentication*/}
-    </Router>
-  );
+		</Router>
+	);
 }
 
 export default App;
