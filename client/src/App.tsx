@@ -13,20 +13,28 @@ import AdminPage from './Pages/Admin.page';
 import SimpleCalender from './Components/Calender/Calender.component';
 import BookingLists from './Components/AdminBookingLists/BookingLists';
 import MemberLists from './Components/MemberLists/MemberLists';
+import History from './Components/History/History';
+
+
+
 
 function App() {
   const initialState = auth.isAuthenticated();
   const [isAuthenticated, setIsAuthenticated] =
-    React.useState<boolean>(initialState);
+    useState<boolean>(initialState);
   return (
     <Router>
       <Routes>
         <Route
           path='/'
           element={
-            <>
+              <LottiePlayer />
+          }
+        ></Route>
+        <Route
+          path='/landing'
+          element={
               <LandingPage />
-            </>
           }
         ></Route>
         <Route
