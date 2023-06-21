@@ -1,25 +1,25 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './Pages/Landing.page';
-import React from 'react';
+import { useState } from 'react';
 import auth from './utils/auth';
 import SignUpPage from './Pages/SignUp.page';
 import './App.css';
 import SignInPage from './Pages/SignIn.page';
 import UserPage from './Pages/User.page';
-// import LottiePlayer from './Components/Lottie/LottiePlayer.component';
+import LottiePlayer from './Components/Lottie/LottiePlayer.component';
 import Profile from './Components/Profile/Profile';
 import Upcoming from './Components/Upcoming/Upcoming';
 import History from './Components/History/History';
 
 function App() {
 	const initialState = auth.isAuthenticated();
-	const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(initialState);
+	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialState);
 	return (
 		<Router>
 			<Routes>
 				<Route
 					path="/"
-					element={<LandingPage />}></Route>
+					element={<LottiePlayer />}></Route>
 				<Route
 					path="/landing"
 					element={<LandingPage />}></Route>
