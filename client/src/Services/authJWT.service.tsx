@@ -49,13 +49,12 @@ authJWT = {
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
-	userProfile: async (id: string): Promise<RegisterResponse> => {
+	userProfile: async (): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/profile`, {
-			method: 'POST',
+			method: 'GET',
 			credentials: 'include',
 			mode: 'cors',
 			headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-			body: JSON.stringify(id),
 		})
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
