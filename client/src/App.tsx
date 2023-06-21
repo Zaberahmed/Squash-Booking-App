@@ -53,7 +53,7 @@ function App() {
         <Route path='/profile' element={<Profile />}></Route>
         <Route path='/history' element={<History />}></Route>
         <Route path='/upcoming' element={<Upcoming />}></Route>
-      </Routes>
+
         <Route path='/user' element={<UserPage />}></Route>
         <Route path='/profile' element={<Profile />}></Route>
         <Route path='/history' element={<History />}></Route>
