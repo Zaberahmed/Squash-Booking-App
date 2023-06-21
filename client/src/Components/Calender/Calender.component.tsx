@@ -17,7 +17,8 @@ const SimpleCalender: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [calendarStyle, setCalendarStyle] = useState({ 
 	marginTop: '' ,
-  transition: ''});
+  transition: '',
+  transform: ''});
   const [headingStyle, setHeadingStyle] = useState({ 
 	fontSize: '', 
 	marginTop: '',
@@ -25,25 +26,26 @@ const SimpleCalender: React.FC = () => {
   
   const handleDateSelect = (date: Date | null) => {
     setSelectedDate(date);
-	setCalendarStyle({ marginTop: '2rem',transition: 'margin-top 2s ease'});
+	setCalendarStyle({ marginTop: '-2rem',transition: 'margin-top 2s ease',  transform: 'scale(0.8)',});
     setHeadingStyle({ fontSize: '1rem', marginTop: '1rem' ,transition: 'font-size 2s ease'});
+
   };
 
   return (
     <div className="">
-<h1 className='text-center mt-10 mb-4 font-bold text-2xl' style={headingStyle}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis debitis </h1>
+<h1 className='text-center mt-10 mb-10 font-bold text-2xl' style={headingStyle}>Book Your Court Now </h1>
 <div className='flex justify-center items-center '>
 		
       <LocalizationProvider dateAdapter={AdapterDayjs} >
-        <div style={calendarStyle}  >
-          <div className=''>
+        <div   >
+          <div className='accent rounded drop-shadow-2xl ' style={calendarStyle}>
             <DateCalendar 
 			value={selectedDate} 
 			onChange={handleDateSelect} />
           </div>
           <div>
             {selectedDate && (
-              <div className='overflow-y-auto h-44'>
+              <div className='overflow-y-auto h-64'>
                 {timeSlots.map((time) => (
                   <TimeSlots
                     key={time.slotId}
