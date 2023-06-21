@@ -6,9 +6,10 @@ import SignUpPage from './Pages/SignUp.page';
 import './App.css';
 import SignInPage from './Pages/SignIn.page';
 import UserPage from './Pages/User.page';
+// import LottiePlayer from './Components/Lottie/LottiePlayer.component';
 import Profile from './Components/Profile/Profile';
-import History from './Components/History/History';
 import Upcoming from './Components/Upcoming/Upcoming';
+import History from './Components/History/History';
 
 function App() {
 	const initialState = auth.isAuthenticated();
@@ -18,11 +19,10 @@ function App() {
 			<Routes>
 				<Route
 					path="/"
-					element={
-						<>
-							<LandingPage />
-						</>
-					}></Route>
+					element={<LandingPage />}></Route>
+				<Route
+					path="/landing"
+					element={<LandingPage />}></Route>
 				<Route
 					path="/register"
 					element={
@@ -45,13 +45,13 @@ function App() {
 					element={<UserPage />}></Route>
 				<Route
 					path="/profile"
-					element={<Profile/>}></Route>
+					element={<Profile />}></Route>
 				<Route
 					path="/history"
-					element={<History/>}></Route>
+					element={<History />}></Route>
 				<Route
 					path="/upcoming"
-					element={<Upcoming/>}></Route>
+					element={<Upcoming />}></Route>
 			</Routes>
 
 			{/* <Navbar isAuthenticated={isAuthenticated} />
