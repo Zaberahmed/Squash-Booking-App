@@ -1,10 +1,11 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 
 const SelectPerson: React.FC = () => {
   
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [selectedRole, setSelectedRole] = useState<string>('');
-
+ 
+  
   const handleDropdownChange = (event: ChangeEvent<HTMLSelectElement>): void => {
     setSelectedOption(event.target.value);
   };
@@ -14,6 +15,7 @@ const SelectPerson: React.FC = () => {
     setSelectedOption('');
   };
 
+ 
 
   return (
     <div>
@@ -65,7 +67,7 @@ const SelectPerson: React.FC = () => {
               )}
             </div>
           </div>
-        
+        <button className='text-center bg-blue-200 rounded p-4 ml-32 ' disabled={selectedOption===''}>confirm</button>
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ import SimpleCalender from './Components/Calender/Calender.component';
 import BookingLists from './Components/AdminBookingLists/BookingLists';
 import MemberLists from './Components/MemberLists/MemberLists';
 import History from './Components/History/History';
+import SelectPerson from './Components/SelectPerson/SelectPerson';
 
 
 
@@ -60,6 +61,7 @@ function App() {
         <Route path='/profile' element={<Profile />}></Route>
         <Route path='/history' element={<History />}></Route>
         <Route path='/upcoming' element={<Upcoming />}></Route>
+        <Route path='/selectperson' element={<SelectPerson />}></Route>
         <Route path='/admin' element={<AdminPage />}></Route>
         <Route path='/event' element={<SimpleCalender />}></Route>
         <Route path='/lists' element={<MemberLists />}></Route>
