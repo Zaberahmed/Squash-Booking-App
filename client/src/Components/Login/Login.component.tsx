@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import auth from '../../utils/auth';
-// import authJWT from '../Services/authJWT.service';
 import { useNavigate } from 'react-router-dom';
 import authJWT from '../../Services/authJWT.service';
+import Cookies from 'js-cookie';
 
 interface Props {
 	setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -36,6 +36,7 @@ const Login = (props: Props) => {
 		const loginData = await authJWT.login(user);
 		if (loginData) {
 			localStorage.setItem('accessToken', loginData.accessToken);
+			Cookies.set('accessToken', loginData.accessToken);
 			props.setIsAuthenticated(true);
 			auth.login(() => navigate('/user'));
 		}
