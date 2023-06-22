@@ -20,7 +20,7 @@ function LottiePlayer(): any {
 					autoplay={true}
 					loop={true}
 					src="https://assets10.lottiefiles.com/private_files/lf30_y3iokxv5.json"
-					style={{ height: '300px', width: '300px' }}
+					style={{ height: '300px', width: '300px' ,marginTop:'200px',color:'yellow'}}
 					onEvent={handleLoopComplete}>
 					<Controls
 						visible={false}

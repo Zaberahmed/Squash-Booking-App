@@ -43,7 +43,7 @@ authJWT = {
 			method: 'POST',
 			credentials: 'include',
 			mode: 'cors',
-			headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+			headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
 			body: JSON.stringify(date),
 		})
 			.then((res) => res.json())
@@ -54,7 +54,7 @@ authJWT = {
 			method: 'GET',
 			credentials: 'include',
 			mode: 'cors',
-			headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+			headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
 		})
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
@@ -64,7 +64,7 @@ authJWT = {
 			method: 'POST',
 			credentials: 'include',
 			mode: 'cors',
-			headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+			headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
 			body: JSON.stringify(id),
 		})
 			.then((res) => res.json())
@@ -75,7 +75,7 @@ authJWT = {
 			method: 'POST',
 			credentials: 'include',
 			mode: 'cors',
-			headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+			headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
 			body: JSON.stringify(id),
 		})
 			.then((res) => res.json())
