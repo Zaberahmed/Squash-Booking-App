@@ -3,13 +3,13 @@ const jwt = require('jsonwebtoken');
 const SECRET_KEY = 'HELLO_WORLD';
 const blokcedList = [];
 
-const createSession = (userEmail) => {
+const createSession = (userId) => {
   const expiry = new Date();
   expiry.setFullYear(expiry.getFullYear() + 10);
 
   const newSession = {
     expiresAt: expiry.valueOf(),
-    userEmail: userEmail,
+    userId: userId,
   };
 
   return jwt.sign(newSession, SECRET_KEY);
