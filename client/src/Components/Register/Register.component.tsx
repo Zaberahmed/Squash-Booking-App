@@ -1,10 +1,9 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
-import Cookies from 'js-cookie';
 import auth from '../../utils/auth';
-// import authJWT from '../Services/authJWT.service';
 import { useNavigate } from 'react-router-dom';
 import User from '../../Interfaces/User.interface';
 import authJWT from '../../Services/authJWT.service';
+import Cookies from 'js-cookie';
 
 const initialState: User = {
 	name: '',
@@ -47,10 +46,9 @@ const Register = (props: Props) => {
 			props.setIsAuthenticated(true);
 			auth.login(() => navigate('/user'));
 		}
-		// setTimeout(() => {
-		// 	props.setIsAuthenticated(true);
-		// 	auth.login(() => navigate('/user'));
-		// }, 500);
+
+		// props.setIsAuthenticated(true);
+		// auth.login(() => navigate('/user'));
 	};
 
 	const validateForm = (): boolean => {

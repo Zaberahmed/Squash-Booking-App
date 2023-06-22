@@ -41,10 +41,8 @@ const Login = (props: Props) => {
 			auth.login(() => navigate('/user'));
 		}
 
-		// setTimeout(() => {
-		// 	props.setIsAuthenticated(true);
-		// 	auth.login(() => navigate('/user'));
-		// }, 500);
+		// props.setIsAuthenticated(true);
+		// auth.login(() => navigate('/user'));
 	};
 
 	const validateForm = () => {

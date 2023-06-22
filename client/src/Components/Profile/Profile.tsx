@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import User from '../../Interfaces/User.interface';
-import authJWT from '../../Services/authJWT.service';
 import './Profile.css';
+import authJWT from '../../Services/authJWT.service';
 
 const initialState: User = {
-	name: '',
-	membershipId: '',
-	phone: '',
-	email: '',
-	password: '',
+	name: 'Ershad',
+	membershipId: '123',
+	phone: '01XXX',
+	email: 'ershad@gmail.com',
+	password: 'X',
 };
 const Profile = () => {
 	const [profile, setProfile] = useState<User>(initialState);
@@ -42,7 +42,8 @@ const Profile = () => {
 					<strong>Email:</strong> {profile.email}
 				</p>
 				<p>
-					<strong>Contact Details:</strong> 123-456-7890
+					<strong>Contact Details:</strong>
+					{profile.phone}
 				</p>
 			</div>
 
