@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './Pages/Landing.page';
 import { useState } from 'react';
@@ -18,47 +17,74 @@ import History from './Components/History/History';
 import SelectPerson from './Components/SelectPerson/SelectPerson';
 
 function App() {
-  const initialState = auth.isAuthenticated();
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialState);
-  return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<LottiePlayer />}></Route>
-        <Route path='/landing' element={<LandingPage />}></Route>
-        <Route
-          path='/register'
-          element={
-            <SignUpPage
-              setIsAuthenticated={setIsAuthenticated}
-              isAuthenticated={isAuthenticated}
-            />
-          }
-        ></Route>
-        <Route
-          path='/login'
-          element={
-            <SignInPage
-              setIsAuthenticated={setIsAuthenticated}
-              isAuthenticated={isAuthenticated}
-            />
-          }
-        ></Route>
+	const initialState = auth.isAuthenticated();
+	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialState);
 
-        <Route path='/user' element={<UserPage />}></Route>
-        <Route path='/profile' element={<Profile />}></Route>
-        <Route path='/history' element={<History />}></Route>
-        <Route path='/upcoming' element={<Upcoming />}></Route>
-        <Route path='/selectperson' element={<SelectPerson />}></Route>
-        <Route path='/admin' element={<AdminPage />}></Route>
-        <Route path='/event' element={<SimpleCalender />}></Route>
-        <Route path='/lists' element={<MemberLists />}></Route>
-        <Route path='/bookings' element={<BookingLists />}></Route>
-      </Routes>
+	return (
+		<Router>
+			<Routes>
+				<Route
+					path="/"
+					element={<LottiePlayer />}></Route>
+				<Route
+					path="/landing"
+					element={<LandingPage />}></Route>
+				<Route
+					path="/register"
+					element={
+						<SignUpPage
+							setIsAuthenticated={setIsAuthenticated}
+							isAuthenticated={isAuthenticated}
+						/>
+					}></Route>
+				<Route
+					path="/login"
+					element={
+						<SignInPage
+							setIsAuthenticated={setIsAuthenticated}
+							isAuthenticated={isAuthenticated}
+						/>
+					}></Route>
 
-      {/* <Navbar isAuthenticated={isAuthenticated} />
+				<Route
+					path="/user/*"
+					element={<UserPage />}></Route>
+				<Route
+					path="/profile"
+					element={<Profile />}></Route>
+				<Route
+					path="/history"
+					element={<History />}></Route>
+				<Route
+					path="/upcoming"
+					element={<Upcoming />}></Route>
+				<Route
+					path="/selectperson"
+					element={
+						<SelectPerson
+							selectedTime={'its not working'}
+							selectedDate={new Date()}
+						/>
+					}
+				/>
+				<Route
+					path="/admin"
+					element={<AdminPage />}></Route>
+				<Route
+					path="/event"
+					element={<SimpleCalender />}></Route>
+				<Route
+					path="/lists"
+					element={<MemberLists />}></Route>
+				<Route
+					path="/bookings"
+					element={<BookingLists />}></Route>
+			</Routes>
+
+			{/* <Navbar isAuthenticated={isAuthenticated} />
 				<Dashboard setIsAuthenticated={setIsAuthenticated} /> Don't delete this two. I need them for authentication*/}
-    </Router>
-  );
+		</Router>
+	);
 }
 
 export default App;
