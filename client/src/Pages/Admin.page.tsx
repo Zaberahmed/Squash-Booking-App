@@ -1,11 +1,11 @@
 import BottomBarAdmin from '../Components/BottomBar/BottomBar.Admin';
-import Upcoming from '../Components/Upcoming/Upcoming';
+// import Upcoming from '../Components/Upcoming/Upcoming';
+import UpcomingEvents from '../Components/Upcoming/UpcomingEvents';
 
 const AdminPage = () => {
   return (
     <div>
-      <h1 className='text-6xl text-center'>Upcoming Events</h1>
-      <Upcoming />
+      <UpcomingEvents />
       <BottomBarAdmin />
     </div>
   );
