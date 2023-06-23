@@ -38,6 +38,20 @@ authJWT = {
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
+
+	userSlotsAvailability: async (date: Object): Promise<RegisterResponse> => {
+		console.log(date);
+		return await fetch(`${BASE_URL}/available`, {
+			method: 'POST',
+			credentials: 'include',
+			mode: 'cors',
+			headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
+			body: JSON.stringify(date),
+		})
+			.then((res) => res.json())
+			.catch((err) => console.log(err));
+	},
+
 	userBooking: async (booking: Object): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/confirm`, {
 			method: 'POST',

@@ -10,9 +10,9 @@ interface Props {
 const SelectPerson: React.FC<Props> = () => {
 	const location = useLocation();
 	const { selectedTime, selectedDate, slotName } = location.state;
-	console.log(selectedDate);
-	console.log(selectedTime);
-	console.log(slotName);
+	// console.log(typeof selectedDate);
+	// console.log(selectedTime);
+	// console.log(slotName);
 
 	const [selectedOption, setSelectedOption] = useState<string>('');
 	const [selectedRole, setSelectedRole] = useState<string>('');
@@ -26,8 +26,7 @@ const SelectPerson: React.FC<Props> = () => {
 	const handleRoleChange = (event: ChangeEvent<HTMLInputElement>): void => {
 		event.preventDefault();
 		setSelectedRole(event.target.value);
-
-		setSelectedOption('');
+        setSelectedOption('');
 	};
 
 	const handleOnSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -92,7 +91,7 @@ const SelectPerson: React.FC<Props> = () => {
 					)}
 				</div>
 				<button
-					className="text-center bg-blue-200 rounded p-4 ml-32 "
+					className="text-center bg-green-400 rounded p-4 ml-32 "
 					disabled={selectedOption === ''}>
 					confirm
 				</button>
