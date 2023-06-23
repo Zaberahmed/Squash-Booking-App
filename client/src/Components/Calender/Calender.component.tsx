@@ -4,9 +4,10 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useState } from 'react';
 import TimeSlots from '../TimeSlots/TimeSlots';
 import timeslots from '../../utils/timeslots';
+import authJWT from '../../Services/authJWT.service';
 
 const SimpleCalender: React.FC = () => {
-	const timeSlots = timeslots;
+	const [timeSlots, setTimeSlots] = useState(timeslots);
 	const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 	const [calendarStyle, setCalendarStyle] = useState({
 		marginTop: '',
@@ -21,6 +22,9 @@ const SimpleCalender: React.FC = () => {
 
 	const handleDateSelect = async (date: Date | null) => {
 		setSelectedDate(date);
+		const result = await authJWT.userSlotsAvailability({ date: date?.toISOString() });
+		console.log(result);
+		setTimeSlots(result);
 		// console.log('Date:', selectedDate?.toISOString());
 		setCalendarStyle({ marginTop: '-2rem', transition: 'margin-top 2s ease', transform: 'scale(0.8)' });
 		setHeadingStyle({ fontSize: '1rem', marginTop: '1rem', transition: 'font-size 2s ease' });
@@ -47,14 +51,21 @@ const SimpleCalender: React.FC = () => {
 						<div>
 							{selectedDate && (
 								<div className="overflow-y-auto h-64">
-									{timeSlots.map((time) => (
-										<TimeSlots
-											key={time.slotName}
-											selectedDate={selectedDate}
-											time={time.time}
-											slotName={time.slotName}
-										/>
-									))}
+									{!timeSlots.length ? (
+										<>No available slots for the day</>
+									) : (
+										<>
+											{' '}
+											{timeSlots.map((time) => (
+												<TimeSlots
+													key={time.slotName}
+													selectedDate={selectedDate}
+													time={time.time}
+													slotName={time.slotName}
+												/>
+											))}
+										</>
+									)}
 								</div>
 							)}
 						</div>
