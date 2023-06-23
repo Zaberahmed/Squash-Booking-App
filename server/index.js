@@ -22,6 +22,6 @@ app.listen(SERVER_PORT, (error) => {
 	if (error) {
 		console.log(error);
 	} else {
-		console.log(`Server is listening on port ${SERVER_PORT}!`); // eslint-disable-line no-console
+		console.log(`Server is listening on port ${SERVER_PORT}`); // eslint-disable-line no-console
 	}
 });

@@ -84,10 +84,19 @@ const confirmBookingByUser = async (user, bookingId) => {
 	}
 };
 
+const getAllUser = async () => {
+	try {
+		return await User.find({});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 module.exports = {
 	createUser,
 	findUserById,
 	findUserByEmail,
 	getPreviousBookings,
 	confirmBookingByUser,
+	getAllUser,
 };
