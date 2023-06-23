@@ -1,13 +1,13 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import authJWT from '../../Services/authJWT.service';
 import { useLocation } from 'react-router-dom';
-import React from 'react';
 
-interface Props {
-	selectedTime: string;
-	selectedDate: Date;
-}
-const SelectPerson: React.FC<Props> = () => {
+// interface Props {
+// 	selectedTime: string;
+// 	selectedDate: Date;
+// 	slotName: string;
+// }
+const SelectPerson = () => {
 	const location = useLocation();
 	const { selectedTime, selectedDate, slotName } = location.state;
 	// console.log(typeof selectedDate);
@@ -26,7 +26,7 @@ const SelectPerson: React.FC<Props> = () => {
 	const handleRoleChange = (event: ChangeEvent<HTMLInputElement>): void => {
 		event.preventDefault();
 		setSelectedRole(event.target.value);
-        setSelectedOption('');
+		setSelectedOption('');
 	};
 
 	const handleOnSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -43,7 +43,7 @@ const SelectPerson: React.FC<Props> = () => {
 
 	return (
 		<div className="accent h-screen mt-24 rounded-t-3xl drop-shadow-2xl">
-			<h1 className="font-serif text-center pt-16 ">You want to play with</h1>
+			<h1 className="font-serif text-center pt-16 ">Choose your opponent</h1>
 			<form
 				className="flex justify-center items-center h-44"
 				onSubmit={handleOnSubmit}>

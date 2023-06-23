@@ -26,19 +26,22 @@ function App() {
 				<Route
 					path="/"
 					element={<LottiePlayer />}></Route>
+
 				<Route
-					path="/landing"
+					path="landing"
 					element={<LandingPage />}></Route>
+
 				<Route
-					path="/register"
+					path="register"
 					element={
 						<SignUpPage
 							setIsAuthenticated={setIsAuthenticated}
 							isAuthenticated={isAuthenticated}
 						/>
 					}></Route>
+
 				<Route
-					path="/login"
+					path="login"
 					element={
 						<SignInPage
 							setIsAuthenticated={setIsAuthenticated}
@@ -47,25 +50,39 @@ function App() {
 					}></Route>
 
 				<Route
-					path="/user/*"
-					element={<UserPage />}></Route>
-				<Route
-					path="/profile"
-					element={<Profile />}></Route>
-				<Route
-					path="/history"
-					element={<History />}></Route>
-				<Route
-					path="/upcoming"
-					element={<Upcoming />}></Route>
+					path="user"
+					element={
+						<UserPage
+							setIsAuthenticated={setIsAuthenticated}
+							isAuthenticated={isAuthenticated}
+						/>
+					}>
+					{' '}
+					<Route
+						index
+						element={<SimpleCalender />}></Route>
+					<Route
+						path="calender"
+						element={<SimpleCalender />}></Route>
+					<Route
+						path="profile"
+						element={
+							<Profile
+								setIsAuthenticated={setIsAuthenticated}
+								isAuthenticated={isAuthenticated}
+							/>
+						}></Route>
+					<Route
+						path="history"
+						element={<History />}></Route>
+					<Route
+						path="upcoming"
+						element={<Upcoming />}></Route>
+				</Route>
+
 				<Route
 					path="/selectperson"
-					element={
-						<SelectPerson
-							selectedTime={'its not working'}
-							selectedDate={new Date()}
-						/>
-					}
+					element={<SelectPerson />}
 				/>
 				<Route
 					path="/admin"
