@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 
 const SERVER_PORT = 4000;
 const corsConfig = {
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:5173',
   credentials: true,
 };
 
