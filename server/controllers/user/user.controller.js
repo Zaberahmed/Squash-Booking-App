@@ -191,7 +191,7 @@ const previousBooking = async (req, res) => {
 		const { date } = req.body;
 		const userDate = new Date(date);
 
-		const startDate = new Date(userDate).setDate(new Date(userDate).getDate() - 10);
+		const startDate = new Date(userDate).setDate(new Date(userDate).getDate() - 30);
 		new Date(startDate).setHours(0, 0, 0, 0);
 
 		const endDate = new Date(userDate).setDate(new Date(userDate).getDate());
@@ -217,7 +217,7 @@ const upcommingBooking = async (req, res) => {
 		const startDate = new Date(userDate).setDate(new Date(userDate).getDate() + 1);
 		new Date(startDate).setHours(0, 0, 0, 0);
 
-		const endDate = new Date(userDate).setDate(new Date(userDate).getDate() + 10);
+		const endDate = new Date(userDate).setDate(new Date(userDate).getDate() + 30);
 		new Date(endDate).setHours(0, 0, 0, 0);
 
 		const userBookings = await getUserPreviousDayBookingSlots(session.userId, startDate, endDate);

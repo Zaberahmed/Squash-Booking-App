@@ -19,7 +19,7 @@ const History = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await authJWT.userHistory({ date: new Date() });
+				const result = await authJWT.userHistory({ date: new Date().toLocaleDateString() });
 				setHistories(result);
 				console.log(result);
 			} catch (error) {
