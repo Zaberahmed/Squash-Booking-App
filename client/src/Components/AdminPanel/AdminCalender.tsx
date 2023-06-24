@@ -9,13 +9,7 @@ import AdminTimeSlots from './AdminTimeSlots/AdminTimeSlots';
 const AdminCalendar: React.FC = () => {
   const [selectedDates, setSelectedDates] = useState<Value>([]);
   
-  const [goClick, setGoClick] = useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [calendarStyle, setCalendarStyle] = useState({
-    marginLeft: '',
-    transition: '',
-    transform: '',
-  });
+ 
   
   const handleDateChange = (value: Value) => {
     if (value.length === 1) {
@@ -23,11 +17,7 @@ const AdminCalendar: React.FC = () => {
     } else {
       setSelectedDates(value);
     }
-    setCalendarStyle({
-      marginLeft: '-200rem',
-      transition: 'margin-left 3s ease',
-      transform: 'scale(0.8)',
-    });
+    
     
   };
 
