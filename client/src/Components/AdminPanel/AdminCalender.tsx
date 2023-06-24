@@ -28,6 +28,7 @@ const AdminCalendar: React.FC = () => {
             onChange={handleDateChange}
             value={selectedDates}
             selectRange={true}
+            isMultiSelection={true}
             showNeighboringMonth={false} // Hide neighboring months in the calendar
           />
         </div>
