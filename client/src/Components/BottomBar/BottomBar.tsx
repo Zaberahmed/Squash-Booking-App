@@ -11,7 +11,7 @@ const BottomBar: React.FC = () => {
 			<Link to="/profile">
 				<CgProfile size={iconSize} />
 			</Link>
-			<Link to="/history">
+			<Link to="/user/history">
 				<GoHistory size={iconSize} />
 			</Link>
 			<Link to="/upcoming">

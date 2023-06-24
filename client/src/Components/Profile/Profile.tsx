@@ -2,17 +2,27 @@ import { useEffect, useState } from 'react';
 import User from '../../Interfaces/User.interface';
 import './Profile.css';
 import authJWT from '../../Services/authJWT.service';
+import { useNavigate } from 'react-router-dom';
+import auth from '../../utils/auth';
+import Cookies from 'js-cookie';
 
 const initialState: User = {
-	name: 'Ershad',
-	membershipId: '123',
-	phone: '01XXX',
-	email: 'ershad@gmail.com',
-	password: 'X',
+	name: 'John Doe',
+	membershipId: 'PA-XX',
+	phone: '01XXXXXXXXX',
+	email: 'example@example.com',
+	password: 'XXXXXXXX',
 };
-const Profile = () => {
+
+interface Props {
+	setIsAuthenticated: (isAuthenticated: boolean) => void;
+	isAuthenticated: boolean;
+}
+
+const Profile = (props: Props) => {
 	const [profile, setProfile] = useState<User>(initialState);
 
+	const navigate = useNavigate();
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -46,8 +56,19 @@ const Profile = () => {
 					{profile.phone}
 				</p>
 			</div>
+			<button
+				className="logout-button"
+				onClick={() => {
+					props.setIsAuthenticated(false);
+					localStorage.clear();
+					Cookies.remove('accessToken');
 
-			<button className="logout-button">Logout</button>
+					auth.logout(() => {
+						navigate('/login');
+					});
+				}}>
+				Logout
+			</button>
 		</div>
 	);
 };

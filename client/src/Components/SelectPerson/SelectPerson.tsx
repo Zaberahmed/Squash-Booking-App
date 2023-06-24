@@ -1,32 +1,49 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import authJWT from '../../Services/authJWT.service';
-import { useLocation } from 'react-router-dom';
-import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import User from '../../Interfaces/User.interface';
 
-interface Props {
-	selectedTime: string;
-	selectedDate: Date;
-}
-const SelectPerson: React.FC<Props> = () => {
+// interface Props {
+// 	selectedTime: string;
+// 	selectedDate: Date;
+// 	slotName: string;
+// }
+
+const initialState: User = {
+	name: 'John Doe',
+	membershipId: 'PA-XX',
+	phone: '01XXXXXXXXX',
+	email: 'example@example.com',
+	password: 'XXXXXXXX',
+};
+const SelectPerson = () => {
 	const location = useLocation();
+	const navigate = useNavigate();
 	const { selectedTime, selectedDate, slotName } = location.state;
+
 	// console.log(typeof selectedDate);
 	// console.log(selectedTime);
 	// console.log(slotName);
 
-	const [selectedOption, setSelectedOption] = useState<string>('');
+	const [opponentId, setOpponentId] = useState<string>('');
 	const [selectedRole, setSelectedRole] = useState<string>('');
+	const [users, setUsers] = useState<User[]>([initialState]);
+	const [selectedUserName, setSelectedUserName] = useState<string>('');
 
 	const handleDropdownChange = (event: ChangeEvent<HTMLSelectElement>): void => {
 		event.preventDefault();
-		setSelectedOption(event.target.value);
+		setOpponentId(event.target.value);
 		console.log(event.target.value);
+		const selectedUser = users.find((user) => user._id === event.target.value);
+		if (selectedUser) {
+			setSelectedUserName(selectedUser.name); // Save the selected user's name
+		}
 	};
 
 	const handleRoleChange = (event: ChangeEvent<HTMLInputElement>): void => {
 		event.preventDefault();
 		setSelectedRole(event.target.value);
-        setSelectedOption('');
+		setOpponentId('');
 	};
 
 	const handleOnSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -34,16 +51,32 @@ const SelectPerson: React.FC<Props> = () => {
 		const time = selectedTime;
 		const date: Date = selectedDate;
 		const slot: Object = { slotName, time };
-		const peer: Object = { opponent: selectedOption };
+		const peer: Object = { opponent: opponentId };
 		const booking: Object = { date, slot, peer };
 
 		const result = await authJWT.userBooking(booking);
 		console.log(result);
+		navigate('/user');
 	};
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const result = await authJWT.getAllUsers();
+				console.log(result);
+				setUsers(result);
+			} catch (error) {
+				// Handle error
+				console.log(error);
+			}
+		};
+
+		fetchData();
+	}, []);
 
 	return (
 		<div className="accent h-screen mt-24 rounded-t-3xl drop-shadow-2xl">
-			<h1 className="font-serif text-center pt-16 ">You want to play with</h1>
+			<p className="font-serif text-center pt-16 ">Choose your opponent and Confirm Booking</p>
 			<form
 				className="flex justify-center items-center h-44"
 				onSubmit={handleOnSubmit}>
@@ -71,7 +104,7 @@ const SelectPerson: React.FC<Props> = () => {
 					</div>
 					{selectedRole === 'instructor' && (
 						<select
-							value={selectedOption}
+							value={opponentId}
 							onChange={handleDropdownChange}>
 							<option value="">Choose instructor </option>
 							<option value="Instructor Option 1">Instructor Option 1</option>
@@ -81,18 +114,28 @@ const SelectPerson: React.FC<Props> = () => {
 					)}
 					{selectedRole === 'member' && (
 						<select
-							value={selectedOption}
+							value={opponentId}
 							onChange={handleDropdownChange}>
 							<option value="">Choose member </option>
-							<option value="64912a3a9864a5bfa9c06ff0">Zaber</option>
-							<option value="6492f7fee2f7cf392aeda4ff"> Rafia</option>
-							<option value="649456bf55918c25cb60fcb7"> Asif</option>
+							{users.map((user) => (
+								<option
+									key={user._id}
+									value={`${user._id}`}>
+									{user.name}
+								</option>
+							))}
 						</select>
 					)}
 				</div>
+				<div>
+					<h1>Booking Details</h1>
+					<p>Date:{selectedDate}</p>
+					<p>Time:{selectedTime}</p>
+					<p>Opponent:{selectedUserName}</p>
+				</div>
 				<button
 					className="text-center bg-green-400 rounded p-4 ml-32 "
-					disabled={selectedOption === ''}>
+					disabled={opponentId === ''}>
 					confirm
 				</button>
 			</form>
