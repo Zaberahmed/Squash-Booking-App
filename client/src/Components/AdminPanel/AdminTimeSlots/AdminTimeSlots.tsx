@@ -1,8 +1,14 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './AdminTimeSlots.css';
 
 
 const AdminTimeSlots = () => {
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const handleTimeClick = (time: string) => {
+    setSelectedTime(time);
+
+  };
+
   const timeSlotsForAdmin = [
     { slotName: 'A', time: '6:00 AM' },
 	{ slotName: 'B', time: '7:00 AM' },
@@ -22,6 +28,7 @@ const AdminTimeSlots = () => {
 	{ slotName: 'P', time: '9:00 PM' },
   ]
   return (
+    
     // <div className='time-picker-container'>
     //   <div className='time-picker'>
     //     <div className='row time-picker-header'>
@@ -63,12 +70,20 @@ const AdminTimeSlots = () => {
     <div className="grid grid-cols-3 ">
       {
         timeSlotsForAdmin.map((time)=><>
-       <p className='p-4 bg-yellow-100 border-2
-        border-yellow-400 rounded-md m-2'> {time.time}</p>
+        <button
+            key={time.slotName}
+            className={`p-4 bg-yellow-100 border-2 border-yellow-400 rounded-md m-2 ${
+              selectedTime === time.time ? 'disabled bg-white text-gray-400' : ''
+            }`}
+            onClick={() => handleTimeClick(time.time)}
+            disabled={selectedTime === time.time}
+          >
+            {time.time}
+          </button>
         </>)
       }
     </div>
-    <button>go back</button>
+    
 
    </div>
   );
