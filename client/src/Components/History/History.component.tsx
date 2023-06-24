@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import './History.css';
-import authJWT from '../../Services/authJWT.service';
+import './History.component.css';
+import authJWT from '../../Services/UserJWT.service';
+import Booking from '../../Interfaces/Booking.interface';
 const History = () => {
 	const [histories, setHistories] = useState<any[]>();
 
@@ -19,9 +20,10 @@ const History = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await authJWT.userHistory({ date: new Date().toLocaleDateString() });
-				setHistories(result);
-				console.log(result);
+				const results = await authJWT.userHistory({ date: new Date().toLocaleDateString() });
+				results.sort((a: Booking, b: Booking) => new Date(b.date).getTime() - new Date(a.date).getTime());
+				setHistories(results);
+				console.log(results);
 			} catch (error) {
 				// Handle error
 				console.log(error);
@@ -32,12 +34,12 @@ const History = () => {
 	}, []);
 	return (
 		<div className="">
-			<h2>Previous Matches</h2>
+			<h2 className="text-center">Previous Matches</h2>
 			{histories?.map((history) => (
 				<div className="history-card">
 					<div className="card-content flex justify-center gap-5">
 						<div className="accent p-4 rounded">
-							<p>
+							<p key={history._id}>
 								{new Date(history.date).toLocaleDateString('en-US', {
 									weekday: 'long',
 									day: 'numeric',
@@ -47,7 +49,7 @@ const History = () => {
 							</p>
 						</div>
 						<div className="">
-							<p>
+							<p key={history._id}>
 								<strong>Time: </strong>
 								{formatTime(history.slot.time)}
 							</p>

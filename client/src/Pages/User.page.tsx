@@ -4,12 +4,9 @@ import { MdOutlineUpcoming } from 'react-icons/md';
 import { GoHistory } from 'react-icons/go';
 import { BsFillJournalBookmarkFill } from 'react-icons/bs';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
+import Authentication from '../Interfaces/Authentication';
 
-interface Props {
-	setIsAuthenticated: (isAuthenticated: boolean) => void;
-	isAuthenticated: boolean;
-}
-const UserPage = (props: Props) => {
+const UserPage = (props: Authentication) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -29,9 +26,7 @@ const UserPage = (props: Props) => {
 				<Link to="profile">
 					<CgProfile />
 				</Link>
-				<Link to="history">
-					<GoHistory />
-				</Link>
+
 				<Link to="upcoming">
 					<MdOutlineUpcoming />
 				</Link>

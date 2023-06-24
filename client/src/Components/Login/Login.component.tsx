@@ -1,20 +1,16 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import auth from '../../utils/auth';
 import { useNavigate } from 'react-router-dom';
-import authJWT from '../../Services/authJWT.service';
+import authJWT from '../../Services/UserJWT.service';
 import Cookies from 'js-cookie';
-
-interface Props {
-	setIsAuthenticated: (isAuthenticated: boolean) => void;
-	isAuthenticated: boolean;
-}
+import Authentication from '../../Interfaces/Authentication';
 
 const initialState = {
 	email: '',
 	password: '',
 };
 
-const Login = (props: Props) => {
+const Login = (props: Authentication) => {
 	let navigate = useNavigate();
 	const [state, setState] = useState(initialState);
 

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import './Upcoming.css';
-import authJWT from '../../Services/authJWT.service';
+import './Upcoming.component.css';
+import authJWT from '../../Services/UserJWT.service';
+import Booking from '../../Interfaces/Booking.interface';
+
 const Upcoming = () => {
 	const [upcomings, setUpcomings] = useState<any[]>();
 	const formatTime = (timeString: string): string => {
@@ -18,9 +20,10 @@ const Upcoming = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await authJWT.userUpcoming({ date: new Date() });
-				setUpcomings(result);
-				console.log(result);
+				const results = await authJWT.userUpcoming({ date: new Date() });
+				results.sort((a: Booking, b: Booking) => new Date(a.date).getTime() - new Date(b.date).getTime());
+				setUpcomings(results);
+				console.log(results);
 			} catch (error) {
 				// Handle error
 				console.log(error);
@@ -35,7 +38,7 @@ const Upcoming = () => {
 				<div className="upcoming-card">
 					<div className="card-content flex justify-center gap-5">
 						<div className="accent p-4 rounded">
-							<p>
+							<p key={upcoming._id}>
 								{new Date(upcoming.date).toLocaleDateString('en-US', {
 									weekday: 'long',
 									day: 'numeric',
@@ -45,7 +48,7 @@ const Upcoming = () => {
 							</p>
 						</div>
 						<div className="">
-							<p>
+							<p key={upcoming._id}>
 								<strong>Time: </strong>
 								{formatTime(upcoming.slot.time)}
 							</p>
