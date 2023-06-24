@@ -3,11 +3,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useState } from 'react';
 import TimeSlots from '../TimeSlots/TimeSlots';
-import timeslots from '../../utils/timeslots';
-import authJWT from '../../Services/authJWT.service';
+
+import authJWT from '../../Services/UserJWT.service';
+import TimeSlot from '../../Interfaces/TimeSlot';
 
 const SimpleCalender: React.FC = () => {
-	const [timeSlots, setTimeSlots] = useState(timeslots);
+	const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
 	const [goClick, setGoClick] = useState<boolean>(false);
 	const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 	const [calendarStyle, setCalendarStyle] = useState({
@@ -35,9 +36,11 @@ const SimpleCalender: React.FC = () => {
 
 	const handleDateSelect = async (date: Date | null) => {
 		setSelectedDate(date);
+
 		const result = await authJWT.userSlotsAvailability({
 			date: date?.toISOString(),
 		});
+		//helper function call from utils to filter for reserved events
 		console.log(result);
 		setTimeSlots(result);
 		setCalendarStyle({

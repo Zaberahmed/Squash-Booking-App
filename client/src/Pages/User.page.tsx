@@ -29,9 +29,7 @@ const UserPage = (props: Props) => {
 				<Link to="profile">
 					<CgProfile />
 				</Link>
-				<Link to="history">
-					<GoHistory />
-				</Link>
+
 				<Link to="upcoming">
 					<MdOutlineUpcoming />
 				</Link>

@@ -77,9 +77,6 @@ function App() {
 							/>
 						}></Route>
 					<Route
-						path="history"
-						element={<History />}></Route>
-					<Route
 						path="upcoming"
 						element={<Upcoming />}></Route>
 				</Route>
