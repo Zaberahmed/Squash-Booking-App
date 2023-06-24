@@ -9,7 +9,7 @@ const BottomBarAdmin = () => {
   const iconSize = 30;
   return (
     <div className='flex justify-center items-center fixed bottom-16 left-0 right-0 gap-16'>
-      <Link to='/lists'>
+      <Link to='/members'>
         <GoHistory size={iconSize} />
       </Link>
       <Link to='/bookings'>

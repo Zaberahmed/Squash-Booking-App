@@ -12,11 +12,11 @@ import Upcoming from './Components/Upcoming/Upcoming';
 import AdminPage from './Pages/Admin.page';
 // import SimpleCalender from './Components/Calender/Calender.component';
 import BookingLists from './Components/AdminBookingLists/BookingLists';
-import MemberLists from './Components/MemberLists/MemberLists';
 import History from './Components/History/History';
 import SelectPerson from './Components/SelectPerson/SelectPerson';
 
 import EventPage from './Components/AdminPanel/EventPage';
+import MembersList from './Components/MembersList/MembersList';
 
 function App() {
   const initialState = auth.isAuthenticated();
@@ -61,7 +61,7 @@ function App() {
         />
         <Route path='/admin' element={<AdminPage />}></Route>
         <Route path='/event' element={<EventPage />}></Route>
-        <Route path='/lists' element={<MemberLists />}></Route>
+        <Route path='/members' element={<MembersList />}></Route>
         <Route path='/bookings' element={<BookingLists />}></Route>
       </Routes>
 

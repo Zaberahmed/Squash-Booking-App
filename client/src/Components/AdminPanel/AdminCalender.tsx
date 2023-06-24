@@ -4,16 +4,13 @@ import Calendar from 'react-calendar';
 // import type { Value } from 'react-multi-date-picker';
 import 'react-calendar/dist/Calendar.css';
 import './AdminCalender.css';
-import DatePicker from 'react-multi-date-picker';
-import TimePicker from 'react-multi-date-picker/plugins/time_picker';
+import { Value } from 'react-calendar/dist/cjs/shared/types';
+import AdminTimeSlots from './AdminTimeSlots/AdminTimeSlots';
+// import DatePicker from 'react-multi-date-picker';
+// import TimePicker from 'react-multi-date-picker/plugins/time_picker';
 
 const AdminCalendar: React.FC = () => {
   const [selectedDates, setSelectedDates] = useState<Value>([]);
-  const [values, setValues] = useState('10:00');
-
-  const onChange = (timeValue) => {
-    setValue(timeValue);
-  };
 
   const handleDateChange = (value: Value) => {
     if (value.length === 1) {
@@ -47,13 +44,7 @@ const AdminCalendar: React.FC = () => {
             <span className='bold'>Please select a date range.</span>
           </p>
         )}
-      </div>
-      <div>
-        <DatePicker
-          disableDayPicker
-          format='HH:mm:ss'
-          plugins={[<TimePicker />]}
-        />
+        <AdminTimeSlots />
       </div>
     </div>
   );
