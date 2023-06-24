@@ -18,6 +18,7 @@ import SelectPerson from './Components/SelectPerson/SelectPerson';
 import EventPage from './Components/AdminPanel/EventPage';
 import SimpleCalender from './Components/Calender/Calender.component';
 import MembersList from './Components/MembersList/MembersList';
+import TabComponent from './Components/Tab/Tab.component';
 
 function App() {
   const initialState = auth.isAuthenticated();
@@ -49,6 +50,10 @@ function App() {
             />
           }
         ></Route>
+        <Route path='tab' element={<TabComponent></TabComponent>}>
+
+
+        </Route>
 
         <Route
           path='user'
