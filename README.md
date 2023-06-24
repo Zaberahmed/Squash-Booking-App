@@ -2,7 +2,7 @@
 
 Github Instructions:
 
-**\*\***\*\***\*\***Read the instructions carefully**\*\***\***\*\***
+**\*\***\*\***\*\***Read the instructions carefully**\*\***\***\*\*\*\*\*\***
 
 1. In order to get the dev branch cloned into your local machine. Command: git clone -b dev https://github.com/Zaberahmed/Squash-Booking-App.git
 
