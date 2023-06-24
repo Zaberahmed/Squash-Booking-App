@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import auth from '../../utils/auth';
 import Cookies from 'js-cookie';
 import History from '../History/History.component';
+import Authentication from '../../Interfaces/Authentication';
 
 const initialState: User = {
 	name: 'John Doe',
@@ -15,12 +16,7 @@ const initialState: User = {
 	password: 'XXXXXXXX',
 };
 
-interface Props {
-	setIsAuthenticated: (isAuthenticated: boolean) => void;
-	isAuthenticated: boolean;
-}
-
-const Profile = (props: Props) => {
+const Profile = (props: Authentication) => {
 	const [profile, setProfile] = useState<User>(initialState);
 
 	const navigate = useNavigate();

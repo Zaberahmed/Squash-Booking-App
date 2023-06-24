@@ -1,24 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from './Pages/Landing.page';
 import { useState } from 'react';
-import auth from './utils/auth';
-import SignUpPage from './Pages/SignUp.page';
 import './App.css';
+import LandingPage from './Pages/Landing.page';
+import SignUpPage from './Pages/SignUp.page';
 import SignInPage from './Pages/SignIn.page';
 import UserPage from './Pages/User.page';
 import LottiePlayer from './Components/Lottie/LottiePlayer.component';
 import Profile from './Components/Profile/Profile.component';
 import Upcoming from './Components/Upcoming/Upcoming.component';
 import AdminPage from './Pages/Admin.page';
-// import SimpleCalender from './Components/Calender/Calender.component';
 import BookingLists from './Components/AdminBookingLists/BookingLists';
-import History from './Components/History/History.component';
 import SelectPerson from './Components/SelectPerson/SelectPerson.component';
-
 import EventPage from './Components/AdminPanel/EventPage';
 import SimpleCalender from './Components/Calender/Calender.component';
 import MembersList from './Components/MembersList/MembersList';
 import UpcomingEvents from './Components/Upcoming/UpcomingEvents';
+import auth from './utils/auth';
 
 function App() {
 	const initialState = auth.isAuthenticated();
