@@ -19,8 +19,14 @@ const timeslots: TimeSlot[] = [
 	{ slotName: 'P', time: '9:00 PM' },
 ];
 
-const filterAvailbleSlots = async (timeslots: TimeSlot[]) => {
-	// const result = timeslots.filter(())
+const filterAvailableSlots = async (timeslots: TimeSlot[]) => {
+	const currentTime = new Date().getHours();
+	console.log(currentTime);
+	const filteredSlots = timeslots.filter((slot) => {
+		const slotHour = parseInt(slot.time.split(':')[0]);
+		return slotHour !== currentTime;
+	});
+	return filteredSlots;
 };
 
-export default { timeslots, filterAvailbleSlots };
+export default filterAvailableSlots;

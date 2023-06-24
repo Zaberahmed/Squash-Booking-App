@@ -3,7 +3,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useState } from 'react';
 import TimeSlots from '../TimeSlots/TimeSlots';
-
+import filterAvailableSlots from './../../utils/timeslots';
 import authJWT from '../../Services/UserJWT.service';
 import TimeSlot from '../../Interfaces/TimeSlot';
 
@@ -41,8 +41,9 @@ const SimpleCalender: React.FC = () => {
 			date: date?.toISOString(),
 		});
 		//helper function call from utils to filter for reserved events
-		console.log(result);
-		setTimeSlots(result);
+		const filteredresult = await filterAvailableSlots(result);
+		console.log(filteredresult);
+		setTimeSlots(filteredresult);
 		setCalendarStyle({
 			marginLeft: '-200rem',
 			transition: 'margin-left 3s ease',
