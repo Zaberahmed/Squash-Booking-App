@@ -55,7 +55,7 @@ const TimeSlots: React.FC<ListTimeProps> = ({ time, selectedDate, slotName }) =>
 				<div className="flex justify-center gap-2">
 					<button
 						onClick={handleNextButtonClick}
-						className={`flex flex-col sm:flex-row border-2 border-yellow-400 bg-yellow-50 rounded-md px-10 py-4 mb-2
+						className={`flex flex-col sm:flex-row border-2 border-yellow-400 bg-white rounded-md px-10 py-4 mb-2
          ${isClicked ? 'rotate-animation' : ''}`}>
 						{isClicked ? (
 							<>
