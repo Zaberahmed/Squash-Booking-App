@@ -16,7 +16,7 @@ import History from './Components/History/History';
 import SelectPerson from './Components/SelectPerson/SelectPerson';
 
 import EventPage from './Components/AdminPanel/EventPage';
-import MembersList from './Components/MembersList/MembersList';
+import SimpleCalender from './Components/Calender/Calender.component';
 
 function App() {
   const initialState = auth.isAuthenticated();
@@ -26,9 +26,11 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<LottiePlayer />}></Route>
-        <Route path='/landing' element={<LandingPage />}></Route>
+
+        <Route path='landing' element={<LandingPage />}></Route>
+
         <Route
-          path='/register'
+          path='register'
           element={
             <SignUpPage
               setIsAuthenticated={setIsAuthenticated}
@@ -36,8 +38,9 @@ function App() {
             />
           }
         ></Route>
+
         <Route
-          path='/login'
+          path='login'
           element={
             <SignInPage
               setIsAuthenticated={setIsAuthenticated}
@@ -46,27 +49,37 @@ function App() {
           }
         ></Route>
 
-        <Route path='/user/*' element={<UserPage />}></Route>
-        <Route path='/profile' element={<Profile />}></Route>
-        <Route path='/history' element={<History />}></Route>
-        <Route path='/upcoming' element={<Upcoming />}></Route>
         <Route
-          path='/selectperson'
+          path='user'
           element={
-            <SelectPerson
-              selectedTime={'its not working'}
-              selectedDate={new Date()}
+            <UserPage
+              setIsAuthenticated={setIsAuthenticated}
+              isAuthenticated={isAuthenticated}
             />
           }
-        />
+        >
+          {' '}
+          <Route index element={<SimpleCalender />}></Route>
+          <Route path='calender' element={<SimpleCalender />}></Route>
+          <Route
+            path='profile'
+            element={
+              <Profile
+                setIsAuthenticated={setIsAuthenticated}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          ></Route>
+          <Route path='history' element={<History />}></Route>
+          <Route path='upcoming' element={<Upcoming />}></Route>
+        </Route>
+
+        <Route path='/selectperson' element={<SelectPerson />} />
         <Route path='/admin' element={<AdminPage />}></Route>
-        <Route path='/event' element={<EventPage />}></Route>
-        <Route path='/members' element={<MembersList />}></Route>
+        <Route path='/event' element={<SimpleCalender />}></Route>
+        <Route path='/lists' element={<MemberLists />}></Route>
         <Route path='/bookings' element={<BookingLists />}></Route>
       </Routes>
-
-      {/* <Navbar isAuthenticated={isAuthenticated} />
-				<Dashboard setIsAuthenticated={setIsAuthenticated} /> Don't delete this two. I need them for authentication*/}
     </Router>
   );
 }
