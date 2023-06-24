@@ -17,6 +17,7 @@ import History from './Components/History/History';
 import SelectPerson from './Components/SelectPerson/SelectPerson';
 
 import EventPage from './Components/AdminPanel/EventPage';
+import SimpleCalender from './Components/Calender/Calender.component';
 
 function App() {
 	const initialState = auth.isAuthenticated();
@@ -99,9 +100,6 @@ function App() {
 					path="/bookings"
 					element={<BookingLists />}></Route>
 			</Routes>
-
-			{/* <Navbar isAuthenticated={isAuthenticated} />
-				<Dashboard setIsAuthenticated={setIsAuthenticated} /> Don't delete this two. I need them for authentication*/}
 		</Router>
 	);
 }
