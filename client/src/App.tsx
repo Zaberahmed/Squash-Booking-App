@@ -17,6 +17,7 @@ import SelectPerson from './Components/SelectPerson/SelectPerson';
 
 import EventPage from './Components/AdminPanel/EventPage';
 import SimpleCalender from './Components/Calender/Calender.component';
+import MembersList from './Components/MembersList/MembersList';
 
 function App() {
   const initialState = auth.isAuthenticated();
@@ -77,7 +78,7 @@ function App() {
         <Route path='/selectperson' element={<SelectPerson />} />
         <Route path='/admin' element={<AdminPage />}></Route>
         <Route path='/event' element={<SimpleCalender />}></Route>
-        <Route path='/lists' element={<MemberLists />}></Route>
+        <Route path='/lists' element={<MembersList />}></Route>
         <Route path='/bookings' element={<BookingLists />}></Route>
       </Routes>
     </Router>
