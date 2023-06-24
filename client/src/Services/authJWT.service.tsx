@@ -73,24 +73,24 @@ authJWT = {
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
-	userHistory: async (id: string): Promise<RegisterResponse> => {
-		return await fetch(`${BASE_URL}/login`, {
+	userHistory: async (date: Object): Promise<RegisterResponse> => {
+		return await fetch(`${BASE_URL}/previous`, {
 			method: 'POST',
 			credentials: 'include',
 			mode: 'cors',
 			headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
-			body: JSON.stringify(id),
+			body: JSON.stringify(date),
 		})
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
-	userUpcoming: async (id: string): Promise<RegisterResponse> => {
-		return await fetch(`${BASE_URL}/upcoming`, {
+	userUpcoming: async (date: Object): Promise<RegisterResponse> => {
+		return await fetch(`${BASE_URL}/upcomming`, {
 			method: 'POST',
 			credentials: 'include',
 			mode: 'cors',
 			headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
-			body: JSON.stringify(id),
+			body: JSON.stringify(date),
 		})
 			.then((res) => res.json())
 			.catch((err) => console.log(err));

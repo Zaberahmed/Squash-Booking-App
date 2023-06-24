@@ -1,13 +1,12 @@
 .rotate-animation {
-    animation: rotateX 1s linear forwards;
-  }
-  
-  @keyframes rotateX {
-    0% {
-      transform: rotateX(0deg);
-    }
-    100% {
-      transform: rotateX(-360deg);
-    }
-  }
-  
+	animation: rotateX 0.5s linear forwards;
+}
+
+@keyframes rotateX {
+	0% {
+		transform: rotateX(0deg);
+	}
+	100% {
+		transform: rotateX(-360deg);
+	}
+}

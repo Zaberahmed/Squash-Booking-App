@@ -28,11 +28,16 @@ const SelectPerson = () => {
 	const [opponentId, setOpponentId] = useState<string>('');
 	const [selectedRole, setSelectedRole] = useState<string>('');
 	const [users, setUsers] = useState<User[]>([initialState]);
+	const [selectedUserName, setSelectedUserName] = useState<string>('');
 
 	const handleDropdownChange = (event: ChangeEvent<HTMLSelectElement>): void => {
 		event.preventDefault();
 		setOpponentId(event.target.value);
 		console.log(event.target.value);
+		const selectedUser = users.find((user) => user._id === event.target.value);
+		if (selectedUser) {
+			setSelectedUserName(selectedUser.name); // Save the selected user's name
+		}
 	};
 
 	const handleRoleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -71,7 +76,7 @@ const SelectPerson = () => {
 
 	return (
 		<div className="accent h-screen mt-24 rounded-t-3xl drop-shadow-2xl">
-			<p className="font-serif text-center pt-16 ">Choose your opponent</p>
+			<p className="font-serif text-center pt-16 ">Choose your opponent and Confirm Booking</p>
 			<form
 				className="flex justify-center items-center h-44"
 				onSubmit={handleOnSubmit}>
@@ -126,6 +131,7 @@ const SelectPerson = () => {
 					<h1>Booking Details</h1>
 					<p>Date:{selectedDate}</p>
 					<p>Time:{selectedTime}</p>
+					<p>Opponent:{selectedUserName}</p>
 				</div>
 				<button
 					className="text-center bg-green-400 rounded p-4 ml-32 "
