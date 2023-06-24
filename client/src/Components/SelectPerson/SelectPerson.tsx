@@ -62,7 +62,7 @@ const SelectPerson = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await authJWT.memberList();
+				const result = await authJWT.membersList();
 				console.log(result);
 				setUsers(result);
 			} catch (error) {
