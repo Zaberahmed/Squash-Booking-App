@@ -1,4 +1,4 @@
-import '../Upcoming/Upcoming.css';
+import '../Upcoming/Upcoming.component.css';
 
 const PastEvents = () => {
 	return (

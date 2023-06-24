@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import User from '../../Interfaces/User.interface';
-import './Profile.css';
+import './Profile.component.css';
 import authJWT from '../../Services/authJWT.service';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../utils/auth';

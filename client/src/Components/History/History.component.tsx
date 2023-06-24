@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import './Upcoming.css';
+import './History.component.css';
 import authJWT from '../../Services/authJWT.service';
-const Upcoming = () => {
-	const [upcomings, setUpcomings] = useState<any[]>();
+const History = () => {
+	const [histories, setHistories] = useState<any[]>();
+
 	const formatTime = (timeString: string): string => {
 		const time = timeString.toLowerCase();
 		const hour = time.substring(0, time.length - 2);
@@ -18,8 +19,8 @@ const Upcoming = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await authJWT.userUpcoming({ date: new Date() });
-				setUpcomings(result);
+				const result = await authJWT.userHistory({ date: new Date().toLocaleDateString() });
+				setHistories(result);
 				console.log(result);
 			} catch (error) {
 				// Handle error
@@ -30,13 +31,14 @@ const Upcoming = () => {
 		fetchData();
 	}, []);
 	return (
-		<div>
-			{upcomings?.map((upcoming) => (
-				<div className="upcoming-card">
+		<div className="">
+			<h2>Previous Matches</h2>
+			{histories?.map((history) => (
+				<div className="history-card">
 					<div className="card-content flex justify-center gap-5">
 						<div className="accent p-4 rounded">
 							<p>
-								{new Date(upcoming.date).toLocaleDateString('en-US', {
+								{new Date(history.date).toLocaleDateString('en-US', {
 									weekday: 'long',
 									day: 'numeric',
 									month: 'long',
@@ -47,7 +49,7 @@ const Upcoming = () => {
 						<div className="">
 							<p>
 								<strong>Time: </strong>
-								{formatTime(upcoming.slot.time)}
+								{formatTime(history.slot.time)}
 							</p>
 						</div>
 					</div>
@@ -57,4 +59,4 @@ const Upcoming = () => {
 	);
 };
 
-export default Upcoming;
+export default History;

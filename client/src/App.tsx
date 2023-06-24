@@ -7,13 +7,13 @@ import './App.css';
 import SignInPage from './Pages/SignIn.page';
 import UserPage from './Pages/User.page';
 import LottiePlayer from './Components/Lottie/LottiePlayer.component';
-import Profile from './Components/Profile/Profile';
-import Upcoming from './Components/Upcoming/Upcoming';
+import Profile from './Components/Profile/Profile.component';
+import Upcoming from './Components/Upcoming/Upcoming.component';
 import AdminPage from './Pages/Admin.page';
 // import SimpleCalender from './Components/Calender/Calender.component';
 import BookingLists from './Components/AdminBookingLists/BookingLists';
-import History from './Components/History/History';
-import SelectPerson from './Components/SelectPerson/SelectPerson';
+import History from './Components/History/History.component';
+import SelectPerson from './Components/SelectPerson/SelectPerson.component';
 
 import EventPage from './Components/AdminPanel/EventPage';
 import SimpleCalender from './Components/Calender/Calender.component';
