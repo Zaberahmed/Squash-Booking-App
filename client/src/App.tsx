@@ -77,8 +77,8 @@ function App() {
 
         <Route path='/selectperson' element={<SelectPerson />} />
         <Route path='/admin' element={<AdminPage />}></Route>
-        <Route path='/event' element={<SimpleCalender />}></Route>
-        <Route path='/lists' element={<MembersList />}></Route>
+        <Route path='/event' element={<EventPage />}></Route>
+        <Route path='/members' element={<MembersList />}></Route>
         <Route path='/bookings' element={<BookingLists />}></Route>
       </Routes>
     </Router>

@@ -110,6 +110,20 @@ authJWT = {
       .then((res) => res.json())
       .catch((err) => console.log(err));
   },
+
+  membersList: async (): Promise<RegisterResponse> => {
+    return await fetch(`${BASE_URL}/members`, {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  },
 };
 
 export default authJWT;
