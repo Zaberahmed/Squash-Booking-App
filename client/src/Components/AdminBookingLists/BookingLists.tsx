@@ -7,8 +7,8 @@ import PastEvents from '../History/PastEvents';
 const BookingLists = () => {
   return (
     <div>
-      <UpcomingEvents />
-      <PastEvents />
+      {/* <UpcomingEvents />
+      <PastEvents /> */}
     </div>
   );
 };

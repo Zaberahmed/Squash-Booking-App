@@ -45,6 +45,8 @@ function App() {
 						/>
 					}></Route>
 
+					
+
 				<Route
 					path="login"
 					element={
@@ -84,6 +86,7 @@ function App() {
 						path="upcoming"
 						element={<Upcoming />}></Route>
 				</Route>
+				
 
 				<Route
 					path="/selectperson"
@@ -95,10 +98,10 @@ function App() {
 					element={<AdminPage />}>
 					<Route
 						index
-						element={<UpcomingEvents />}></Route>
-					<Route
+						element={<EventPage  />}></Route> 
+					{/*  <Route
 						path="upcomingevents"
-						element={<UpcomingEvents />}></Route>
+						element={<UpcomingEvents />}></Route> */}
 					<Route
 						path="event"
 						element={<EventPage />}></Route>
@@ -107,7 +110,7 @@ function App() {
 						element={<MembersList />}></Route>
 					<Route
 						path="bookings"
-						element={<BookingLists />}></Route>
+						element={<TabComponent />}></Route>
 				</Route>
 			</Routes>
 		</Router>
