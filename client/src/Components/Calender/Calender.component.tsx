@@ -76,6 +76,9 @@ const SimpleCalender: React.FC = () => {
 							<DateCalendar
 								value={selectedDate}
 								onChange={handleDateSelect}
+								views={['day']}
+								disablePast
+								// maxDate={dayjs().add(7, 'day').toDate()}
 							/>
 						</div>
 						<div>

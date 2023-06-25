@@ -21,7 +21,7 @@ const timeslots: TimeSlot[] = [
 
 const filterAvailableSlots = async (timeslots: TimeSlot[]) => {
 	const currentTime = new Date().getHours();
-	console.log(currentTime);
+	// console.log(currentTime);
 	const filteredSlots = timeslots.filter((slot) => {
 		const slotHour = parseInt(slot.time.split(':')[0]);
 		return slotHour !== currentTime;
