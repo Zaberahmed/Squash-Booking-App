@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import authJWT from '../../Services/authJWT.service';
-import { useLocation } from 'react-router-dom'
+import authJWT from '../../Services/UserJWT.service';
+
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
