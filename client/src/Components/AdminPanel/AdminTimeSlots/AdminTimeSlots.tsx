@@ -60,6 +60,11 @@ const AdminTimeSlots = () => {
     </div>
     
 <button className='text-end'>Next</button>
+
+<div className="">
+<input type="text" placeholder='events name' />
+<button>Add</button>
+</div>
    </div>
   );
 };

@@ -1,36 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import authJWT from '../Services/authJWT.service';
+
 import TabComponent from '../Components/Tab/Tab.component';
 
 const AdminPage = () => {
 	// const navigate = useNavigate();
-	// const [bookings,setBookings] = useState<any[]>([]);
-	// const [pastEvents,setPastEvents] = useState<any[]>([])
-	// const [upcomingEvents,setUpcomingEvents] = useState<any[]>([])
-	// const today = new Date().toISOString();
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 	  try {
-	// 		const result = await authJWT.bookingsList();
-	// 		console.log(result);
-	// 		setBookings(result);
-	// 	  } catch (error) {
-	// 		// Handle error
-	// 		console.log(error);
-	// 	  }
-	// 	};
 	
-	// 	fetchData();
-	//   }, []);
-	//   const filterBookings = (booking:any) =>{
-	// 	const bookingTime = new Date(booking.date).toISOString();
-	// 	return bookingTime >= today;
-	//   }
-	//   const pastBookings = bookings.filter((booking) => !filterBookings(booking));
-	//   const upComingBookings = bookings.filter(filterBookings);
-	//   setPastEvents(pastBookings);
-	//   setUpcomingEvents(upComingBookings);
+	
+	
   
 	return (
 		<div className="h-screen flex flex-col justify-between">
