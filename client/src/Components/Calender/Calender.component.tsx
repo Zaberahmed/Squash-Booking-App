@@ -2,7 +2,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useState } from 'react';
-import TimeSlots from '../TimeSlots/TimeSlots';
+import TimeSlots from '../TimeSlots/TimeSlots.component';
 import filterAvailableSlots from './../../utils/timeslots';
 import authJWT from '../../Services/UserJWT.service';
 import TimeSlot from '../../Interfaces/TimeSlot';
@@ -87,7 +87,10 @@ const SimpleCalender: React.FC = () => {
 									className="grid grid-cols-3 overflow-y-auto h-96"
 									style={timeSlotsStyle}>
 									{timeSlots.length <= 0 ? (
-										<>No available slots for the day</>
+										<>
+											No available slots for the day
+											<button onClick={handleGoClick}>Go back</button>
+										</>
 									) : (
 										<>
 											{timeSlots.map((time) => (
@@ -98,8 +101,7 @@ const SimpleCalender: React.FC = () => {
 													slotName={time.slotName}
 												/>
 											))}
-											<br />
-											<br />
+
 											<button onClick={handleGoClick}>Go back</button>
 										</>
 									)}
