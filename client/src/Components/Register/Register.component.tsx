@@ -18,14 +18,9 @@ interface Props {
   isAuthenticated: boolean;
 }
 
-const Register = (props: Props) => {
-  const navigate = useNavigate();
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Register = (_props: Props) => {
   const [state, setState] = useState<User>(initialState);
-  const [modal, setModal] = useState(false); // New state for modal
-
-  const toggleModal = () => {
-    setModal(!modal);
-  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -44,18 +39,13 @@ const Register = (props: Props) => {
     const user = Object.fromEntries(formData);
     console.log(user);
     const registerData = await authJWT.register(user);
-    console.log(registerData);
     // const loginData = await authJWT.login(user);
     // if (registerData && loginData) {
-    // 	localStorage.setItem('accessToken', loginData.accessToken);
-    // 	Cookies.set('accessToken', loginData.accessToken);
-    // 	props.setIsAuthenticated(true);
-    // 	auth.login(() => navigate('/user'));
+    //   localStorage.setItem('accessToken', loginData.accessToken);
+    //   Cookies.set('accessToken', loginData.accessToken);
+    //   props.setIsAuthenticated(true);
+    //   auth.login(() => navigate('/user'));
     // }
-
-    setIsModalOpen(true); // Open the modal after successful registration
-
-    /*If Register successful nodemailer */
 
     // props.setIsAuthenticated(true);
     // auth.login(() => navigate('/user'));
@@ -69,10 +59,6 @@ const Register = (props: Props) => {
       !state.email ||
       !state.password
     );
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false); // Close the modal
   };
 
   return (
@@ -142,30 +128,14 @@ const Register = (props: Props) => {
           onChange={handleChange}
           className='w-full border rounded py-2 px-3 mb-2'
         />
-        {modal && (
-          <div className='modal'>
-            <div onClick={toggleModal} className='overlay'></div>
-            <div className='modal-content'>
-              <h2>Hello Modal</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Provident perferendis suscipit officia recusandae, eveniet
-                quaerat assumenda id fugit, dignissimos maxime non natus placeat
-                illo iusto! Sapiente dolorum id maiores dolores? Illum pariatur
-                possimus quaerat ipsum quos molestiae rem aspernatur dicta
-                tenetur. Sunt placeat tempora vitae enim incidunt porro fuga ea.
-              </p>
-              <button
-                type='submit'
-                className=' bg-yellow-300 hover:bg-yellow-400 active:bg-slate-700 focus:outline-none focus:ring focus:ring-slate-300 text-black text-l font-semibold text-m px-4 py-2 border rounded-full mt-3 cursor-pointer overlay'
-                disabled={validateForm()}
-                onClick={toggleModal}
-              >
-                Register
-              </button>
-            </div>
-          </div>
-        )}
+
+        <button
+          type='submit'
+          className=' bg-yellow-300 hover:bg-yellow-400 active:bg-slate-700 focus:outline-none focus:ring focus:ring-slate-300 text-black text-l font-semibold text-m px-4 py-2 border rounded-full mt-3 cursor-pointer'
+          disabled={validateForm()}
+        >
+          Register
+        </button>
       </form>
     </div>
   );
