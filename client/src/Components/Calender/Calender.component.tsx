@@ -9,7 +9,7 @@ import TimeSlot from '../../Interfaces/TimeSlot';
 
 const SimpleCalender: React.FC = () => {
 	const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
-	const [goClick, setGoClick] = useState<boolean>(false);
+	const [goBackClick, setGoBackClick] = useState<boolean>(false);
 	const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 	const [calendarStyle, setCalendarStyle] = useState({
 		marginLeft: '',
@@ -26,8 +26,8 @@ const SimpleCalender: React.FC = () => {
 		transition: '',
 	});
 
-	const handleGoClick = () => {
-		setGoClick(true);
+	const handleGoBackClick = () => {
+		setGoBackClick(!goBackClick);
 		setSelectedDate(null);
 		setCalendarStyle({ marginLeft: '', transition: '', transform: '' });
 		setHeadingStyle({ fontSize: '', marginTop: '', transition: '' });
@@ -44,6 +44,7 @@ const SimpleCalender: React.FC = () => {
 		const filteredresult = await filterAvailableSlots(result);
 		console.log(filteredresult);
 		setTimeSlots(filteredresult);
+
 		setCalendarStyle({
 			marginLeft: '-200rem',
 			transition: 'margin-left 3s ease',
@@ -89,7 +90,7 @@ const SimpleCalender: React.FC = () => {
 									{timeSlots.length <= 0 ? (
 										<>
 											No available slots for the day
-											<button onClick={handleGoClick}>Go back</button>
+											<button onClick={handleGoBackClick}>Go back</button>
 										</>
 									) : (
 										<>
@@ -102,7 +103,7 @@ const SimpleCalender: React.FC = () => {
 												/>
 											))}
 
-											<button onClick={handleGoClick}>Go back</button>
+											<button onClick={handleGoBackClick}>Go back</button>
 										</>
 									)}
 								</div>
