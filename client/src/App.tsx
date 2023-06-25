@@ -9,106 +9,115 @@ import LottiePlayer from './Components/Lottie/LottiePlayer.component';
 import Profile from './Components/Profile/Profile.component';
 import Upcoming from './Components/Upcoming/Upcoming.component';
 import AdminPage from './Pages/Admin.page';
-import BookingLists from './Components/AdminBookingLists/BookingLists';
+
 import SelectPerson from './Components/SelectPerson/SelectPerson.component';
 import EventPage from './Components/AdminPanel/EventPage';
 import SimpleCalender from './Components/Calender/Calender.component';
-import MembersList from './Components/MembersList/MembersList';
+
 import TabComponent from './Components/Tab/Tab.component';
-import UpcomingEvents from './Components/Upcoming/UpcomingEvents';
+
+import History from './Components/History/History.component';
+import MembersList from './Components/MembersList/MembersList';
 import auth from './utils/auth';
 
 function App() {
-	const initialState = auth.isAuthenticated();
-	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialState);
+  const initialState = auth.isAuthenticated();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialState);
 
-	return (
-		<Router>
-			<Routes>
-				<Route
-					path="/"
-					element={<LottiePlayer />}></Route>
+  return (
+    <Router>
+      <Routes>
+        <Route path='/' element={<LottiePlayer />}></Route>
+        <Route path='landing' element={<LandingPage />}></Route>
+        <Route
+          path='register'
+          element={
+            <SignUpPage
+              setIsAuthenticated={setIsAuthenticated}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        ></Route>
+        <Route
+          path='login'
+          element={
+            <SignInPage
+              setIsAuthenticated={setIsAuthenticated}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        ></Route>
+        <Route
+          path='login'
+          element={
+            <SignInPage
+              setIsAuthenticated={setIsAuthenticated}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        ></Route>
+        <Route
+          path='user'
+          element={
+            <UserPage
+              setIsAuthenticated={setIsAuthenticated}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        >
+          {' '}
+          <Route index element={<SimpleCalender />}></Route>
+          <Route path='calender' element={<SimpleCalender />}></Route>
+          <Route
+            path='profile'
+            element={
+              <Profile
+                setIsAuthenticated={setIsAuthenticated}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          ></Route>
+          <Route path='history' element={<History />}></Route>
+          <Route path='upcoming' element={<Upcoming />}></Route>
+        </Route>
+        <Route path='/selectperson' element={<SelectPerson />} />
+        <Route
+          path='user'
+          element={
+            <UserPage
+              setIsAuthenticated={setIsAuthenticated}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        >
+          {' '}
+          <Route index element={<SimpleCalender />}></Route>
+          <Route path='calender' element={<SimpleCalender />}></Route>
+          <Route
+            path='profile'
+            element={
+              <Profile
+                setIsAuthenticated={setIsAuthenticated}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          ></Route>
+          <Route path='upcoming' element={<Upcoming />}></Route>
+        </Route>
+        <Route path='/selectperson' element={<SelectPerson />} />
 
-				<Route
-					path="landing"
-					element={<LandingPage />}></Route>
-
-				<Route
-					path="register"
-					element={
-						<SignUpPage
-							setIsAuthenticated={setIsAuthenticated}
-							isAuthenticated={isAuthenticated}
-						/>
-					}></Route>
-
-					
-
-				<Route
-					path="login"
-					element={
-						<SignInPage
-							setIsAuthenticated={setIsAuthenticated}
-							isAuthenticated={isAuthenticated}
-						/>
-					}></Route>
-
-				<Route
-					path="user"
-					element={
-						<UserPage
-							setIsAuthenticated={setIsAuthenticated}
-							isAuthenticated={isAuthenticated}
-						/>
-					}>
-					{' '}
-					<Route
-						index
-						element={<SimpleCalender />}></Route>
-					<Route
-						path="calender"
-						element={<SimpleCalender />}></Route>
-					<Route
-						path="profile"
-						element={
-							<Profile
-								setIsAuthenticated={setIsAuthenticated}
-								isAuthenticated={isAuthenticated}
-							/>
-						}></Route>
-					<Route
-						path="upcoming"
-						element={<Upcoming />}></Route>
-				</Route>
-				
-
-				<Route
-					path="/selectperson"
-					element={<SelectPerson />}
-				/>
-
-				<Route
-					path="admin"
-					element={<AdminPage />}>
-					<Route
-						index
-						element={<EventPage  />}></Route> 
-					{/*  <Route
+        <Route path='admin' element={<AdminPage />}>
+          <Route index element={<EventPage />}></Route>
+          {/*  <Route
 						path="upcomingevents"
 						element={<UpcomingEvents />}></Route> */}
-					<Route
-						path="event"
-						element={<EventPage />}></Route>
-					<Route
-						path="members"
-						element={<MembersList />}></Route>
-					<Route
-						path="bookings"
-						element={<TabComponent />}></Route>
-				</Route>
-			</Routes>
-		</Router>
-	);
+          <Route path='event' element={<EventPage />}></Route>
+          <Route path='members' element={<MembersList />}></Route>
+          <Route path='bookings' element={<TabComponent />}></Route>
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

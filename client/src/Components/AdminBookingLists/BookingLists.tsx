@@ -2,7 +2,7 @@ import React from 'react';
 // import Upcoming from '../Upcoming/Upcoming';
 import History from '../History/History.component';
 import UpcomingEvents from '../Upcoming/UpcomingEvents';
-import PastEvents from '../History/PastEvents';
+// import PastEvents from '../History/PastEvents';
 
 const BookingLists = () => {
   return (

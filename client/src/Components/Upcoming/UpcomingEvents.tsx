@@ -1,35 +1,47 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import './UpcomingEvents.css';
+import AdminJWT from '../../Services/AdminJWT.service';
 
-interface UpcomingEventsProps{
-  booking:any;
+interface Slot {
+  slotName: string;
+  date: Date;
 }
 
-const UpcomingEvents:React.FC<UpcomingEventsProps> = (props) => {
+interface Event {
+  user: string;
+  slot: Slot;
+  _id: string;
+}
+
+interface UpcomingEventsProps {
+  booking: any;
+}
+
+const UpcomingEvents: React.FC<UpcomingEventsProps> = (props) => {
   // console.log(booking);
   return (
     <div className=''>
-    <h1>Upcoming Events</h1>
+      <h1>Upcoming Events</h1>
       <div className='cards'>
         <div className='card'>
           <h3 className=''>
-            <strong>Date:</strong> 
+            <strong>Date:</strong>
           </h3>
           <h3>slotName:{props.booking.slot.slotName}</h3>
           <h3>slotTime:{props.booking.slot.time}</h3>
           <h3 className=''>
-            <strong>Court Number:</strong> 
+            <strong>Court Number:</strong>
           </h3>
           <h3 className=''>
-            <strong>Main Player:</strong> 
+            <strong>Main Player:</strong>
           </h3>
           <h3 className=''>
-            <strong>Partner Player:</strong> 
+            <strong>Partner Player:</strong>
           </h3>
           <a href='#' className='btn' style={{ color: 'red' }}>
             Cancel
           </a>
         </div>
-      
       </div>
     </div>
   );

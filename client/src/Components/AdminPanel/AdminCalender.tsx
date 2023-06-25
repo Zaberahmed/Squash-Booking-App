@@ -5,11 +5,8 @@ import './AdminCalender.css';
 import { Value } from 'react-calendar/dist/cjs/shared/types';
 import AdminTimeSlots from './AdminTimeSlots/AdminTimeSlots';
 import { eachDayOfInterval } from 'date-fns';
-
 const AdminCalendar: React.FC = () => {
   const [selectedDates, setSelectedDates] = useState<Value>([]);
-  
- 
 
   const handleDateChange = (value: Value) => {
     console.log(value);
@@ -18,44 +15,46 @@ const AdminCalendar: React.FC = () => {
     } else {
       setSelectedDates(value);
     }
-   
-    
   };
   if (selectedDates.length === 2) {
     const [startDate, endDate] = selectedDates;
     const datesBetween = eachDayOfInterval({ start: startDate, end: endDate });
-    
-    const formattedDates = datesBetween.map((date) => new Date(date).toISOString());
+
+    const formattedDates = datesBetween.map((date) =>
+      new Date(date).toISOString()
+    );
     console.log(formattedDates);
   }
 
   return (
-    <div className=''>
+    <div>
+      <h1 className='mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white'>
+        Book your calender
+      </h1>
       <div className='flex gap-4'>
-        <div  className=''>
+        <div className=''>
           <Calendar
-          
             onChange={handleDateChange}
             value={selectedDates}
             selectRange={true}
             isMultiSelection={true}
             showNeighboringMonth={false} // Hide neighboring months in the calendar
           />
-       <br />
-        {selectedDates.length > 0 ? (
-          <p className='text-center date-range'>
-            <span className='bold'>Start:</span>
-            {selectedDates[0].toDateString()}
-           
-            <span className='bold'>End:</span>
-            {selectedDates[selectedDates.length - 1].toDateString()}
-          </p>
-        ) : (
-          <p className='text-center'>
-            <span className='bold'>Please select a date range.</span>
-          </p>
-        )}
-         </div>
+          <br />
+          {selectedDates.length > 0 ? (
+            <p className='text-center date-range'>
+              <span className='bold'>Start:</span>
+              {selectedDates[0].toDateString()}
+
+              <span className='bold'>End:</span>
+              {selectedDates[selectedDates.length - 1].toDateString()}
+            </p>
+          ) : (
+            <p className='text-center'>
+              <span className='bold'>Please select a date range.</span>
+            </p>
+          )}
+        </div>
         <AdminTimeSlots />
       </div>
     </div>
