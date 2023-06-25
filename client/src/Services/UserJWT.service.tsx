@@ -125,6 +125,21 @@ authJWT = {
 			.catch((err) => console.log(err));
 	},
 
+	cancelBooking: async (booking: Object): Promise<RegisterResponse> => {
+		return await fetch(`${BASE_URL}/cancel`, {
+			method: 'POST',
+			credentials: 'include',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(booking),
+		})
+			.then((res) => res.json())
+			.catch((err) => console.log(err));
+	},
+
 	bookingsList: async (): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/bookings`, {
 			method: 'GET',

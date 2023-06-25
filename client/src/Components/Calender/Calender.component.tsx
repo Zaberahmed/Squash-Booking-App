@@ -2,14 +2,14 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useState } from 'react';
-import TimeSlots from '../TimeSlots/TimeSlots';
+import TimeSlots from '../TimeSlots/TimeSlots.component';
 import filterAvailableSlots from './../../utils/timeslots';
 import authJWT from '../../Services/UserJWT.service';
 import TimeSlot from '../../Interfaces/TimeSlot';
 
 const SimpleCalender: React.FC = () => {
 	const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
-	const [goClick, setGoClick] = useState<boolean>(false);
+	const [goBackClick, setGoBackClick] = useState<boolean>(false);
 	const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 	const [calendarStyle, setCalendarStyle] = useState({
 		marginLeft: '',
@@ -26,8 +26,8 @@ const SimpleCalender: React.FC = () => {
 		transition: '',
 	});
 
-	const handleGoClick = () => {
-		setGoClick(true);
+	const handleGoBackClick = () => {
+		setGoBackClick(!goBackClick);
 		setSelectedDate(null);
 		setCalendarStyle({ marginLeft: '', transition: '', transform: '' });
 		setHeadingStyle({ fontSize: '', marginTop: '', transition: '' });
@@ -44,6 +44,7 @@ const SimpleCalender: React.FC = () => {
 		const filteredresult = await filterAvailableSlots(result);
 		console.log(filteredresult);
 		setTimeSlots(filteredresult);
+
 		setCalendarStyle({
 			marginLeft: '-200rem',
 			transition: 'margin-left 3s ease',
@@ -76,6 +77,9 @@ const SimpleCalender: React.FC = () => {
 							<DateCalendar
 								value={selectedDate}
 								onChange={handleDateSelect}
+								views={['day']}
+								disablePast
+								// maxDate={dayjs().add(7, 'day').toDate()}
 							/>
 						</div>
 						<div>
@@ -84,7 +88,10 @@ const SimpleCalender: React.FC = () => {
 									className="grid grid-cols-3 overflow-y-auto h-96"
 									style={timeSlotsStyle}>
 									{timeSlots.length <= 0 ? (
-										<>No available slots for the day</>
+										<>
+											No available slots for the day
+											<button onClick={handleGoBackClick}>Go back</button>
+										</>
 									) : (
 										<>
 											{timeSlots.map((time) => (
@@ -95,9 +102,8 @@ const SimpleCalender: React.FC = () => {
 													slotName={time.slotName}
 												/>
 											))}
-											<br />
-											<br />
-											<button onClick={handleGoClick}>Go back</button>
+
+											<button onClick={handleGoBackClick}>Go back</button>
 										</>
 									)}
 								</div>

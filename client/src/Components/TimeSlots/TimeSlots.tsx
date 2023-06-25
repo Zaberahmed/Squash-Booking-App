@@ -26,9 +26,7 @@ const TimeSlots: React.FC<ListTimeProps> = ({ time, selectedDate, slotName }) =>
 
 	const handleButtonClick = async () => {
 		// console.log(`Button clicked for time slot: ${time}`);
-		navigate('/selectperson', { state: { selectedTime: selectedTime, 
-			selectedDate: selectedDate.toISOString(), 
-			slotName: slotName } });
+		navigate('/selectperson', { state: { selectedTime: selectedTime, selectedDate: selectedDate.toISOString(), slotName: slotName } });
 		// setselectedTime(time);
 		console.log(selectedTime);
 		// console.log(`Date: ${selectedDate}, Time: ${selectedTime}`);
