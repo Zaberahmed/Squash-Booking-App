@@ -1,63 +1,55 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import './UpcomingEvents.css';
+import AdminJWT from '../../Services/AdminJWT.service';
+
+interface Slot {
+  slotName: string;
+  date: Date;
+}
+
+interface Event {
+  user: string;
+  slot: Slot;
+  _id: string;
+}
 
 const UpcomingEvents = () => {
+  const [events, setEvents] = useState<Event[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await AdminJWT.bookingLists();
+        console.log(result);
+        setEvents(result);
+      } catch (error) {
+        // Handle error
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className='container'>
       <div className='center'>
         <h1>Upcoming Events</h1>
       </div>
       <div className='cards'>
-        <div className='card'>
-          <h3 className='card-name'>
-            <strong>Date:</strong> June 18, 2023
-          </h3>
-          <h3 className='card-name'>
-            <strong>Court Number:</strong> 123
-          </h3>
-          <h3 className='card-name'>
-            <strong>Main Player:</strong> John Doe
-          </h3>
-          <h3 className='card-name'>
-            <strong>Partner Player:</strong> John Doe
-          </h3>
-          <a href='#' className='btn' style={{ color: 'red' }}>
-            Cancel
-          </a>
-        </div>
-        <div className='card'>
-          <h3 className='card-name'>
-            <strong>Date:</strong> June 18, 2023
-          </h3>
-          <h3 className='card-name'>
-            <strong>Court Number:</strong> 123
-          </h3>
-          <h3 className='card-name'>
-            <strong>Main Player:</strong> John Doe
-          </h3>
-          <h3 className='card-name'>
-            <strong>Partner Player:</strong> John Doe
-          </h3>
-          <a href='#' className='btn' style={{ color: 'red' }}>
-            Cancel
-          </a>
-        </div>
-        <div className='card'>
-          <h3 className='card-name'>
-            <strong>Date:</strong> June 18, 2023
-          </h3>
-          <h3 className='card-name'>
-            <strong>Court Number:</strong> 123
-          </h3>
-          <h3 className='card-name'>
-            <strong>Main Player:</strong> John Doe
-          </h3>
-          <h3 className='card-name'>
-            <strong>Partner Player:</strong> John Doe
-          </h3>
-          <a href='#' className='btn' style={{ color: 'red' }}>
-            Cancel
-          </a>
-        </div>
+        {events.map((eventItem) => (
+          <div className='card' key={eventItem._id}>
+            <h3 className='card-name'>
+              <strong>User Name: {eventItem.user}</strong>
+            </h3>
+            <h3 className='card-name'>
+              <strong>Slot Name: {eventItem.slot.slotName}</strong>
+            </h3>
+            <h3 className='card-name'>
+              <strong>Time: {eventItem.slot.time.toString()}</strong>
+            </h3>
+          </div>
+        ))}
       </div>
     </div>
   );

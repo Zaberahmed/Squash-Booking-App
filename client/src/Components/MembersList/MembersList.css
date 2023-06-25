@@ -46,6 +46,24 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.delete-icon {
+  width: 20px;
+  height: 16px;
+  fill: currentColor;
+}
+.top-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .card img {
