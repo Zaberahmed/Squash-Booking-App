@@ -3,11 +3,22 @@ import './AdminTimeSlots.css';
 
 
 const AdminTimeSlots = () => {
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const handleTimeClick = (time: string) => {
-    setSelectedTime(time);
+  const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
 
+  const handleTimeClick = (time: string) => {
+    if (selectedTimes.includes(time)) {
+      // If the time is already selected, remove it from the array
+      setSelectedTimes(selectedTimes.filter((selectedTime) => selectedTime !== time));
+    } else {
+      // If the time is not selected, add it to the array
+      setSelectedTimes([...selectedTimes, time]);
+    }
   };
+  console.log(selectedTimes);
+  const selectedAllTimes = ()=>{
+    const allTimes = timeSlotsForAdmin.map((timeSlot)=> timeSlot.time);
+    setSelectedTimes(allTimes);
+  }
 
   const timeSlotsForAdmin = [
     { slotName: 'A', time: '6:00 AM' },
@@ -28,55 +39,19 @@ const AdminTimeSlots = () => {
 	{ slotName: 'P', time: '9:00 PM' },
   ]
   return (
-    
-    // <div className='time-picker-container'>
-    //   <div className='time-picker'>
-    //     <div className='row time-picker-header'>
-    //       <div className='row'>
-    //         <ul className='time-slot'>
-    //           <li className='time-slot-item'>9:00 </li>
-    //           <li className='time-slot-item'>10:00 - 10:30</li>
-    //           <li className='time-slot-item'>11:00 - 11:30</li>
-             
-    //         </ul>
-    //         <ul className='time-slot'>
-    //           <li className='time-slot-item'>8:00 - 8:30</li>
-    //           <li className='time-slot-item'>10:00 - 10:30</li>
-    //           <li className='time-slot-item'>11:00 - 11:30</li>
-    //         </ul>
-    //         <ul className='time-slot'>
-    //           <li className='time-slot-item'>9:00 - 9:30</li>
-    //           <li className='time-slot-item'>10:00 - 10:30</li>
-    //           <li className='time-slot-item'>11:00 - 11:30</li>
-    //           <li className='time-slot-item'>12:00 - 12:30</li>
-    //           <li className='time-slot-item'>13:00 - 13:30</li>
-    //         </ul>
-    //         <ul className='time-slot'>
-    //           <li className='time-slot-item'>9:00 - 9:30</li>
-    //           <li className='time-slot-item picked'>10:00 - 10:30</li>
-    //           <li className='time-slot-item'>11:00 - 11:30</li>
-    //           <li className='time-slot-item'>12:00 - 12:30</li>
-    //         </ul>
-    //         <ul className='time-slot'>
-    //           <li className='time-slot-item'>9:00 - 9:30</li>
-    //           <li className='time-slot-item'>10:00 - 10:30</li>
-    //           <li className='time-slot-item'>11:00 - 11:30</li>
-    //         </ul>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
+            
    <div className="">
+    <button onClick={selectedAllTimes}>All</button>
     <div className="grid grid-cols-3 ">
       {
         timeSlotsForAdmin.map((time)=><>
         <button
             key={time.slotName}
             className={`p-4 bg-yellow-100 border-2 border-yellow-400 rounded-md m-2 ${
-              selectedTime === time.time ? 'disabled bg-white text-gray-400' : ''
+              selectedTimes.includes(time.time) ? 'disabled bg-white text-gray-400' : ''
             }`}
             onClick={() => handleTimeClick(time.time)}
-            disabled={selectedTime === time.time}
+            disabled={selectedTimes.includes(time.time)}
           >
             {time.time}
           </button>
@@ -84,7 +59,7 @@ const AdminTimeSlots = () => {
       }
     </div>
     
-
+<button className='text-end'>Next</button>
    </div>
   );
 };

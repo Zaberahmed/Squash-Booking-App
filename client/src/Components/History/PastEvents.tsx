@@ -1,54 +1,31 @@
-import '../Upcoming/Upcoming.component.css';
+import React from "react";
 
-const PastEvents = () => {
+interface PastEventsProps{
+	booking:any;
+}
+
+const PastEvents:React.FC<PastEventsProps> = ({booking}) => {
+	// console.log(booking);
 	return (
-		<div className="container">
-			<div className="center">
-				<h1>Past Events</h1>
-			</div>
-			<div className="cards">
-				<div className="card">
+		<div className="">
+			
+			<div className="">
+				<div className="bg-shadow bg-white p-3 rounded-md ">
 					<h3 className="card-name">
-						<strong>Date:</strong> June 18, 2023
+						<strong>Date:</strong>{booking.slot.time}
 					</h3>
 					<h3 className="card-name">
-						<strong>Court Number:</strong> 123
+						<strong>Court Number:</strong> 
 					</h3>
 					<h3 className="card-name">
-						<strong>Main Player:</strong> John Doe
+						<strong>Main Player:</strong> {booking.slot.slotName}
 					</h3>
 					<h3 className="card-name">
-						<strong>Partner Player:</strong> John Doe
+						<strong>Partner Player:</strong> 
 					</h3>
 				</div>
-				<div className="card">
-					<h3 className="card-name">
-						<strong>Date:</strong> June 18, 2023
-					</h3>
-					<h3 className="card-name">
-						<strong>Court Number:</strong> 123
-					</h3>
-					<h3 className="card-name">
-						<strong>Main Player:</strong> John Doe
-					</h3>
-					<h3 className="card-name">
-						<strong>Partner Player:</strong> John Doe
-					</h3>
-				</div>
-				<div className="card">
-					<h3 className="card-name">
-						<strong>Date:</strong> June 18, 2023
-					</h3>
-					<h3 className="card-name">
-						<strong>Court Number:</strong> 123
-					</h3>
-					<h3 className="card-name">
-						<strong>Main Player:</strong> John Doe
-					</h3>
-					<h3 className="card-name">
-						<strong>Partner Player:</strong> John Doe
-					</h3>
-				</div>
+				<br />
+				
 			</div>
 		</div>
 	);
