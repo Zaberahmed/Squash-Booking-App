@@ -3,7 +3,7 @@ import { CgProfile } from 'react-icons/cg';
 import { MdOutlineUpcoming } from 'react-icons/md';
 import { BsFillJournalBookmarkFill } from 'react-icons/bs';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import Authentication from '../Interfaces/User-authentication.interface';
+import Authentication from '../Interfaces/Authentication.interface';
 
 const UserPage = (props: Authentication) => {
 	const navigate = useNavigate();

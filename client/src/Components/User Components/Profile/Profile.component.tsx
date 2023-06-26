@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import auth from '../../../utils/auth';
 import Cookies from 'js-cookie';
 import History from '../History/History.component';
-import UserAuthentication from '../../../Interfaces/User-authentication.interface';
+import Authentication from '../../../Interfaces/Authentication.interface';
 
 const initialState: User = {
 	name: 'John Doe',
@@ -16,7 +16,7 @@ const initialState: User = {
 	password: 'XXXXXXXX',
 };
 
-const Profile = (props: UserAuthentication) => {
+const Profile = (props: Authentication) => {
 	const [profile, setProfile] = useState<User>(initialState);
 
 	const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Profile = (props: UserAuthentication) => {
 		const fetchData = async () => {
 			try {
 				const result = await UserService.profile();
-				console.log(result);
+				// console.log(result);
 				setProfile(result);
 			} catch (error) {
 				// Handle error

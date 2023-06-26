@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
 	},
 	userRole: {
 		type: String,
-		required: true,
+		required: false,
 	},
 	email: {
 		type: String,
@@ -114,7 +114,6 @@ module.exports = {
 	findUserByEmail,
 	createUser,
 	deleteUser,
-
 	confirmBookingByUser,
 	deleteUserBooking,
 };
