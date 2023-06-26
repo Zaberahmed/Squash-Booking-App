@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import authJWT from '../../Services/UserJWT.service';
+import authJWT from '../../Services/User.service';
 import { useLocation, useNavigate } from 'react-router-dom';
 import User from '../../Interfaces/User.interface';
 

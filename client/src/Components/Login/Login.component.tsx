@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import auth from '../../utils/auth';
 import { useNavigate } from 'react-router-dom';
-import authJWT from '../../Services/UserJWT.service';
+import authJWT from '../../Services/User.service';
 import Cookies from 'js-cookie';
 import Authentication from '../../Interfaces/Authentication';
 

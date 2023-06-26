@@ -12,10 +12,10 @@ router.get('/admin/member', adminController.getUser); //Not required
 router.get('/admin/bookings', adminController.getAllBookings);
 router.get('/admin/booking', adminController.getBooking); //Not required
 router.delete('/admin/delete-member', adminController.deleteUserByAdmin);
-router.delete('/admin/delete-booking', authenticator, adminController.deleteBookingByAdmin);
+router.delete('/admin/delete-booking', adminController.deleteBookingByAdmin);
 
 router.post('/admin/event', adminController.addEvent);
-router.post('/admin/delete-event', adminController.removeEvent);
+router.delete('/admin/delete-event', adminController.removeEvent);
 router.get('/all-events', adminController.getAllEvents);
 
 //User routes

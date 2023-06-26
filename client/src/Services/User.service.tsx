@@ -1,7 +1,7 @@
 const BASE_URL = 'http://localhost:4000';
 import User from '../Interfaces/User.interface';
 
-let authJWT: any = {
+let User: any = {
 	register: async function () {},
 	login: async function () {},
 };
@@ -15,7 +15,8 @@ interface RegisterResponse {
 
 const token: string | null = localStorage.getItem('accessToken');
 
-authJWT = {
+User = {
+	//registration of user
 	register: async (user: User): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/registration`, {
 			method: 'POST',
@@ -27,6 +28,7 @@ authJWT = {
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
+	//login
 	login: async (user: User): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/login`, {
 			method: 'POST',
@@ -39,7 +41,10 @@ authJWT = {
 			.catch((err) => console.log(err));
 	},
 
-	userSlotsAvailability: async (date: Object): Promise<RegisterResponse> => {
+	//logout
+
+	//service to get all available slots
+	availableSlots: async (date: Object): Promise<RegisterResponse> => {
 		console.log(date);
 		return await fetch(`${BASE_URL}/available`, {
 			method: 'POST',
@@ -54,8 +59,8 @@ authJWT = {
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
-
-	userBooking: async (booking: Object): Promise<RegisterResponse> => {
+	//service to book a court
+	Book: async (booking: Object): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/confirm`, {
 			method: 'POST',
 			credentials: 'include',
@@ -69,7 +74,8 @@ authJWT = {
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
-	userProfile: async (): Promise<RegisterResponse> => {
+	//service to see profile info
+	Profile: async (): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/profile`, {
 			method: 'GET',
 			credentials: 'include',
@@ -82,7 +88,8 @@ authJWT = {
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
-	userHistory: async (date: Object): Promise<RegisterResponse> => {
+	//service to see all the past bookings
+	pastBookings: async (date: Object): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/previous`, {
 			method: 'POST',
 			credentials: 'include',
@@ -96,7 +103,8 @@ authJWT = {
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
-	userUpcoming: async (date: Object): Promise<RegisterResponse> => {
+	//service to see all the upcoming bookkings
+	upcomingBookings: async (date: Object): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/upcomming`, {
 			method: 'POST',
 			credentials: 'include',
@@ -110,7 +118,7 @@ authJWT = {
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
-
+	//service to cancel an upcoming booking
 	cancelBooking: async (bookingId: string): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/cancel`, {
 			method: 'DELETE',
@@ -125,7 +133,7 @@ authJWT = {
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
-
+	//service to get an user information
 	getUser: async (userId: string): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/user`, {
 			method: 'GET',
@@ -142,4 +150,4 @@ authJWT = {
 	},
 };
 
-export default authJWT;
+export default User;
