@@ -1,6 +1,6 @@
-import TimeSlot from '../Interfaces/Timeslot.interface';
+import Timeslot from '../Interfaces/Timeslot.interface';
 
-const timeslots: TimeSlot[] = [
+const timeslots: Timeslot[] = [
 	{ slotName: 'A', time: '6:00 AM' },
 	{ slotName: 'B', time: '7:00 AM' },
 	{ slotName: 'C', time: '8:00 AM' },
@@ -19,14 +19,4 @@ const timeslots: TimeSlot[] = [
 	{ slotName: 'P', time: '9:00 PM' },
 ];
 
-const filterAvailableSlots = async (timeslots: TimeSlot[]) => {
-	const currentTime = new Date().getHours();
-	// console.log(currentTime);
-	const filteredSlots = timeslots.filter((slot) => {
-		const slotHour = parseInt(slot.time.split(':')[0]);
-		return slotHour !== currentTime;
-	});
-	return filteredSlots;
-};
-
-export default filterAvailableSlots;
+export default timeslots;
