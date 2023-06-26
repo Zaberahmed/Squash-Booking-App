@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import UserService from '../../Services/User.service';
+import UserService from '../../../Services/User.service';
 import { useLocation, useNavigate } from 'react-router-dom';
-import User from '../../Interfaces/User.interface';
+import User from '../../../Interfaces/User.interface';
 
 const initialState: User = {
 	name: 'John Doe',

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './History.component.css';
-import UserService from '../../Services/User.service';
-import Booking from '../../Interfaces/Booking.interface';
+import UserService from '../../../Services/User.service';
+import Booking from '../../../Interfaces/Booking.interface';
 const History = () => {
 	const [histories, setHistories] = useState<Booking[]>();
 

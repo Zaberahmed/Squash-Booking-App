@@ -3,14 +3,14 @@ import auth from '../../utils/auth';
 import { useNavigate } from 'react-router-dom';
 import UserService from '../../Services/User.service';
 import Cookies from 'js-cookie';
-import Authentication from '../../Interfaces/User-authentication.interface';
+import UserAuthentication from '../../Interfaces/User-authentication.interface';
 
 const initialState = {
 	email: '',
 	password: '',
 };
 
-const Login = (props: Authentication) => {
+const Login = (props: UserAuthentication) => {
 	let navigate = useNavigate();
 	const [state, setState] = useState(initialState);
 

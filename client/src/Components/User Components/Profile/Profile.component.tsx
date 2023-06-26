@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import User from '../../Interfaces/User.interface';
+import User from '../../../Interfaces/User.interface';
 import './Profile.component.css';
-import UserService from '../../Services/User.service';
+import UserService from '../../../Services/User.service';
 import { useNavigate } from 'react-router-dom';
-import auth from '../../utils/auth';
+import auth from '../../../utils/auth';
 import Cookies from 'js-cookie';
 import History from '../History/History.component';
-import Authentication from '../../Interfaces/User-authentication.interface';
+import UserAuthentication from '../../../Interfaces/User-authentication.interface';
 
 const initialState: User = {
 	name: 'John Doe',
@@ -16,7 +16,7 @@ const initialState: User = {
 	password: 'XXXXXXXX',
 };
 
-const Profile = (props: Authentication) => {
+const Profile = (props: UserAuthentication) => {
 	const [profile, setProfile] = useState<User>(initialState);
 
 	const navigate = useNavigate();
