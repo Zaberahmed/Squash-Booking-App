@@ -10,7 +10,7 @@ import Profile from './Components/Profile/Profile.component';
 import Upcoming from './Components/Upcoming/Upcoming.component';
 import AdminPage from './Pages/Admin.page';
 import SelectPerson from './Components/SelectPerson/SelectPerson.component';
-import EventPage from './Components/AdminPanel/EventPage';
+import EventPage from './Components/AdminPanel/EventPage.component';
 import SimpleCalender from './Components/Calender/Calender.component';
 import TabComponent from './Components/Tab/Tab.component';
 import History from './Components/History/History.component';

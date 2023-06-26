@@ -11,16 +11,6 @@ const AdminPage = () => {
 				<Link to="event">Events</Link>
 				<Link to="bookings">Bookings</Link>
 				<Link to="members">Members</Link>
-
-				{/* <Link to="upcomingevents" state={{upcoming:upcomingEvents}}>
-					Upcoming Events</Link> */}
-
-				{/* {bookings &&
-					<TabComponent
-
-
-					/>
-				} */}
 			</div>
 		</div>
 	);
