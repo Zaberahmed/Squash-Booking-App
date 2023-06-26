@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Upcoming.component.css';
-import authJWT from '../../Services/User.service';
+import UserService from './../../Services/User.service';
 import Booking from '../../Interfaces/Booking.interface';
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -24,7 +23,7 @@ const Upcoming = () => {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-	const [upcomings, setUpcomings] = useState<any[]>();
+	const [upcomings, setUpcomings] = useState<Booking[]>();
 	const formatTime = (timeString: string): string => {
 		const time = timeString.toLowerCase();
 		const hour = time.substring(0, time.length - 2);
@@ -40,7 +39,7 @@ const Upcoming = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const results = await authJWT.userUpcoming({ date: new Date() });
+				const results = await UserService.upcomingBookings({ date: new Date() });
 				results.sort((a: Booking, b: Booking) => new Date(a.date).getTime() - new Date(b.date).getTime());
 				setUpcomings(results);
 				console.log(results);

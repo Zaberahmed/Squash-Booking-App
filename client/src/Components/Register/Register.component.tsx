@@ -1,10 +1,8 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
-import auth from '../../utils/auth';
 import { useNavigate } from 'react-router-dom';
 import User from '../../Interfaces/User.interface';
-import authJWT from '../../Services/User.service';
-import Cookies from 'js-cookie';
-import './Register.css';
+import AdminService from '../../Services/Admin.service';
+import './Register.component.css';
 
 const initialState: User = {
 	name: '',
@@ -14,12 +12,7 @@ const initialState: User = {
 	password: '',
 };
 
-interface Props {
-	setIsAuthenticated: (isAuthenticated: boolean) => void;
-	isAuthenticated: boolean;
-}
-
-const Register = (props: Props) => {
+const Register = () => {
 	const navigate = useNavigate();
 	const routeChange = () => {
 		const path = `/admin/members`;
@@ -44,7 +37,8 @@ const Register = (props: Props) => {
 
 		const user = Object.fromEntries(formData);
 		console.log(user);
-		const registerData = await authJWT.register(user);
+		const registerData = await AdminService.registerUser(user);
+		console.log(registerData);
 		// const loginData = await authJWT.login(user);
 		// if (registerData && loginData) {
 		//   localStorage.setItem('accessToken', loginData.accessToken);

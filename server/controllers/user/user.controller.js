@@ -2,7 +2,7 @@ const { hashing, isUserExist, checkCredentials } = require('./helper.controller'
 
 const { createSession, getSession, destroySession } = require('./../../middlewares/sessionManagement');
 
-const { createUser, findUserById, findUserByEmail, confirmBookingByUser } = require('./../../models/user/user.model');
+const { createUser, findUserById, findUserByEmail, confirmBookingByUser, findAllUser } = require('./../../models/user/user.model');
 
 const { getAllBookingSlotsByDate, getUserPreviousDayBookingSlots, bookingConfirmed, findBookingById } = require('./../../models/booking/booking.model');
 
@@ -228,6 +228,14 @@ const upcommingBooking = async (req, res) => {
 		console.log(error);
 	}
 };
+const getAllUser = async (req, res) => {
+	try {
+		const users = await findAllUser();
+		return res.status(200).send(users);
+	} catch (error) {
+		console.log(error);
+	}
+};
 const getUser = async (req, res) => {
 	try {
 		const { _id } = req.body;
@@ -261,6 +269,7 @@ module.exports = {
 	confirmBooking,
 	previousBooking,
 	upcommingBooking,
+	getAllUser,
 	getUser,
 	deleteBookingByUser,
 };
