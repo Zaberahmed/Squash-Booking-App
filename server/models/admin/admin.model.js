@@ -10,17 +10,16 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  phone: {
-    type: String,
-    required: true,
-  },
 });
 
 const Admin = mongoose.model('Admin', adminSchema);
 
-module.exports = Admin;
+const findAdminByUserName = async (userName) => {
+  try {
+    return await Admin.findOne({ userName: userName });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { findAdminByUserName };

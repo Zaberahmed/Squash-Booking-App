@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   },
   userRole: {
     type: String,
-    required: false,
+    required: true,
   },
   email: {
     type: String,
@@ -35,6 +35,14 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', userSchema);
+
+const findAllUser = async () => {
+  try {
+    return await User.find({});
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const findUserByEmail = async (email) => {
   try {
@@ -67,6 +75,16 @@ const createUser = async (user) => {
   }
 };
 
+const deleteUser = async (userId) => {
+  try {
+    return await User.deleteOne({
+      _id: userId,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getPreviousBookings = async () => {
   try {
     return await User.find({});
@@ -84,19 +102,27 @@ const confirmBookingByUser = async (user, bookingId) => {
   }
 };
 
-const getAllUser = async () => {
+const deleteUserBooking = async (user, bookingId) => {
   try {
-    return await User.find({});
+    const index = await user.bookings.indexOf(bookingId);
+
+    if (index !== -1) {
+      user.bookings.splice(index, 1);
+    }
+
+    return await user.save();
   } catch (error) {
     console.log(error);
   }
 };
 
 module.exports = {
-  createUser,
+  findAllUser,
   findUserById,
   findUserByEmail,
+  createUser,
+  deleteUser,
   getPreviousBookings,
   confirmBookingByUser,
-  getAllUser,
+  deleteUserBooking,
 };
