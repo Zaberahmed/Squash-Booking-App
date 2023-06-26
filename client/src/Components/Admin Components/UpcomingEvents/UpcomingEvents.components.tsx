@@ -1,7 +1,11 @@
 import Booking from '../../../Interfaces/Booking.interface';
 import './UpcomingEvents.component.css';
 
-const UpcomingEvents: React.FC<Booking> = (props) => {
+interface Props {
+	key?: string;
+	booking: Booking;
+}
+const UpcomingEvents = (props: Props) => {
 	// console.log(booking);
 	return (
 		<div className="">
@@ -11,8 +15,8 @@ const UpcomingEvents: React.FC<Booking> = (props) => {
 					<h3 className="">
 						<strong>Date:</strong>
 					</h3>
-					<h3>slotName:{props.slot.slotName}</h3>
-					<h3>slotTime:{props.slot.time}</h3>
+					<h3>slotName:{props.booking.slot.slotName}</h3>
+					<h3>slotTime:{props.booking.slot.time}</h3>
 					<h3 className="">
 						<strong>Court Number:</strong>
 					</h3>

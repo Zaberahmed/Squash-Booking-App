@@ -128,7 +128,7 @@ UserService = {
 			.catch((err) => console.log(err));
 	},
 	//service to cancel an upcoming booking
-	cancelBooking: async (bookingId: string): Promise<RegisterResponse> => {
+	cancelBooking: async (bookingId: Object): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/cancel`, {
 			method: 'DELETE',
 			credentials: 'include',
@@ -143,9 +143,10 @@ UserService = {
 			.catch((err) => console.log(err));
 	},
 	//service to get an user information
-	getUser: async (userId: string): Promise<RegisterResponse> => {
+	getUser: async (userId: Object): Promise<RegisterResponse> => {
+		// console.log(userId);
 		return await fetch(`${BASE_URL}/user`, {
-			method: 'GET',
+			method: 'POST',
 			credentials: 'include',
 			mode: 'cors',
 			headers: {

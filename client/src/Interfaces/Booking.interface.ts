@@ -6,5 +6,5 @@ export default interface Booking {
 	user: string;
 	date: Date;
 	slot: Timeslot;
-	peer?: peer;
+	peer?: [peer];
 }

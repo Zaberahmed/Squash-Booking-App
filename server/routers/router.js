@@ -28,7 +28,7 @@ router.post('/available', authenticator, userController.availableSlots);
 router.post('/confirm', authenticator, userController.confirmBooking);
 router.post('/previous', authenticator, userController.previousBooking);
 router.post('/upcomming', authenticator, userController.upcommingBooking);
-router.get('/user', authenticator, userController.getUser);
+router.post('/user', authenticator, userController.getUser);
 router.get('/users', authenticator, userController.getAllUser);
 router.delete('/cancel', authenticator, userController.deleteBookingByUser);
 

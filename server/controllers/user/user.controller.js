@@ -2,16 +2,16 @@ const { hashing, isUserExist, checkCredentials } = require('./helper.controller'
 
 const { createSession, getSession, destroySession } = require('./../../middlewares/sessionManagement');
 
-const { createUser, findUserById, findUserByEmail, confirmBookingByUser, findAllUser } = require('./../../models/user/user.model');
+const { createUser, findUserById, findUserByEmail, confirmBookingByUser, findAllUser, deleteUserBooking } = require('./../../models/user/user.model');
 
-const { getAllBookingSlotsByDate, getUserPreviousDayBookingSlots, bookingConfirmed, findBookingById } = require('./../../models/booking/booking.model');
+const { getAllBookingSlotsByDate, getUserPreviousDayBookingSlots, bookingConfirmed, findBookingById, deleteBooking } = require('./../../models/booking/booking.model');
 
 const registration = async (req, res) => {
 	try {
 		const { name, membershipId, userRole, email, phone, password } = req.body;
 
 		if (await isUserExist(email)) {
-			return res.status(401).send('Email already exists!');
+			return res.status(401).send({ message: 'Email already exists!' });
 		}
 
 		const hashedPassword = await hashing(password);
@@ -37,12 +37,12 @@ const login = async (req, res) => {
 		const { email, password } = req.body;
 
 		if (!(await isUserExist(email))) {
-			return res.status(400).send('There is no user with that email!');
+			return res.status(400).send({ message: 'There is no user with that email!' });
 		}
 
 		const isCredentialsOk = await checkCredentials(email, password);
 		if (!isCredentialsOk) {
-			return res.status(401).send('Invalid password!');
+			return res.status(401).send({ message: 'Invalid password!' });
 		}
 
 		const { _id } = await findUserByEmail(email);
@@ -65,9 +65,9 @@ const logout = (req, res) => {
 	try {
 		const token = req.cookies.accessToken;
 		if (!destroySession(token)) {
-			return res.status(400).send('No session to logout.');
+			return res.status(400).send({ message: 'No session to logout.' });
 		}
-		return res.status(200).send('successfully logged out!');
+		return res.status(200).send({ message: 'successfully logged out!' });
 	} catch (error) {
 		console.log(error);
 	}
@@ -191,10 +191,10 @@ const previousBooking = async (req, res) => {
 		const { date } = req.body;
 		const userDate = new Date(date);
 
-		const startDate = new Date(userDate).setDate(new Date(userDate).getDate() - 10);
+		const startDate = new Date(userDate).setDate(new Date(userDate).getDate() - 100);
 		new Date(startDate).setHours(0, 0, 0, 0);
 
-		const endDate = new Date(userDate).setDate(new Date(userDate).getDate());
+		const endDate = new Date(userDate).setDate(new Date(userDate).getDate() - 0);
 		new Date(endDate).setHours(0, 0, 0, 0);
 
 		const userBookings = await getUserPreviousDayBookingSlots(session.userId, startDate, endDate);
@@ -214,10 +214,10 @@ const upcommingBooking = async (req, res) => {
 		const { date } = req.body;
 		const userDate = new Date(date);
 
-		const startDate = new Date(userDate).setDate(new Date(userDate).getDate() + 1);
+		const startDate = new Date(userDate).setDate(new Date(userDate).getDate() + 0);
 		new Date(startDate).setHours(0, 0, 0, 0);
 
-		const endDate = new Date(userDate).setDate(new Date(userDate).getDate() + 10);
+		const endDate = new Date(userDate).setDate(new Date(userDate).getDate() + 100);
 		new Date(endDate).setHours(0, 0, 0, 0);
 
 		const userBookings = await getUserPreviousDayBookingSlots(session.userId, startDate, endDate);
@@ -248,15 +248,21 @@ const getUser = async (req, res) => {
 const deleteBookingByUser = async (req, res) => {
 	try {
 		const { _id } = req.body;
-		const { user } = await findBookingById(_id);
+		const booking = await findBookingById(_id);
+		if (!booking) {
+			return res.status(404).send({ message: 'Booking not found.' });
+		}
+
+		const { user } = booking;
 		await deleteBooking(_id);
 
 		const bookingUser = await findUserById(user);
 		await deleteUserBooking(bookingUser, _id);
-
-		return res.status(200).send('Booking successfully deleted.');
+		// console.log('Its working');
+		return res.status(200).send({ message: 'Booking successfully deleted.' });
 	} catch (error) {
 		console.log(error);
+		res.status(500).send({ message: 'An error occured while cancelling the booking' });
 	}
 };
 

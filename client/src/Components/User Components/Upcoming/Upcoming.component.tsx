@@ -21,9 +21,18 @@ const style = {
 
 const Upcoming = () => {
 	const [open, setOpen] = useState(false);
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
+	const [bookingIdToDelete, setBookingIdToDelete] = useState<string>('');
+	const [bookingDate, setBookingDate] = useState<Date>(new Date());
+	const [ableToCancel, setAbleToCancel] = useState<boolean>(true);
 	const [upcomings, setUpcomings] = useState<Booking[]>();
+
+	const handleOpen = (bookingId: string, bookingDate: Date) => {
+		setOpen(true);
+		setBookingIdToDelete(bookingId);
+		setBookingDate(bookingDate);
+	};
+	const handleClose = () => setOpen(false);
+
 	const formatTime = (timeString: string): string => {
 		const time = timeString.toLowerCase();
 		const hour = time.substring(0, time.length - 2);
@@ -36,12 +45,54 @@ const Upcoming = () => {
 
 		return `${formattedHour}:00 ${period.toUpperCase()}`;
 	};
+
+	const handleDelete = async () => {
+		// console.log('Delete button has been pressed');
+		const currentTime = new Date();
+		const bookingTime = new Date(bookingDate);
+
+		// Calculate the time difference in milliseconds
+		const timeDifference = bookingTime.getTime() - currentTime.getTime();
+
+		// Calculate the time difference in hours
+		const timeDifferenceInHours = timeDifference / (1000 * 60 * 60);
+
+		if (timeDifferenceInHours < 12) {
+			// Show an error message to the user or perform appropriate action
+			setAbleToCancel(false);
+			return;
+		}
+		try {
+			await UserService.cancelBooking({ _id: bookingIdToDelete });
+			// console.log(result);
+			setUpcomings((previousState) => previousState?.filter((booking) => booking._id !== bookingIdToDelete));
+
+			handleClose();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const results = await UserService.upcomingBookings({ date: new Date() });
 				results.sort((a: Booking, b: Booking) => new Date(a.date).getTime() - new Date(b.date).getTime());
-				setUpcomings(results);
+				// console.log(results[0].peer[0].opponent);
+				const modifiedResult = await Promise.all(
+					results.map(async (result: Booking) => {
+						const opponentId = result.peer?.[0]?.opponent;
+						// console.log(opponentId);
+						const opponent = await UserService.getUser({ _id: opponentId });
+						// console.log(opponent);
+						if (result.peer && result.peer[0]) {
+							result.peer[0].opponentName = opponent.name;
+						}
+						return result;
+					})
+				);
+				// console.log(modifiedResult);
+				setUpcomings(modifiedResult);
 				console.log(results);
 			} catch (error) {
 				// Handle error
@@ -52,16 +103,15 @@ const Upcoming = () => {
 		fetchData();
 	}, []);
 
-	const handleDelete = async () => {
-		console.log('Delete button has been pressed');
-	};
 	return (
 		<div>
 			{upcomings?.map((upcoming) => (
-				<div className="upcoming-card">
+				<div
+					className="upcoming-card"
+					key={upcoming._id}>
 					<div className="card-content flex justify-center gap-5">
 						<div className="accent p-4 rounded">
-							<p key={upcoming._id}>
+							<p>
 								{new Date(upcoming.date).toLocaleDateString('en-US', {
 									weekday: 'long',
 									day: 'numeric',
@@ -71,14 +121,20 @@ const Upcoming = () => {
 							</p>
 						</div>
 						<div className="">
-							<p key={upcoming._id}>
+							<p>
 								<strong>Time: </strong>
 								{formatTime(upcoming.slot.time)}
+							</p>
+							<p>
+								<strong>Partner: </strong>
+								{upcoming.peer?.[0].opponentName}
 							</p>
 						</div>
 					</div>
 					<Button
-						onClick={handleOpen}
+						onClick={() => {
+							upcoming._id && handleOpen(upcoming._id, upcoming.date);
+						}}
 						color="error">
 						Cancel
 					</Button>
@@ -93,7 +149,7 @@ const Upcoming = () => {
 								id="modal-modal-title"
 								variant="h6"
 								component="h2">
-								Press confirm your choice
+								{ableToCancel ? 'Press confirm your choice' : 'Cancellation is not allowed within 12 hours'}
 							</Typography>
 							<Typography
 								id="modal-modal-description"
@@ -102,7 +158,7 @@ const Upcoming = () => {
 									onClick={handleDelete}
 									color="error"
 									sx={{ float: 'right' }}>
-									Confirm
+									OKAY
 								</Button>
 							</Typography>
 						</Box>
