@@ -1,36 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import authJWT from '../../Services/User.service';
-
+import AdminService from '../../../Services/User.service';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import PastEvents from './../History/PastEvents.components';
-import UpcomingEvents from '../Upcoming/UpcomingEvents';
+import PastEvents from '../PastEvents/PastEvents.components';
+import UpcomingEvents from '../UpcomingEvents/UpcomingEvents.components';
+import Booking from '../../../Interfaces/Booking.interface';
+
 const TabComponent = () => {
-	const formatTime = (timeString: string): string => {
-		const time = timeString.toLowerCase();
-		const hour = time.substring(0, time.length - 2);
-		const period = time.substring(time.length - 2);
-
-		let formattedHour = parseInt(hour, 10);
-		if (formattedHour < 10) {
-			formattedHour = 0 + formattedHour;
-		}
-
-		return `${formattedHour}:00 ${period.toUpperCase()}`;
-	};
-	// const location = useLocation()
-	// const {past,upComing} =location.state;
 	const [value, setValue] = React.useState('2');
-	const [bookings, setBookings] = useState<any[]>([]);
+	const [bookings, setBookings] = useState<Booking[]>([]);
 	const today = new Date().toISOString();
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await authJWT.bookingsList();
+				const result = await AdminService.bookingsList();
 				console.log(result);
 				setBookings(result);
 			} catch (error) {
@@ -43,17 +30,16 @@ const TabComponent = () => {
 	}, []);
 
 	const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+		event.preventDefault();
 		setValue(newValue);
 	};
 
-	const filterBookings = (booking: any) => {
+	const filterBookings = (booking: Booking) => {
 		const bookingTime = new Date(booking.date).toISOString();
 		return bookingTime >= today;
 	};
 	const pastBookings = bookings.filter((booking) => !filterBookings(booking));
 	const upComingBookings = bookings.filter(filterBookings);
-	// console.log(upComingBookings);
-	// console.log(pastBookings);
 
 	return (
 		<div>
@@ -75,9 +61,9 @@ const TabComponent = () => {
 					</Box>
 					<TabPanel value="1">
 						<div className="">
-							{pastBookings.map((booking: { id: React.Key | null | undefined }) => (
+							{pastBookings.map((booking: Booking) => (
 								<PastEvents
-									key={booking.id}
+									key={booking._id}
 									booking={booking}
 								/>
 							))}
@@ -85,9 +71,9 @@ const TabComponent = () => {
 					</TabPanel>
 					<TabPanel value="2">
 						<div className="">
-							{upComingBookings.map((booking: { id: React.Key | null | undefined }) => (
+							{upComingBookings.map((booking: Booking) => (
 								<UpcomingEvents
-									key={booking.id}
+									key={booking._id}
 									booking={booking}
 								/>
 							))}
@@ -95,14 +81,6 @@ const TabComponent = () => {
 					</TabPanel>
 				</TabContext>
 			</Box>
-
-			{/* {value &&
-       (
-
-
-
-       )
-      } */}
 		</div>
 	);
 };
