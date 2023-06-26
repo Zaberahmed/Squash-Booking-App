@@ -1,7 +1,7 @@
 const BASE_URL = 'http://localhost:4000';
 // import User from '../Interfaces/User.interface';
 
-let Admin: any = {
+let AdminService: any = {
 	register: async function () {},
 	login: async function () {},
 };
@@ -13,7 +13,7 @@ interface RegisterResponse {
 
 const token: string | null = localStorage.getItem('accessToken');
 
-Admin = {
+AdminService = {
 	//login
 	login: async (admin: any): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/admin/login`, {
@@ -172,4 +172,4 @@ Admin = {
 	},
 };
 
-export default Admin;
+export default AdminService;

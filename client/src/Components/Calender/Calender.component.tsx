@@ -5,7 +5,7 @@ import { useState } from 'react';
 import TimeSlots from '../TimeSlots/TimeSlots.component';
 import filterAvailableSlots from './../../utils/timeslots';
 import authJWT from '../../Services/User.service';
-import TimeSlot from '../../Interfaces/TimeSlot';
+import TimeSlot from '../../Interfaces/Timeslot.interface';
 
 const SimpleCalender: React.FC = () => {
 	const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
