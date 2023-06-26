@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Upcoming.component.css';
-import UserService from './../../Services/User.service';
-import Booking from '../../Interfaces/Booking.interface';
+import UserService from '../../../Services/User.service';
+import Booking from '../../../Interfaces/Booking.interface';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';

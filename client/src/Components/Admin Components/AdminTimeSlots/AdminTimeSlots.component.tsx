@@ -50,15 +50,13 @@ const AdminTimeSlots = () => {
 
 			<div className="grid grid-cols-3 ">
 				{timeSlotsForAdmin.map((time) => (
-					<>
-						<button
-							key={time.slotName}
-							className={`p-4 bg-yellow-100 border-2 border-yellow-400 rounded-md m-2 ${selectedTimes.includes(time.time) ? 'disabled bg-white text-gray-400' : ''}`}
-							onClick={() => handleTimeClick(time.time)}
-							disabled={selectedTimes.includes(time.time)}>
-							{time.time}
-						</button>
-					</>
+					<button
+						key={time.slotName}
+						className={`p-4 bg-yellow-100 border-2 border-yellow-400 rounded-md m-2 ${selectedTimes.includes(time.time) ? 'disabled bg-white text-gray-400' : ''}`}
+						onClick={() => handleTimeClick(time.time)}
+						disabled={selectedTimes.includes(time.time)}>
+						{time.time}
+					</button>
 				))}
 			</div>
 
