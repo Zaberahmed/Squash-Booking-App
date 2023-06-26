@@ -1,4 +1,4 @@
-import TimeSlot from '../Interfaces/TimeSlot';
+import TimeSlot from '../Interfaces/Timeslot.interface';
 
 const timeslots: TimeSlot[] = [
 	{ slotName: 'A', time: '6:00 AM' },

@@ -1,4 +1,4 @@
-export default interface TimeSlot {
+export default interface Timeslot {
 	slotName: string;
 	time: string;
 }

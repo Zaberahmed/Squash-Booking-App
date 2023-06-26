@@ -4,7 +4,7 @@ import { MdOutlineUpcoming } from 'react-icons/md';
 import { GoHistory } from 'react-icons/go';
 import { BsFillJournalBookmarkFill } from 'react-icons/bs';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import Authentication from '../Interfaces/Authentication';
+import Authentication from '../Interfaces/User-authentication.interface';
 
 const UserPage = (props: Authentication) => {
 	const navigate = useNavigate();

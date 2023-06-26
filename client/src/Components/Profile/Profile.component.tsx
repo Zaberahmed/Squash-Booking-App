@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import auth from '../../utils/auth';
 import Cookies from 'js-cookie';
 import History from '../History/History.component';
-import Authentication from '../../Interfaces/Authentication';
+import Authentication from '../../Interfaces/User-authentication.interface';
 
 const initialState: User = {
 	name: 'John Doe',

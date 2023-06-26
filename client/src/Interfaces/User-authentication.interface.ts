@@ -1,4 +1,4 @@
-export default interface Authentication {
+export default interface UserAuthentication {
 	isAuthenticated: boolean;
 	setIsAuthenticated: (isAuthenticated: boolean) => void;
 }
