@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './History.component.css';
-import authJWT from '../../Services/UserJWT.service';
+import authJWT from '../../Services/User.service';
 import Booking from '../../Interfaces/Booking.interface';
 const History = () => {
 	const [histories, setHistories] = useState<any[]>();

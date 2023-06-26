@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Upcoming.component.css';
-import authJWT from '../../Services/UserJWT.service';
+import authJWT from '../../Services/User.service';
 import Booking from '../../Interfaces/Booking.interface';
 
 import Box from '@mui/material/Box';

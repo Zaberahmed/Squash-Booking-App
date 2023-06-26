@@ -4,7 +4,7 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useState } from 'react';
 import TimeSlots from '../TimeSlots/TimeSlots.component';
 import filterAvailableSlots from './../../utils/timeslots';
-import authJWT from '../../Services/UserJWT.service';
+import authJWT from '../../Services/User.service';
 import TimeSlot from '../../Interfaces/TimeSlot';
 
 const SimpleCalender: React.FC = () => {
