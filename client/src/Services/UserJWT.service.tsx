@@ -111,37 +111,23 @@ authJWT = {
 			.catch((err) => console.log(err));
 	},
 
-	membersList: async (): Promise<RegisterResponse> => {
-		return await fetch(`${BASE_URL}/members`, {
-			method: 'GET',
-			credentials: 'include',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json',
-				authorization: `Bearer ${token}`,
-			},
-		})
-			.then((res) => res.json())
-			.catch((err) => console.log(err));
-	},
-
-	cancelBooking: async (booking: Object): Promise<RegisterResponse> => {
+	cancelBooking: async (bookingId: string): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/cancel`, {
-			method: 'POST',
+			method: 'DELETE',
 			credentials: 'include',
 			mode: 'cors',
 			headers: {
 				'Content-Type': 'application/json',
 				authorization: `Bearer ${token}`,
 			},
-			body: JSON.stringify(booking),
+			body: JSON.stringify(bookingId),
 		})
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
 	},
 
-	bookingsList: async (): Promise<RegisterResponse> => {
-		return await fetch(`${BASE_URL}/bookings`, {
+	getUser: async (userId: string): Promise<RegisterResponse> => {
+		return await fetch(`${BASE_URL}/user`, {
 			method: 'GET',
 			credentials: 'include',
 			mode: 'cors',
@@ -149,6 +135,7 @@ authJWT = {
 				'Content-Type': 'application/json',
 				authorization: `Bearer ${token}`,
 			},
+			body: JSON.stringify(userId),
 		})
 			.then((res) => res.json())
 			.catch((err) => console.log(err));

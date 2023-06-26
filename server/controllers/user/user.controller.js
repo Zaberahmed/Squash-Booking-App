@@ -4,7 +4,7 @@ const { createSession, getSession, destroySession } = require('./../../middlewar
 
 const { createUser, findUserById, findUserByEmail, confirmBookingByUser } = require('./../../models/user/user.model');
 
-const { getAllBookingSlotsByDate, getUserPreviousDayBookingSlots, bookingConfirmed } = require('./../../models/booking/booking.model');
+const { getAllBookingSlotsByDate, getUserPreviousDayBookingSlots, bookingConfirmed, findBookingById } = require('./../../models/booking/booking.model');
 
 const registration = async (req, res) => {
 	try {
@@ -34,7 +34,7 @@ const registration = async (req, res) => {
 
 const login = async (req, res) => {
 	try {
-		let { email, password } = req.body;
+		const { email, password } = req.body;
 
 		if (!(await isUserExist(email))) {
 			return res.status(400).send('There is no user with that email!');
@@ -191,7 +191,7 @@ const previousBooking = async (req, res) => {
 		const { date } = req.body;
 		const userDate = new Date(date);
 
-		const startDate = new Date(userDate).setDate(new Date(userDate).getDate() - 30);
+		const startDate = new Date(userDate).setDate(new Date(userDate).getDate() - 10);
 		new Date(startDate).setHours(0, 0, 0, 0);
 
 		const endDate = new Date(userDate).setDate(new Date(userDate).getDate());
@@ -217,7 +217,7 @@ const upcommingBooking = async (req, res) => {
 		const startDate = new Date(userDate).setDate(new Date(userDate).getDate() + 1);
 		new Date(startDate).setHours(0, 0, 0, 0);
 
-		const endDate = new Date(userDate).setDate(new Date(userDate).getDate() + 30);
+		const endDate = new Date(userDate).setDate(new Date(userDate).getDate() + 10);
 		new Date(endDate).setHours(0, 0, 0, 0);
 
 		const userBookings = await getUserPreviousDayBookingSlots(session.userId, startDate, endDate);
@@ -225,6 +225,29 @@ const upcommingBooking = async (req, res) => {
 		return res.status(200).send(userBookings);
 	} catch (error) {
 		res.status(500);
+		console.log(error);
+	}
+};
+const getUser = async (req, res) => {
+	try {
+		const { _id } = req.body;
+		const user = await findUserById(_id);
+		return res.status(200).send(user);
+	} catch (error) {
+		console.log(error);
+	}
+};
+const deleteBookingByUser = async (req, res) => {
+	try {
+		const { _id } = req.body;
+		const { user } = await findBookingById(_id);
+		await deleteBooking(_id);
+
+		const bookingUser = await findUserById(user);
+		await deleteUserBooking(bookingUser, _id);
+
+		return res.status(200).send('Booking successfully deleted.');
+	} catch (error) {
 		console.log(error);
 	}
 };
@@ -238,4 +261,6 @@ module.exports = {
 	confirmBooking,
 	previousBooking,
 	upcommingBooking,
+	getUser,
+	deleteBookingByUser,
 };
