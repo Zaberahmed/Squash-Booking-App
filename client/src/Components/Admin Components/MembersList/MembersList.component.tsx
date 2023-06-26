@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
-import './MembersList.css';
-import User from '../../Interfaces/User.interface';
-import authJWT from '../../Services/User.service';
+import './MembersList.component.css';
+import User from '../../../Interfaces/User.interface';
+import AdminService from '../../../Services/User.service';
 import { useNavigate } from 'react-router-dom';
 
-const initialState: User[] = [];
-
 const MembersList = () => {
-	const [member, setMember] = useState<User[]>(initialState);
+	const [member, setMember] = useState<User[]>([]);
 
 	const navigate = useNavigate();
 	const path = '/register';
@@ -18,7 +16,7 @@ const MembersList = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await authJWT.membersList();
+				const result = await AdminService.getMembers();
 				console.log(result);
 				setMember(result);
 			} catch (error) {

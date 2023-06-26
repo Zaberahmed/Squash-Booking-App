@@ -3,9 +3,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useState } from 'react';
 import TimeSlots from '../TimeSlots/TimeSlots.component';
-import filterAvailableSlots from '../../utils/filterAvailableSlots';
-import UserService from '../../Services/User.service';
-import Timeslot from '../../Interfaces/Timeslot.interface';
+import filterAvailableSlots from '../../../utils/filterAvailableSlots';
+import UserService from '../../../Services/User.service';
+import Timeslot from '../../../Interfaces/Timeslot.interface';
 
 const SimpleCalender: React.FC = () => {
 	const [timeSlots, setTimeSlots] = useState<Timeslot[]>([]);

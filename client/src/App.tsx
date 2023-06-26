@@ -6,16 +6,17 @@ import SignUpPage from './Pages/SignUp.page';
 import SignInPage from './Pages/SignIn.page';
 import UserPage from './Pages/User.page';
 import LottiePlayer from './Components/Lottie/LottiePlayer.component';
-import Profile from './Components/Profile/Profile.component';
-import Upcoming from './Components/Upcoming/Upcoming.component';
+import Profile from './Components/User Components/Profile/Profile.component';
+import Upcoming from './Components/User Components/Upcoming/Upcoming.component';
 import AdminPage from './Pages/Admin.page';
-import SelectPerson from './Components/SelectPerson/SelectPerson.component';
-import EventPage from './Components/AdminPanel/EventPage.component';
-import SimpleCalender from './Components/Calender/Calender.component';
-import TabComponent from './Components/Tab/Tab.component';
-import History from './Components/History/History.component';
-import MembersList from './Components/MembersList/MembersList';
+import SelectPerson from './Components/User Components/SelectPerson/SelectPerson.component';
+import EventPage from './Components/Admin Components/EventPage/EventPage.component';
+import SimpleCalender from './Components/User Components/Calender/Calender.component';
+import TabComponent from './Components/Admin Components/Tab/Tab.component';
+import History from './Components/User Components/History/History.component';
+
 import auth from './utils/auth';
+import MembersList from './Components/Admin Components/MembersList/MembersList.component';
 
 function App() {
 	const initialState = auth.isAuthenticated();

@@ -1,23 +1,7 @@
-import { useEffect, useState } from 'react';
-import './UpcomingEvents.css';
-import AdminJWT from '../../Services/Admin.service';
+import Booking from '../../../Interfaces/Booking.interface';
+import './UpcomingEvents.component.css';
 
-interface Slot {
-	slotName: string;
-	date: Date;
-}
-
-interface Event {
-	user: string;
-	slot: Slot;
-	_id: string;
-}
-
-interface UpcomingEventsProps {
-	booking: any;
-}
-
-const UpcomingEvents: React.FC<UpcomingEventsProps> = (props) => {
+const UpcomingEvents: React.FC<Booking> = (props) => {
 	// console.log(booking);
 	return (
 		<div className="">
@@ -27,8 +11,8 @@ const UpcomingEvents: React.FC<UpcomingEventsProps> = (props) => {
 					<h3 className="">
 						<strong>Date:</strong>
 					</h3>
-					<h3>slotName:{props.booking.slot.slotName}</h3>
-					<h3>slotTime:{props.booking.slot.time}</h3>
+					<h3>slotName:{props.slot.slotName}</h3>
+					<h3>slotTime:{props.slot.time}</h3>
 					<h3 className="">
 						<strong>Court Number:</strong>
 					</h3>

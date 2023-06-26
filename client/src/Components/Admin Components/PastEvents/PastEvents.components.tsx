@@ -1,31 +1,27 @@
-import React from "react";
+import React from 'react';
+import Booking from '../../../Interfaces/Booking.interface';
 
-interface PastEventsProps{
-	booking:any;
-}
-
-const PastEvents:React.FC<PastEventsProps> = ({booking}) => {
+const PastEvents: React.FC<Booking> = (props) => {
 	// console.log(booking);
 	return (
 		<div className="">
-			
 			<div className="">
 				<div className="bg-shadow bg-white p-3 rounded-md ">
 					<h3 className="card-name">
-						<strong>Date:</strong>{booking.slot.time}
+						<strong>Date:</strong>
+						{props.slot.time}
 					</h3>
 					<h3 className="card-name">
-						<strong>Court Number:</strong> 
+						<strong>Court Number:</strong>
 					</h3>
 					<h3 className="card-name">
-						<strong>Main Player:</strong> {booking.slot.slotName}
+						<strong>Main Player:</strong> {props.slot.slotName}
 					</h3>
 					<h3 className="card-name">
-						<strong>Partner Player:</strong> 
+						<strong>Partner Player:</strong>
 					</h3>
 				</div>
 				<br />
-				
 			</div>
 		</div>
 	);
