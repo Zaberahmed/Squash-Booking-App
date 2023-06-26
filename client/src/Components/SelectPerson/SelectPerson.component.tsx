@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import authJWT from '../../Services/User.service';
+import UserService from '../../Services/User.service';
 import { useLocation, useNavigate } from 'react-router-dom';
 import User from '../../Interfaces/User.interface';
 
@@ -20,7 +20,7 @@ const SelectPerson = () => {
 	const [users, setUsers] = useState<User[]>([initialState]);
 	const [selectedUserName, setSelectedUserName] = useState<string>('');
 
-	const handleDropdownChange = (event: ChangeEvent<HTMLSelectElement>): void => {
+	const handleDropdownChange = async (event: ChangeEvent<HTMLSelectElement>) => {
 		event.preventDefault();
 		setOpponentId(event.target.value);
 		console.log(event.target.value);
@@ -30,7 +30,7 @@ const SelectPerson = () => {
 		}
 	};
 
-	const handleRoleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+	const handleRoleChange = async (event: ChangeEvent<HTMLInputElement>) => {
 		event.preventDefault();
 		setSelectedRole(event.target.value);
 		setOpponentId('');
@@ -44,7 +44,7 @@ const SelectPerson = () => {
 		const peer: Object = { opponent: opponentId };
 		const booking: Object = { date, slot, peer };
 
-		const result = await authJWT.userBooking(booking);
+		const result = await UserService.bookCourt(booking);
 		console.log(result);
 		navigate('/user');
 	};
@@ -52,7 +52,7 @@ const SelectPerson = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await authJWT.membersList();
+				const result = await UserService.getUsers();
 				console.log(result);
 				setUsers(result);
 			} catch (error) {

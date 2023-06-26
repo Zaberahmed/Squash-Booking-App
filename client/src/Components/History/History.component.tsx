@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import './History.component.css';
-import authJWT from '../../Services/User.service';
+import UserService from '../../Services/User.service';
 import Booking from '../../Interfaces/Booking.interface';
 const History = () => {
-	const [histories, setHistories] = useState<any[]>();
+	const [histories, setHistories] = useState<Booking[]>();
 
 	const formatTime = (timeString: string): string => {
 		const time = timeString.toLowerCase();
@@ -20,7 +20,7 @@ const History = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const results = await authJWT.userHistory({ date: new Date().toLocaleDateString() });
+				const results = await UserService.pastBookings({ date: new Date().toLocaleDateString() });
 				results.sort((a: Booking, b: Booking) => new Date(b.date).getTime() - new Date(a.date).getTime());
 				setHistories(results);
 				console.log(results);

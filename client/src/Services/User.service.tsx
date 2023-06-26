@@ -42,7 +42,16 @@ UserService = {
 	},
 
 	//logout
-
+	logout: async (): Promise<RegisterResponse> => {
+		return await fetch(`${BASE_URL}/logout`, {
+			method: 'GET',
+			credentials: 'include',
+			mode: 'cors',
+			headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
+		})
+			.then((res) => res.json())
+			.catch((err) => console.log(err));
+	},
 	//service to get all available slots
 	availableSlots: async (date: Object): Promise<RegisterResponse> => {
 		console.log(date);
@@ -60,7 +69,7 @@ UserService = {
 			.catch((err) => console.log(err));
 	},
 	//service to book a court
-	Book: async (booking: Object): Promise<RegisterResponse> => {
+	bookCourt: async (booking: Object): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/confirm`, {
 			method: 'POST',
 			credentials: 'include',
@@ -75,7 +84,7 @@ UserService = {
 			.catch((err) => console.log(err));
 	},
 	//service to see profile info
-	Profile: async (): Promise<RegisterResponse> => {
+	profile: async (): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/profile`, {
 			method: 'GET',
 			credentials: 'include',
@@ -144,6 +153,20 @@ UserService = {
 				authorization: `Bearer ${token}`,
 			},
 			body: JSON.stringify(userId),
+		})
+			.then((res) => res.json())
+			.catch((err) => console.log(err));
+	},
+	//Service to get all user informations
+	getUsers: async (): Promise<RegisterResponse> => {
+		return await fetch(`${BASE_URL}/users`, {
+			method: 'GET',
+			credentials: 'include',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${token}`,
+			},
 		})
 			.then((res) => res.json())
 			.catch((err) => console.log(err));

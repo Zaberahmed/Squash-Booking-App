@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import User from '../../Interfaces/User.interface';
 import './Profile.component.css';
-import authJWT from '../../Services/User.service';
+import UserService from '../../Services/User.service';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../utils/auth';
 import Cookies from 'js-cookie';
@@ -23,7 +23,7 @@ const Profile = (props: Authentication) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await authJWT.userProfile();
+				const result = await UserService.profile();
 				console.log(result);
 				setProfile(result);
 			} catch (error) {
@@ -56,7 +56,8 @@ const Profile = (props: Authentication) => {
 				</div>
 				<button
 					className="logout-button"
-					onClick={() => {
+					onClick={async () => {
+						await UserService.logout();
 						props.setIsAuthenticated(false);
 						localStorage.clear();
 						Cookies.remove('accessToken');

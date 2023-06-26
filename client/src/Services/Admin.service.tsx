@@ -1,5 +1,5 @@
 const BASE_URL = 'http://localhost:4000';
-// import User from '../Interfaces/User.interface';
+import User from '../Interfaces/User.interface';
 
 let AdminService: any = {
 	register: async function () {},
@@ -14,6 +14,18 @@ interface RegisterResponse {
 const token: string | null = localStorage.getItem('accessToken');
 
 AdminService = {
+	//service to register a user
+	registerUser: async (user: User): Promise<RegisterResponse> => {
+		return await fetch(`${BASE_URL}/registration`, {
+			method: 'POST',
+			credentials: 'include',
+			mode: 'cors',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(user),
+		})
+			.then((res) => res.json())
+			.catch((err) => console.log(err));
+	},
 	//login
 	login: async (admin: any): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/admin/login`, {
@@ -27,13 +39,12 @@ AdminService = {
 			.catch((err) => console.log(err));
 	},
 	//logout
-	logout: async (admin: any): Promise<RegisterResponse> => {
+	logout: async (): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/admin/logout`, {
 			method: 'GET',
 			credentials: 'include',
 			mode: 'cors',
 			headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
-			body: JSON.stringify(admin),
 		})
 			.then((res) => res.json())
 			.catch((err) => console.log(err));

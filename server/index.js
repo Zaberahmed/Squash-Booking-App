@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const router = require('./routers/router');
 const cookieParser = require('cookie-parser');
+const { default: mongoose } = require('mongoose');
 
 const SERVER_PORT = 4000;
 const corsConfig = {
@@ -16,6 +17,7 @@ app.use(cookieParser());
 
 app.use(router);
 
+mongoose.connection.on('open', () => console.log('Connection to mongoDB is open'));
 app.listen(SERVER_PORT, (error) => {
 	if (error) {
 		console.log(error);
