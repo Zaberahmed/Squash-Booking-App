@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import AdminService from '../../../Services/User.service';
+import { useEffect, useState } from 'react';
+import AdminService from '../../../Services/Admin.service';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -10,14 +10,17 @@ import UpcomingEvents from '../UpcomingEvents/UpcomingEvents.components';
 import Booking from '../../../Interfaces/Booking.interface';
 
 const TabComponent = () => {
-	const [value, setValue] = React.useState('2');
+	const [value, setValue] = useState<string>('2');
 	const [bookings, setBookings] = useState<Booking[]>([]);
+	const [pastBookings, setPastBookings] = useState<Booking[]>([]);
+	const [upcomingBookings, setUpcomingBookings] = useState<Booking[]>([]);
+
 	const today = new Date().toISOString();
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await AdminService.bookingsList();
+				const result = await AdminService.getBookings();
 				console.log(result);
 				setBookings(result);
 			} catch (error) {
@@ -29,17 +32,22 @@ const TabComponent = () => {
 		fetchData();
 	}, []);
 
-	const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+	useEffect(() => {
+		if (bookings.length > 0) {
+			const filterBookings = (booking: Booking) => {
+				const bookingTime = new Date(booking.date).toISOString();
+				return bookingTime >= today;
+			};
+
+			setPastBookings(bookings.filter((booking) => !filterBookings(booking)));
+			setUpcomingBookings(bookings.filter(filterBookings));
+		}
+	}, [bookings]);
+
+	const handleChange = async (event: React.SyntheticEvent, newValue: string) => {
 		event.preventDefault();
 		setValue(newValue);
 	};
-
-	const filterBookings = (booking: Booking) => {
-		const bookingTime = new Date(booking.date).toISOString();
-		return bookingTime >= today;
-	};
-	const pastBookings = bookings.filter((booking) => !filterBookings(booking));
-	const upComingBookings = bookings.filter(filterBookings);
 
 	return (
 		<div>
@@ -50,34 +58,32 @@ const TabComponent = () => {
 							onChange={handleChange}
 							aria-label="lab API tabs example">
 							<Tab
-								label="Past"
+								label="Past Bookings"
 								value="1"
 							/>
 							<Tab
-								label="Upcoming"
+								label="Upcoming Bookings"
 								value="2"
 							/>
 						</TabList>
 					</Box>
 					<TabPanel value="1">
-						<div className="">
-							{pastBookings.map((booking: Booking) => (
-								<PastEvents
-									key={booking._id}
-									booking={booking}
-								/>
-							))}
-						</div>
+						{pastBookings.map((booking: Booking) => (
+							<PastEvents
+								key={booking._id}
+								booking={booking}
+							/>
+						))}
 					</TabPanel>
 					<TabPanel value="2">
-						<div className="">
-							{upComingBookings.map((booking: Booking) => (
-								<UpcomingEvents
-									key={booking._id}
-									booking={booking}
-								/>
-							))}
-						</div>
+						{upcomingBookings.map((booking: Booking) => (
+							<UpcomingEvents
+								key={booking._id}
+								booking={booking}
+								upcomingBookings={upcomingBookings}
+								setUpcomingBookings={setUpcomingBookings}
+							/>
+						))}
 					</TabPanel>
 				</TabContext>
 			</Box>

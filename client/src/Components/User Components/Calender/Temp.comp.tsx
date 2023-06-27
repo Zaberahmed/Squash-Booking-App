@@ -24,7 +24,7 @@ const Upcoming = () => {
 	const [bookingIdToDelete, setBookingIdToDelete] = useState<string>('');
 	const [bookingDate, setBookingDate] = useState<Date>(new Date());
 	const [ableToCancel, setAbleToCancel] = useState<boolean>(true);
-	const [upcomings, setUpcomings] = useState<Booking[]>();
+	const [upcomings, setUpcomings] = useState<any[]>();
 
 	const handleOpen = (bookingId: string, bookingDate: Date) => {
 		setOpen(true);
@@ -106,9 +106,7 @@ const Upcoming = () => {
 	return (
 		<div>
 			{upcomings?.map((upcoming) => (
-				<div
-					className="font-bold  text-white"
-					key={upcoming._id}>
+				<div className="font-bold  text-white">
 					<h1 className="primary pt-7 rounded-t-lg mb-7 text-center text-2xl pb-4 font-large">Upcoming Events</h1>
 					<div className="overflow-y-scroll ">
 						<div className="primary p-4 rounded flex justify-between">
@@ -120,14 +118,8 @@ const Upcoming = () => {
 									year: 'numeric',
 								})}
 							</p>
-							<p className="secondary p-1 rounded text-black ">
-								<strong>Time: </strong>
-								{formatTime(upcoming.slot.time)}
-							</p>
-							<p className="secondary p-1 rounded text-black ">
-								<strong>Partner: </strong>
-								{upcoming.peer?.[0].opponentName}
-							</p>
+
+							<p className="secondary p-1 rounded text-black ">{formatTime(upcoming.slot.time)}</p>
 						</div>
 					</div>
 					<Button
