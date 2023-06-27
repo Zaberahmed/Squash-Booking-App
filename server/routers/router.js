@@ -8,7 +8,7 @@ router.post('/admin/login', adminController.login);
 router.get('/admin/logout', adminController.logout);
 
 router.get('/admin/members', adminController.getAllUser);
-router.get('/admin/member', adminController.getUser); //Not required
+router.post('/admin/member', adminController.getUser); //Not required
 router.get('/admin/bookings', adminController.getAllBookings);
 router.get('/admin/booking', adminController.getBooking); //Not required
 router.delete('/admin/delete-member', adminController.deleteUserByAdmin);
