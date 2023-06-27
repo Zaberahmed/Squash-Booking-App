@@ -64,7 +64,7 @@ AdminService = {
 			.catch((err) => console.log(err));
 	},
 	//service to get a single booking
-	getBooking: async (bookingId: string): Promise<RegisterResponse> => {
+	getBooking: async (bookingId: Object): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/admin/booking`, {
 			method: 'GET',
 			credentials: 'include',
@@ -93,9 +93,9 @@ AdminService = {
 			.catch((err) => console.log(err));
 	},
 	//service to get a single memeber
-	getMember: async (userId: string): Promise<RegisterResponse> => {
+	getMember: async (userId: Object): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/admin/member`, {
-			method: 'GET',
+			method: 'POST',
 			credentials: 'include',
 			mode: 'cors',
 			headers: {
@@ -108,7 +108,7 @@ AdminService = {
 			.catch((err) => console.log(err));
 	},
 	//service to delete a booking
-	removeBooking: async (bookingId: string): Promise<RegisterResponse> => {
+	removeBooking: async (bookingId: Object): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/admin/delete-booking`, {
 			method: 'DELETE',
 			credentials: 'include',
@@ -123,7 +123,7 @@ AdminService = {
 			.catch((err) => console.log(err));
 	},
 	//service to delete an user
-	removeMember: async (userId: string): Promise<RegisterResponse> => {
+	removeMember: async (userId: Object): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/admin/delete-member`, {
 			method: 'DELETE',
 			credentials: 'include',
@@ -138,7 +138,7 @@ AdminService = {
 			.catch((err) => console.log(err));
 	},
 	// service to post an event
-	createEvent: async (event: any): Promise<RegisterResponse> => {
+	createEvent: async (event: Event): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/admin/event`, {
 			method: 'POST',
 			credentials: 'include',
@@ -167,7 +167,7 @@ AdminService = {
 			.catch((err) => console.log(err));
 	},
 	//service to delete an event
-	removeEvent: async (eventId: string): Promise<RegisterResponse> => {
+	removeEvent: async (eventId: Object): Promise<RegisterResponse> => {
 		return await fetch(`${BASE_URL}/admin/delete-event`, {
 			method: 'DELETE',
 			credentials: 'include',
