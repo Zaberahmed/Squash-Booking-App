@@ -4,19 +4,17 @@ import 'react-calendar/dist/Calendar.css';
 import './AdminCalender.component.css';
 import AdminTimeSlots from '../AdminTimeSlots/AdminTimeSlots.component';
 import { eachDayOfInterval } from 'date-fns';
+// import { Value } from 'react-calendar/dist/cjs/shared/types';
+
 const AdminCalendar = () => {
 	const [selectedDates, setSelectedDates] = useState<Date[]>([]);
 
-	const handleDateChange = async (date: Date) => {
-		console.log(date);
-
+	const handleDateChange = (date: Date) => {
 		setSelectedDates((previousState) => [...previousState, date]);
-		console.log(selectedDates);
 
 		if (selectedDates.length >= 2) {
 			const [startDate, endDate] = selectedDates;
 			const datesBetween = eachDayOfInterval({ start: startDate, end: endDate });
-
 			const formattedDates = datesBetween.map((date) => new Date(date).toISOString());
 			console.log(formattedDates);
 			setSelectedDates([]);
@@ -33,9 +31,11 @@ const AdminCalendar = () => {
 						value={[selectedDates[0], selectedDates[1]]}
 						selectRange={true}
 						showNeighboringMonth={false} // Hide neighboring months in the calendar
+						goToRangeStartOnSelect
+						minDate={new Date()}
 					/>
-					<br />
-					{selectedDates.length > 0 ? (
+
+					{selectedDates.length > 1 ? (
 						<p className="text-center date-range">
 							<span className="bold">Start:</span>
 							{selectedDates[0].toDateString()}
@@ -49,7 +49,10 @@ const AdminCalendar = () => {
 						</p>
 					)}
 				</div>
-				<AdminTimeSlots />
+				<AdminTimeSlots
+					selectedDates={selectedDates}
+					setSelectedDates={setSelectedDates}
+				/>
 			</div>
 		</div>
 	);

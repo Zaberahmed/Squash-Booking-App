@@ -1,4 +1,3 @@
-import React from 'react';
 import AdminCalender from '../AdminCalender/AdminCalender.component';
 
 const EventPage = () => {
