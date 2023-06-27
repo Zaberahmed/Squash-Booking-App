@@ -1,5 +1,5 @@
 const { isUserNameValid, checkCredentials } = require('./helper.controller');
-const { findAllUser, findUserById, deleteUserBooking } = require('../../models/user/user.model');
+const { findAllUser, findUserById, deleteUserBooking, deleteUser } = require('../../models/user/user.model');
 const { findAllBookings, findBookingById, deleteBooking } = require('../../models/booking/booking.model');
 const { createEvent, findAllEvents, deleteEventById } = require('../../models/admin/event.model');
 

@@ -22,9 +22,6 @@ const style = {
 	p: 4,
 };
 const UpcomingEvents = (props: Props) => {
-	console.log(props.upcomingBookings);
-	console.log('Its working');
-	// console.log(props.booking);
 	const [open, setOpen] = useState<boolean>(false);
 	const [bookingIdToDelete, setBookingIdToDelete] = useState<string>('');
 	const [bookingDate, setBookingDate] = useState<Date>(new Date());
