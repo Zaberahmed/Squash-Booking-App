@@ -3,7 +3,7 @@ import User from '../../../Interfaces/User.interface';
 import './Profile.component.css';
 import UserService from '../../../Services/User.service';
 import { useNavigate } from 'react-router-dom';
-import auth from '../../../utils/auth';
+import auth from '../../../utils/authentication';
 import Cookies from 'js-cookie';
 import History from '../History/History.component';
 import Authentication from '../../../Interfaces/Authentication.interface';

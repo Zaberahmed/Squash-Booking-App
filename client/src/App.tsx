@@ -15,7 +15,7 @@ import SimpleCalender from './Components/User Components/Calender/Calender.compo
 import TabComponent from './Components/Admin Components/Tab/Tab.component';
 import History from './Components/User Components/History/History.component';
 
-import auth from './utils/auth';
+import auth from './utils/authentication';
 import MembersList from './Components/Admin Components/MembersList/MembersList.component';
 
 function App() {

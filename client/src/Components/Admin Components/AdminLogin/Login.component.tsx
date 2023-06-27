@@ -1,16 +1,16 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import auth from '../../utils/authentication';
+import auth from '../../../utils/authentication';
 import { useNavigate } from 'react-router-dom';
-import UserService from '../../Services/User.service';
+import UserService from '../../../Services/User.service';
 import Cookies from 'js-cookie';
-import Authentication from '../../Interfaces/Authentication.interface';
+import Authentication from '../../../Interfaces/Authentication.interface';
 
 const initialState = {
 	email: '',
 	password: '',
 };
 
-const Login = (props: Authentication) => {
+const AdminLogin = (props: Authentication) => {
 	let navigate = useNavigate();
 	const [state, setState] = useState(initialState);
 
@@ -34,7 +34,7 @@ const Login = (props: Authentication) => {
 			localStorage.setItem('accessToken', loginData.accessToken);
 			Cookies.set('accessToken', loginData.accessToken);
 			props.setIsAuthenticated(true);
-			auth.login(() => navigate('/user'));
+			auth.login(() => navigate('/admin'));
 		}
 	};
 
@@ -87,4 +87,4 @@ const Login = (props: Authentication) => {
 	);
 };
 
-export default Login;
+export default AdminLogin;
