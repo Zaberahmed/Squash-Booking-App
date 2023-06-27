@@ -8,6 +8,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import PastEvents from '../PastEvents/PastEvents.components';
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents.components';
 import Booking from '../../../Interfaces/Booking.interface';
+import { Tabs } from '@mui/material';
 
 const TabComponent = () => {
 	const [value, setValue] = useState<string>('2');
@@ -56,7 +57,8 @@ const TabComponent = () => {
 					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 						<TabList
 							onChange={handleChange}
-							aria-label="lab API tabs example">
+							aria-label="lab API tabs example"
+							centered>
 							<Tab
 								label="Past Bookings"
 								value="1"
