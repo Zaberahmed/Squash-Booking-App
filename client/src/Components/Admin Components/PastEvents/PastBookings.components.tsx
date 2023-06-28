@@ -5,7 +5,7 @@ interface Props {
 	key?: string;
 	booking: Booking;
 }
-const PastEvents: React.FC<Props> = (props) => {
+const PastBookings: React.FC<Props> = (props) => {
 	// console.log(booking);
 	return (
 		<div className="">
@@ -31,4 +31,4 @@ const PastEvents: React.FC<Props> = (props) => {
 	);
 };
 
-export default PastEvents;
+export default PastBookings;

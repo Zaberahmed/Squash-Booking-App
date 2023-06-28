@@ -5,10 +5,9 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import PastEvents from '../PastEvents/PastEvents.components';
-import UpcomingEvents from '../UpcomingEvents/UpcomingEvents.components';
+import PastBookings from '../PastEvents/PastBookings.components';
+import UpcomingBookings from '../UpcomingEvents/UpcomingBookings.components';
 import Booking from '../../../Interfaces/Booking.interface';
-import { Tabs } from '@mui/material';
 
 const TabComponent = () => {
 	const [value, setValue] = useState<string>('2');
@@ -71,7 +70,7 @@ const TabComponent = () => {
 					</Box>
 					<TabPanel value="1">
 						{pastBookings.map((booking: Booking) => (
-							<PastEvents
+							<PastBookings
 								key={booking._id}
 								booking={booking}
 							/>
@@ -79,7 +78,7 @@ const TabComponent = () => {
 					</TabPanel>
 					<TabPanel value="2">
 						{upcomingBookings.map((booking: Booking) => (
-							<UpcomingEvents
+							<UpcomingBookings
 								key={booking._id}
 								booking={booking}
 								upcomingBookings={upcomingBookings}

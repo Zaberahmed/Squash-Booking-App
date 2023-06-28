@@ -16,7 +16,7 @@ router.delete('/admin/delete-booking', adminController.deleteBookingByAdmin);
 
 router.post('/admin/event', adminController.addEvent);
 router.delete('/admin/delete-event', adminController.removeEvent);
-router.get('/all-events', adminController.getAllEvents);
+router.get('/admin/all-events', adminController.getAllEvents);
 
 //User routes
 router.post('/registration', userController.registration);
