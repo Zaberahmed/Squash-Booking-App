@@ -1,6 +1,6 @@
 import { Button, Modal, Box, Typography } from '@mui/material';
 import Booking from '../../../Interfaces/Booking.interface';
-import './UpcomingEvents.component.css';
+import './UpcomingBookings.component.css';
 import { useEffect, useState } from 'react';
 import AdminService from '../../../Services/Admin.service';
 
@@ -21,7 +21,7 @@ const style = {
 	boxShadow: 24,
 	p: 4,
 };
-const UpcomingEvents = (props: Props) => {
+const UpcomingBookings = (props: Props) => {
 	const [open, setOpen] = useState<boolean>(false);
 	const [bookingIdToDelete, setBookingIdToDelete] = useState<string>('');
 	const [bookingDate, setBookingDate] = useState<Date>(new Date());
@@ -160,4 +160,4 @@ const UpcomingEvents = (props: Props) => {
 	);
 };
 
-export default UpcomingEvents;
+export default UpcomingBookings;
