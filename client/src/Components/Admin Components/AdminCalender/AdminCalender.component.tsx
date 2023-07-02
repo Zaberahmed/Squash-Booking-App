@@ -2,11 +2,12 @@ import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './AdminCalender.component.css';
-import AdminTimeSlots from '../AdminTimeSlots/AdminTimeSlots.component';
 import { eachDayOfInterval } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 // import { Value } from 'react-calendar/dist/cjs/shared/types';
 
 const AdminCalendar = () => {
+	const navigate = useNavigate();
 	const [selectedDates, setSelectedDates] = useState<Date[]>([]);
 
 	const handleDateChange = (date: Date) => {
@@ -49,11 +50,14 @@ const AdminCalendar = () => {
 						</p>
 					)}
 				</div>
-				<AdminTimeSlots
-					selectedDates={selectedDates}
-					setSelectedDates={setSelectedDates}
-				/>
 			</div>
+			<button
+				className=" bg-blue-500 rounded-lg text-end p-3"
+				onClick={() => {
+					navigate('/admin/timeslots', { state: { selectedDates: selectedDates } });
+				}}>
+				Next
+			</button>
 		</div>
 	);
 };

@@ -3,12 +3,12 @@ import './AdminTimeSlots.component.css';
 import timeslots from '../../../utils/timeslots';
 import AdminService from '../../../Services/Admin.service';
 import Timeslot from '../../../Interfaces/Timeslot.interface';
+import { useLocation } from 'react-router-dom';
 
-interface Props {
-	selectedDates: Date[];
-	setSelectedDates: (dates: Date[]) => void;
-}
-const AdminTimeSlots = (props: Props) => {
+const AdminTimeSlots = () => {
+	const location = useLocation();
+	const selectedDates = location.state.selectedDates;
+
 	const [inputValue, setInputValue] = useState<string>('');
 	const [updatedInputValue, setUpdatedInputValue] = useState<string>('');
 	const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
@@ -40,11 +40,11 @@ const AdminTimeSlots = (props: Props) => {
 			const title = updatedInputValue;
 			console.log(title);
 			const type = 'special event';
-			const dates = props.selectedDates;
+			const dates = selectedDates;
 			const slots = selectedTimeSlots;
 			const result = await AdminService.createEvent({ title, type, dates, slots });
 			console.log(result);
-			props.setSelectedDates([]);
+
 			setInputValue('');
 			setSelectedTimeSlots([]);
 		} catch (error) {
