@@ -1,6 +1,6 @@
+import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
-import './App.css';
 import LandingPage from './Pages/Landing.page';
 import SignUpPage from './Pages/SignUp.page';
 import SignInPage from './Pages/SignIn.page';
@@ -18,6 +18,7 @@ import History from './Components/User Components/History/History.component';
 import auth from './utils/authentication';
 import MembersList from './Components/Admin Components/MembersList/MembersList.component';
 import TimeSlotsList from './Components/User Components/TimeSlotList/TimeSlotList.component';
+import AdminTimeSlots from './Components/Admin Components/AdminTimeSlots/AdminTimeSlots.component';
 
 function App() {
 	const initialState = auth.isAuthenticated();
@@ -46,6 +47,9 @@ function App() {
 				<Route
 					path="timeslotlist"
 					element={<TimeSlotsList />}></Route>
+				<Route
+					path="/selectperson"
+					element={<SelectPerson />}></Route>
 
 				<Route
 					path="user"
@@ -76,10 +80,10 @@ function App() {
 						path="upcoming"
 						element={<Upcoming />}></Route>
 				</Route>
+
 				<Route
-					path="/selectperson"
-					element={<SelectPerson />}
-				/>
+					path="admin/timeslots"
+					element={<AdminTimeSlots />}></Route>
 
 				<Route
 					path="admin"

@@ -5,9 +5,9 @@ import RecurringEvent from '../RecurringEvent/AdminRecurringEvent.component';
 const EventPage = () => {
 	return (
 		<div>
-			{/* <AdminCalender /> */}
+			<AdminCalender />
 			{/* <AdminUpcoming /> */}
-			<RecurringEvent />
+			{/* <RecurringEvent /> */}
 		</div>
 	);
 };
