@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './History.component.css';
 import UserService from '../../../Services/User.service';
 import Booking from '../../../Interfaces/Booking.interface';
 
@@ -28,10 +27,13 @@ const History = () => {
 					results.map(async (result: Booking) => {
 						const opponentId = result.peer?.[0]?.opponent;
 						// console.log(opponentId);
-						const opponent = await UserService.getUser({ _id: opponentId });
-						// console.log(opponent);
-						if (result.peer && result.peer[0]) {
-							result.peer[0].opponentName = opponent.name;
+						try {
+							const opponent = await UserService.getUser({ _id: opponentId });
+							if (result.peer && result.peer[0] && opponent) {
+								result.peer[0].opponentName = opponent.name;
+							}
+						} catch (error) {
+							console.log(error);
 						}
 						return result;
 					})
@@ -46,16 +48,17 @@ const History = () => {
 
 		fetchData();
 	}, []);
+
 	return (
 		<div className="">
-			<h2 className="text-center">Previous Matches</h2>
+			<h2 className="primary pt-7 rounded-t-lg mb-7 text-center text-2xl pb-4 font-large font-bold text-white">User History</h2>
 			{histories?.map((history) => (
 				<div
 					className="history-card"
 					key={history._id}>
-					<div className="card-content flex justify-center gap-5">
-						<div className="accent p-4 rounded">
-							<p>
+					<div className="overflow-y-scroll ">
+						<div className="primary p-3 rounded flex justify-between font-bold text-white">
+							<p className="p-1">
 								{new Date(history.date).toLocaleDateString('en-US', {
 									weekday: 'long',
 									day: 'numeric',
@@ -64,16 +67,15 @@ const History = () => {
 								})}
 							</p>
 						</div>
-						<div className="">
-							<p>
-								<strong>Time: </strong>
-								{formatTime(history.slot.time)}
-							</p>
-							<p key={history._id}>
-								<strong>Partner: </strong>
-								{history.peer?.[0].opponentName}
-							</p>
-						</div>
+
+						<p className="secondary p-1 rounded text-black ">
+							<strong>Time: </strong>
+							{formatTime(history.slot.time)}
+						</p>
+						<p className="secondary p-1 rounded text-black ">
+							<strong>Partner: </strong>
+							{history.peer?.[0].opponentName}
+						</p>
 					</div>
 				</div>
 			))}

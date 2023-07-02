@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './Upcoming.component.css';
 import UserService from '../../../Services/User.service';
 import Booking from '../../../Interfaces/Booking.interface';
 import Box from '@mui/material/Box';
@@ -83,11 +82,17 @@ const Upcoming = () => {
 					results.map(async (result: Booking) => {
 						const opponentId = result.peer?.[0]?.opponent;
 						// console.log(opponentId);
-						const opponent = await UserService.getUser({ _id: opponentId });
-						// console.log(opponent);
-						if (result.peer && result.peer[0]) {
-							result.peer[0].opponentName = opponent.name;
+						try {
+							const opponent = await UserService.getUser({ _id: opponentId });
+							if (result.peer && result.peer[0] && opponent) {
+								result.peer[0].opponentName = opponent.name;
+							}
+						} catch (error) {
+							console.log(error);
 						}
+
+						// console.log(opponent);
+
 						return result;
 					})
 				);
