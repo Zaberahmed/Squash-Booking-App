@@ -1,12 +1,7 @@
 import Register from '../Components/Register/Register.component';
 
-
 const SignUpPage = () => {
-	return (
-		<Register
-
-		/>
-	);
+	return <Register />;
 };
 
 export default SignUpPage;

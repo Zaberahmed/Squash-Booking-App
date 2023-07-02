@@ -10,6 +10,13 @@ body {
 .secondary {
 	background-color: white;
 }
+.accent {
+	background-color: #6bb4b4;
+}
+.action {
+	background-color: #314866;
+}
+
 .text-black {
 	color: black;
 }

@@ -43,11 +43,11 @@ const Login = (props: Authentication) => {
 	};
 
 	return (
-		<div className="w-screen h-screen flex flex-col items-center bg-amber-100">
-			<h2 className="text-2xl font-bold mb-4 mt-5">Login</h2>
+		<div className="w-screen h-screen flex flex-col items-center">
+			<h2 className="text-3xl font-bold mb-4 mt-5">Login</h2>
 			<form
 				onSubmit={handleSubmit}
-				className="w-full max-w-md p-4 flex flex-col">
+				className="w-full max-w-md p-4 flex flex-col shadow-sm">
 				<label
 					htmlFor="email"
 					className="mb-2">
@@ -76,12 +76,13 @@ const Login = (props: Authentication) => {
 					className="w-full border-2 rounded py-2 px-3 mb-2 "
 				/>
 
-				<button
-					type="submit"
-					className="bg-yellow-200 hover:bg-yellow-400 active:bg-slate-700 focus:outline-none focus:ring focus:ring-slate-300 text-black text-l font-semibold text-m px-4 py-2 border rounded-full mt-3 cursor-pointer"
-					disabled={validateForm()}>
-					Login
-				</button>
+				<div className="primary text-white text-l font-semibold text-m px-4 py-2 border rounded-md mt-3 cursor-pointer text-center">
+					<button
+						type="submit"
+						disabled={validateForm()}>
+						Login
+					</button>
+				</div>
 			</form>
 		</div>
 	);

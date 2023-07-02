@@ -2,7 +2,6 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import User from '../../Interfaces/User.interface';
 import AdminService from '../../Services/Admin.service';
-import './Register.component.css';
 
 const initialState: User = {
 	name: '',
@@ -14,12 +13,9 @@ const initialState: User = {
 
 const Register = () => {
 	const navigate = useNavigate();
-	const routeChange = () => {
-		const path = `/admin/members`;
-		navigate(path);
-	};
 
 	const [state, setState] = useState<User>(initialState);
+	const [showModal, setShowModal] = useState<boolean>(false);
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
@@ -36,31 +32,24 @@ const Register = () => {
 		const formData: FormData = new FormData(form);
 
 		const user = Object.fromEntries(formData);
-		console.log(user);
+		// console.log(user);
 		const registerData = await AdminService.registerUser(user);
 		console.log(registerData);
-		// const loginData = await authJWT.login(user);
-		// if (registerData && loginData) {
-		//   localStorage.setItem('accessToken', loginData.accessToken);
-		//   Cookies.set('accessToken', loginData.accessToken);
-		//   props.setIsAuthenticated(true);
-		//   auth.login(() => navigate('/user'));
-		// }
-
-		// props.setIsAuthenticated(true);
-		// auth.login(() => navigate('/user'));
 	};
 
 	const validateForm = (): boolean => {
 		return !state.name || !state.membershipId || !state.phone || !state.email || !state.password;
 	};
 
-	const [showModal, setShowModal] = useState(false);
+	const routeChange = () => {
+		const path = `/admin/members`;
+		navigate(path);
+	};
 
 	return (
-		<div className="w-screen h-screen sm:h-10 flex flex-col items-center bg-amber-100">
-			<h2 className="text-2xl font-bold mt-5 mb-4">Register a member</h2>
-			{/* <p className='mb-4'>Please fill in this form to create an account.</p> */}
+		<div className="w-screen h-screen sm:h-10 flex flex-col items-center primary">
+			<h2 className="text-white font-large font-bold mt-5 mb-4">Register a member</h2>
+
 			<form
 				onSubmit={handleSubmit}
 				className="w-full max-w-md p-4 flex flex-col">
@@ -134,20 +123,14 @@ const Register = () => {
 					className="w-full border rounded py-2 px-3 mb-2"
 				/>
 
-				{/* <button
-          type='submit'
-          className='bg-yellow-300 hover:bg-yellow-400 active:bg-slate-700 focus:outline-none focus:ring focus:ring-slate-300 text-black text-l font-semibold text-m px-4 py-2 border rounded-full mt-3 cursor-pointer'
-          disabled={validateForm()}
-        >
-          Register
-        </button> */}
-				<button
-					className="bg-yellow-300 hover:bg-yellow-400 active:bg-slate-700 focus:outline-none focus:ring focus:ring-slate-300 text-black text-l font-semibold text-m px-4 py-2 border rounded-full mt-3 cursor-pointer"
-					type="submit"
-					onClick={() => setShowModal(true)}
-					disabled={validateForm()}>
-					Register
-				</button>
+				<div className="primary text-white text-l font-semibold text-m px-4 py-2 border rounded-md mt-3 cursor-pointer text-center">
+					<button
+						type="submit"
+						onClick={() => setShowModal(true)}
+						disabled={validateForm()}>
+						Register
+					</button>
+				</div>
 				{showModal ? (
 					<>
 						<div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -155,30 +138,13 @@ const Register = () => {
 								{/*content*/}
 								<div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
 									{/*header*/}
-									<div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-										{/* <h3 className='text-3xl font-semibold'>Modal Title</h3> */}
-										{/* <button
-                      className='p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
-                      onClick={() => setShowModal(false)}
-                    >
-                      <span className='bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none'>
-                        ×
-                      </span>
-                    </button> */}
-									</div>
+									<div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"></div>
 									{/*body*/}
 									<div className="relative p-6 flex-auto">
 										<p className="my-4 text-slate-500 text-lg leading-relaxed">Account created successfully!</p>
 									</div>
 									{/*footer*/}
 									<div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-										{/* <button
-                      className='text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
-                      type='button'
-                      onClick={() => setShowModal(false)}
-                    >
-                      Close
-                    </button> */}
 										<button
 											className="bg-yellow-300 hover:bg-yellow-400 active:bg-slate-700 focus:outline-none focus:ring focus:ring-slate-300 text-black text-l font-semibold text-m px-4 py-2 border rounded-full mt-3 cursor-pointer"
 											type="button"
