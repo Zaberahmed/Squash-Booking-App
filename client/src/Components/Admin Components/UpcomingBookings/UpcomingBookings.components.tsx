@@ -99,29 +99,28 @@ const UpcomingBookings = (props: Props) => {
 	}, []);
 
 	return (
-		<div className="">
-			<h1>Upcoming Events</h1>
-			<div className="cards">
-				<div className="card">
-					<p>slotName:{props.booking.slot.slotName}</p>
-					<p>slotTime:{formatTime(props.booking.slot.time)}</p>
-					<p>
-						Date:
-						{new Date(props.booking.date).toLocaleDateString('en-US', {
-							weekday: 'long',
-							day: 'numeric',
-							month: 'long',
-							year: 'numeric',
-						})}
-					</p>
-					<p className="">
-						<strong>Main Player:</strong>
-						{userName}
-					</p>
-					<p className="">
-						<strong>Partner Player:</strong>
-						{partnerName}
-					</p>
+		<div className="primary text-white p-4 rounded mb-3">
+			<div className="flex-wrap justify-between">
+				<p>slotName:{props.booking.slot.slotName}</p>
+				<p>slotTime:{formatTime(props.booking.slot.time)}</p>
+				<p>
+					Date:
+					{new Date(props.booking.date).toLocaleDateString('en-US', {
+						weekday: 'long',
+						day: 'numeric',
+						month: 'long',
+						year: 'numeric',
+					})}
+				</p>
+				<p className="">
+					<strong>Main Player:</strong>
+					{userName}
+				</p>
+				<p className="">
+					<strong>Partner Player:</strong>
+					{partnerName}
+				</p>
+				<div className="flex justify-end">
 					<Button
 						onClick={() => {
 							props.booking._id && handleOpen(props.booking._id, props.booking.date);
@@ -129,32 +128,32 @@ const UpcomingBookings = (props: Props) => {
 						color="error">
 						Cancel
 					</Button>
-					<Modal
-						open={open}
-						onClose={handleClose}
-						sx={{ '& .MuiBackdrop-root': { backgroundColor: 'transparent' } }}
-						aria-labelledby="modal-modal-title"
-						aria-describedby="modal-modal-description">
-						<Box sx={style}>
-							<Typography
-								id="modal-modal-title"
-								variant="h6"
-								component="h2">
-								{ableToCancel ? 'Press confirm your choice' : 'Cancellation is not allowed within 3 hours'}
-							</Typography>
-							<Typography
-								id="modal-modal-description"
-								sx={{ mt: 2 }}>
-								<Button
-									onClick={handleDelete}
-									color="error"
-									sx={{ float: 'right' }}>
-									OKAY
-								</Button>
-							</Typography>
-						</Box>
-					</Modal>
 				</div>
+				<Modal
+					open={open}
+					onClose={handleClose}
+					sx={{ '& .MuiBackdrop-root': { backgroundColor: 'transparent' } }}
+					aria-labelledby="modal-modal-title"
+					aria-describedby="modal-modal-description">
+					<Box sx={style}>
+						<Typography
+							id="modal-modal-title"
+							variant="h6"
+							component="h2">
+							{ableToCancel ? 'Press confirm your choice' : 'Cancellation is not allowed within 3 hours'}
+						</Typography>
+						<Typography
+							id="modal-modal-description"
+							sx={{ mt: 2 }}>
+							<Button
+								onClick={handleDelete}
+								color="error"
+								sx={{ float: 'right' }}>
+								OKAY
+							</Button>
+						</Typography>
+					</Box>
+				</Modal>
 			</div>
 		</div>
 	);

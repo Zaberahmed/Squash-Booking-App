@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './MembersList.component.css';
 import User from '../../../Interfaces/User.interface';
 import AdminService from '../../../Services/Admin.service';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +6,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { RiDeleteBin5Line } from 'react-icons/ri';
 
 const style = {
 	position: 'absolute' as 'absolute',
@@ -21,6 +21,7 @@ const style = {
 };
 
 const MembersList = () => {
+	const iconSize = 30;
 	const [members, setMembers] = useState<User[]>([]);
 	const [open, setOpen] = useState<boolean>(false);
 
@@ -58,38 +59,31 @@ const MembersList = () => {
 	};
 
 	return (
-		<div className="container">
-			<div className="top-right">
-				<button
-					className="bg-transparent hover:bg-orange-500 text-black-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded"
-					onClick={routeChange}>
-					+Add Member
-				</button>
+		<div>
+			<h1 className="primary rounded-t-full pt-7 pb-3 text-center text-white text-2xl">Members List</h1>
+			<div className="text-end font-semibold text-green my-2">
+				<button onClick={routeChange}>+Add Member</button>
 			</div>
-			<div className="center">
-				<h1>Members List</h1>
-			</div>
-			<div className="cards">
+
+			<div className="overflow-y-scroll height-full">
 				{members?.map((memberItem) => (
 					<div
-						className="card bg-gradient-to-r from-cyan-100 to-blue-200"
+						className="flex justify-between primary text-white my-4 px-4 py-3 rounded-lg"
 						key={memberItem.membershipId}>
-						<h3 className="card-name font-sans">Name: {memberItem.name}</h3>
-						<h3 className="card-name font-sans">Email: {memberItem.email}</h3>
-						<h3 className="card-name font-sans">Phone: {memberItem.phone}</h3>
-						<h3 className="card-name font-sans">membership ID: {memberItem.membershipId}</h3>
-						<div className="card-bottom">
+						<div>
+							<p className="card-name font-sans">Name: {memberItem.name}</p>
+							<p className="card-name font-sans">Email: {memberItem.email}</p>
+							<p className="card-name font-sans">Phone: {memberItem.phone}</p>
+							<p className="card-name font-sans">membership ID: {memberItem.membershipId}</p>
+						</div>
+						<div className="mt-8">
 							<span
 								className="delete-icon"
 								onClick={handleOpen}>
-								<svg
-									className="cursor-pointer w-6 h-6 text-gray-800 dark:text-white"
-									aria-hidden="true"
-									xmlns="http://www.w3.org/2000/svg"
-									fill="currentColor"
-									viewBox="0 0 20 16">
-									<path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z" />
-								</svg>
+								<RiDeleteBin5Line
+									size={iconSize}
+									className="red"
+								/>
 							</span>
 							<Modal
 								open={open}
@@ -102,7 +96,7 @@ const MembersList = () => {
 										id="modal-modal-title"
 										variant="h6"
 										component="h2">
-										Press confirm your choice
+										Please confirm your choice
 									</Typography>
 									<Typography
 										id="modal-modal-description"

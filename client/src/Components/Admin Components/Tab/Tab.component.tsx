@@ -5,8 +5,8 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import PastBookings from '../PastEvents/PastBookings.components';
-import UpcomingBookings from '../UpcomingEvents/UpcomingBookings.components';
+import PastBookings from '../PastBookings/PastBookings.components';
+import UpcomingBookings from '../UpcomingBookings/UpcomingBookings.components';
 import Booking from '../../../Interfaces/Booking.interface';
 
 const TabComponent = () => {
@@ -53,18 +53,24 @@ const TabComponent = () => {
 		<div>
 			<Box sx={{ width: '100%', typography: 'body1', marginTop: '' }}>
 				<TabContext value={value}>
-					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+					<Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
 						<TabList
 							onChange={handleChange}
 							aria-label="lab API tabs example"
+							className="primary rounded-t-full px-7 md:w-full pt-7 pb-3 "
+							TabIndicatorProps={{
+								style: { backgroundColor: 'white' }, // Change indicator color to white
+							}}
 							centered>
 							<Tab
-								label="Past Bookings"
+								label="Past"
 								value="1"
+								sx={{ color: 'white', '&.Mui-selected': { color: 'white' } }}
 							/>
 							<Tab
-								label="Upcoming Bookings"
+								label="Upcoming"
 								value="2"
+								sx={{ color: 'white', '&.Mui-selected': { color: 'white' } }}
 							/>
 						</TabList>
 					</Box>

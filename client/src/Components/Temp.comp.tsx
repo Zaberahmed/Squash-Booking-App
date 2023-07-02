@@ -1,16 +1,16 @@
 import React from 'react';
-import Booking from '../../../Interfaces/Booking.interface';
+import Booking from '../Interfaces/Booking.interface';
 
 interface Props {
 	key?: string;
 	booking: Booking;
 }
-const PastBookings: React.FC<Props> = (props) => {
+const PastEvents: React.FC<Props> = (props) => {
 	// console.log(booking);
 	return (
 		<div className="">
-			<div className="">
-				<div className="bg-shadow bg-white p-3 rounded-md ">
+			<div className="primary text-white rounded p-4 mb-3">
+				<div>
 					<h3 className="card-name">
 						<strong>Date:</strong>
 						{props.booking.slot.time}
@@ -31,4 +31,4 @@ const PastBookings: React.FC<Props> = (props) => {
 	);
 };
 
-export default PastBookings;
+export default PastEvents;
