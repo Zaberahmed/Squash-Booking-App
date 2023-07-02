@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './TimeSlots.component.css';
 import { useNavigate } from 'react-router-dom';
 
 interface ListTimeProps {
@@ -13,24 +12,36 @@ const TimeSlots: React.FC<ListTimeProps> = ({ time, selectedDate, slotName }) =>
 	const [isClicked, setIsClicked] = useState<boolean>(false);
 
 	const navigate = useNavigate();
-	const handleButtonClick = () => {
+
+	const handleTimeClick = () => {
 		setIsClicked(!isClicked);
 		setselectedTime(time);
+	};
+
+	const handleNextButtonClick = () => {
 		if (isClicked) {
-			navigate('/selectperson', { state: { selectedTime: selectedTime, selectedDate: selectedDate.toISOString(), slotName: slotName } });
+			navigate('/selectperson', { state: { selectedTime: selectedTime, selectedDate: selectedDate, slotName: slotName } });
 			console.log(`Next button clicked for time slot: ${time}`);
 		}
 	};
 
 	return (
-		<div className="">
-			<div className="flex justify-center gap-2">
-				<button
-					onClick={handleButtonClick}
-					className={`flex flex-col sm:flex-row border-2 border-yellow-400 bg-white rounded-md px-10 py-4 mb-2
-         ${isClicked ? 'rotate-animation' : ''}`}>
-					{isClicked ? <>Next</> : <>{`${time}`}</>}
-				</button>
+		<div className="text-white font-large font-semibold">
+			<div className="flex items-center justify-center gap-4">
+				<div onClick={handleTimeClick}>
+					{isClicked ? (
+						<>
+							<button className="text-black px-4 py-2 mr-2 mb-2 rounded-lg border-2 border-green">{time}</button>
+							<button
+								className="primary px-4 py-3 text-xl rounded-lg"
+								onClick={handleNextButtonClick}>
+								Next
+							</button>
+						</>
+					) : (
+						<div className="primary px-9 my-1 py-3 mx-auto rounded-lg">{time}</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

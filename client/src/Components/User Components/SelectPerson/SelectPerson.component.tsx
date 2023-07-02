@@ -10,39 +10,42 @@ const initialState: User = {
 	email: 'example@example.com',
 	password: 'XXXXXXXX',
 };
+
 const SelectPerson = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { selectedTime, selectedDate, slotName } = location.state;
+	console.log(selectedDate);
 
-	const [opponentId, setOpponentId] = useState<string>('');
+	const [partnerId, setPartnerId] = useState<string>('');
 	const [selectedRole, setSelectedRole] = useState<string>('');
 	const [users, setUsers] = useState<User[]>([initialState]);
-	const [selectedUserName, setSelectedUserName] = useState<string>('');
+	const [selectedPartnerName, setSelectedPartnerName] = useState<string>('');
+	const [userName, setUserName] = useState<string>('');
 
 	const handleDropdownChange = async (event: ChangeEvent<HTMLSelectElement>) => {
 		event.preventDefault();
-		setOpponentId(event.target.value);
+		setPartnerId(event.target.value);
 		console.log(event.target.value);
 		const selectedUser = users.find((user) => user._id === event.target.value);
 		if (selectedUser) {
-			setSelectedUserName(selectedUser.name); // Save the selected user's name
+			setSelectedPartnerName(selectedUser.name); // Save the selected user's name
 		}
 	};
 
 	const handleRoleChange = async (event: ChangeEvent<HTMLInputElement>) => {
 		event.preventDefault();
 		setSelectedRole(event.target.value);
-		setOpponentId('');
+		setPartnerId('');
 	};
 
 	const handleOnSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const time = selectedTime;
-		const date: Date = selectedDate;
-		const slot: Object = { slotName, time };
-		const peer: Object = { opponent: opponentId };
-		const booking: Object = { date, slot, peer };
+		const date = selectedDate;
+		const slot = { slotName, time };
+		const peer = { opponent: partnerId };
+		const booking = { date, slot, peer };
 
 		const result = await UserService.bookCourt(booking);
 		console.log(result);
@@ -52,9 +55,12 @@ const SelectPerson = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await UserService.getUsers();
-				console.log(result);
-				setUsers(result);
+				const user = await UserService.getUsers();
+				console.log(user);
+				setUsers(user);
+				const profile = await UserService.profile();
+				console.log(profile);
+				setUserName(profile.name);
 			} catch (error) {
 				// Handle error
 				console.log(error);
@@ -65,8 +71,15 @@ const SelectPerson = () => {
 	}, []);
 
 	return (
-		<div className="accent h-screen mt-24 rounded-t-3xl drop-shadow-2xl">
-			<p className="font-serif text-center pt-16">Choose your partner</p>
+		<div className="font-bold">
+			<p className="text-green text-2xl text-center">Slot Summary</p>
+
+			<div className="py-5 grid grid-cols-1 gap-1">
+				<p>Name:{userName}</p>
+				<p>Date: {new Date(selectedDate).toLocaleDateString('en-UK')}</p>
+				<p>Time: {selectedTime}</p>
+				<p>Partner: {selectedPartnerName}</p>
+			</div>
 			<form
 				className="flex flex-col items-center justify-center h-44"
 				onSubmit={handleOnSubmit}>
@@ -93,7 +106,7 @@ const SelectPerson = () => {
 				<div className="mb-5 flex flex-col items-center">
 					{selectedRole === 'instructor' && (
 						<select
-							value={opponentId}
+							value={partnerId}
 							onChange={handleDropdownChange}>
 							<option value="">Choose instructor</option>
 							<option value="Instructor Option 1">Instructor Option 1</option>
@@ -103,7 +116,7 @@ const SelectPerson = () => {
 					)}
 					{selectedRole === 'member' && (
 						<select
-							value={opponentId}
+							value={partnerId}
 							onChange={handleDropdownChange}>
 							<option value="">Choose member</option>
 							{users.map((user) => (
@@ -116,15 +129,10 @@ const SelectPerson = () => {
 						</select>
 					)}
 				</div>
-				<div className="flex flex-col items-center mb-5">
-					<h1>Booking Details</h1>
-					<p>Date: {selectedDate}</p>
-					<p>Time: {selectedTime}</p>
-					<p>Opponent: {selectedUserName}</p>
-				</div>
+
 				<button
 					className="text-center bg-green-400 rounded p-4"
-					disabled={opponentId === ''}>
+					disabled={partnerId === ''}>
 					Confirm
 				</button>
 			</form>

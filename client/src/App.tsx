@@ -17,6 +17,7 @@ import History from './Components/User Components/History/History.component';
 
 import auth from './utils/authentication';
 import MembersList from './Components/Admin Components/MembersList/MembersList.component';
+import TimeSlotsList from './Components/User Components/TimeSlotList/TimeSlotList.component';
 
 function App() {
 	const initialState = auth.isAuthenticated();
@@ -42,6 +43,9 @@ function App() {
 							isAuthenticated={isAuthenticated}
 						/>
 					}></Route>
+				<Route
+					path="timeslotlist"
+					element={<TimeSlotsList />}></Route>
 
 				<Route
 					path="user"

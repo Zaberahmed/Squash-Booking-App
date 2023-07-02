@@ -12,7 +12,7 @@ const UserPage = (props: Authentication) => {
 		const checkcredential = () => {
 			if (!props.isAuthenticated) navigate('/login');
 		};
-		checkcredential();
+		// checkcredential();
 	}, []);
 
 	return (
