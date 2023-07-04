@@ -19,6 +19,8 @@ import auth from './utils/authentication';
 import MembersList from './Components/Admin Components/MembersList/MembersList.component';
 import TimeSlotsList from './Components/User Components/TimeSlotList/TimeSlotList.component';
 import AdminTimeSlots from './Components/Admin Components/AdminTimeSlots/AdminTimeSlots.component';
+import AdminCalendar from './Components/Admin Components/AdminCalender/AdminCalender.component';
+import AdminRecurringEvent from './Components/Admin Components/RecurringEvent/AdminRecurringEvent.component';
 
 function App() {
 	const initialState = auth.isAuthenticated();
@@ -84,6 +86,12 @@ function App() {
 				<Route
 					path="admin/timeslots"
 					element={<AdminTimeSlots />}></Route>
+				<Route
+					path="admin/event/special-event"
+					element={<AdminCalendar />}></Route>
+				<Route
+					path="admin/event/recurring-event"
+					element={<AdminRecurringEvent />}></Route>
 
 				<Route
 					path="admin"

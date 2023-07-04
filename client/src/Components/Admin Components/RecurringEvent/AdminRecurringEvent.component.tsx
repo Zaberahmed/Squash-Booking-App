@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './AdminRecurringEvent.component.css';
 
-const MinimalWeekDayPicker = () => {
+const AdminRecurringEvent = () => {
 	const [selectedDays, setSelectedDays] = useState<number[]>([]);
 
 	const handleDayToggle = (day: number) => {
@@ -78,4 +78,4 @@ const MinimalWeekDayPicker = () => {
 	);
 };
 
-export default MinimalWeekDayPicker;
+export default AdminRecurringEvent;
