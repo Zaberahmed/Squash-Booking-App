@@ -54,7 +54,7 @@ const AdminCalendar = () => {
 			<button
 				className=" bg-blue-500 rounded-lg text-end p-3"
 				onClick={() => {
-					navigate('/admin/timeslots', { state: { selectedDates: selectedDates } });
+					navigate('/admin/timeslots', { state: { selectedDates: selectedDates, selectedDays: [], eventType: 'Special event' } });
 				}}>
 				Next
 			</button>

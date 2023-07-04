@@ -88,7 +88,7 @@ const AdminUpcoming = () => {
 					key={event._id}>
 					<p>{event.title}</p>
 					<p>{event.type}</p>
-					{event.type === 'special event' && event.dates && event.dates.length >= 2 ? (
+					{event.type === 'special event' && event.dates && event.dates.length === 2 ? (
 						<div>
 							<p>
 								Start Date:{' '}

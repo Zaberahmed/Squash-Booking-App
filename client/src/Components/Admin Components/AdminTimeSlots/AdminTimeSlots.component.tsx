@@ -8,6 +8,8 @@ import { useLocation } from 'react-router-dom';
 const AdminTimeSlots = () => {
 	const location = useLocation();
 	const selectedDates = location.state.selectedDates;
+	const selectedDays = location.state.selectedDays;
+	const eventType = location.state.eventType;
 
 	const [inputValue, setInputValue] = useState<string>('');
 	const [updatedInputValue, setUpdatedInputValue] = useState<string>('');
@@ -39,10 +41,12 @@ const AdminTimeSlots = () => {
 			// console.log(selectedTimeSlots);
 			const title = updatedInputValue;
 			console.log(title);
-			const type = 'special event';
+			const type = eventType;
 			const dates = selectedDates;
 			const slots = selectedTimeSlots;
-			const result = await AdminService.createEvent({ title, type, dates, slots });
+			const days = selectedDays;
+
+			const result = await AdminService.createEvent({ title, type, dates, days, slots });
 			console.log(result);
 
 			setInputValue('');
